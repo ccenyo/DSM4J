@@ -1,5 +1,7 @@
 package Exeptions;
 
+import Responses.Response;
+
 import java.io.IOException;
 
 public class DsmException extends RuntimeException {
@@ -18,5 +20,9 @@ public class DsmException extends RuntimeException {
 
     public DsmException(IOException e) {
 
+    }
+
+    public DsmException(Response.Error error) {
+        super("MainErrorCode= "+error.getCode()+" Error= "+error.getErrors());
     }
 }
