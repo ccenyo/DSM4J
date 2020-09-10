@@ -1,5 +1,6 @@
 package Responses;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Response<T>  {
@@ -22,11 +23,19 @@ public class Response<T>  {
         return error;
     }
 
-    private static class Error {
+    public static class Error {
         private String code;
-        private List<ErrorDetail> errors;
+        private List<ErrorDetail> errors = new ArrayList<>();
 
-        private static class ErrorDetail {
+        public String getCode() {
+            return code;
+        }
+
+        public List<ErrorDetail> getErrors() {
+            return errors;
+        }
+
+        public static class ErrorDetail {
             String code;
             String path;
 
@@ -37,6 +46,23 @@ public class Response<T>  {
             public String getPath() {
                 return path;
             }
+
+            @Override
+            public String toString() {
+                return "ErrorDetail{" +
+                        "code='" + code + '\'' +
+                        ", path='" + path + '\'' +
+                        '}';
+            }
         }
+
+        @Override
+        public String toString() {
+            return "Error{" +
+                    "code='" + code + '\'' +
+                    ", errors=" + errors +
+                    '}';
+        }
+
     }
 }
