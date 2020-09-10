@@ -85,7 +85,7 @@ public abstract class DsmAbstractRequest<T> {
             System.out.println("POST Response Code :  " + responseCode);
             System.out.println("POST Response Message : " + conn.getResponseMessage());
 
-            StringBuffer respBuf = new StringBuffer();
+            StringBuilder respBuf = new StringBuilder();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line = null;
             while ((line = br.readLine()) != null) {
@@ -107,5 +107,4 @@ public abstract class DsmAbstractRequest<T> {
     protected void addParameter(String key, String value) {
         params.put(key, value);
     }
-
 }
