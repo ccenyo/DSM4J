@@ -19,13 +19,16 @@ public class DsmClient {
     }
 
     public static DsmClient login(DsmAuth auth) {
-        Response<DsmLoginResponse> dsmLoginResponse = new DsmLoginRequest(auth).call();
+        Optional.ofNullable(auth).orElseThrow(() -> new DsmLoginException("DsmAuth can't be null"));
 
-        Optional.ofNullable(dsmLoginResponse).orElseThrow(() -> new DsmLoginException("An error occured while trying to connect"));
-        if(!dsmLoginResponse.isSuccess()) {
-            throw  new DsmLoginException("");
+        Response<DsmLoginResponse> response = new DsmLoginRequest(auth).call();
+
+        Optional.ofNullable(response).orElseThrow(() -> new DsmLoginException("An error occurred while trying to connect"));
+
+        if(!response.isSuccess()) {
+            throw new DsmLoginException(response.getError());
         }
 
-        return new DsmClient(dsmLoginResponse.getData().getSid());
+        return new DsmClient(response.getData().getSid());
     }
 }
