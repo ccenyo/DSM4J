@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Optional;
 
 public abstract class DsmAbstractRequest<T> {
 
@@ -23,6 +24,7 @@ public abstract class DsmAbstractRequest<T> {
     private static final ObjectMapper mapper = JacksonFactory.getMapper();
 
     private DsmAuth auth;
+
 
     private HashMap<String, String> params = new HashMap<>();
 
@@ -39,6 +41,7 @@ public abstract class DsmAbstractRequest<T> {
     public abstract String getMethod();
 
     protected String build() {
+        addParameter("format", "sid");
         StringBuilder request = new StringBuilder();
         request.append(auth.getHost())
                 .append(":")
@@ -54,6 +57,8 @@ public abstract class DsmAbstractRequest<T> {
                 .append("&")
                 .append("method=")
                 .append(getMethod());
+
+        Optional.ofNullable(auth.getSid()).ifPresent( sid -> request.append("&").append("sid").append("=").append(sid));
 
         params
                 .forEach((key, value) -> request.append("&")
@@ -87,7 +92,7 @@ public abstract class DsmAbstractRequest<T> {
 
             StringBuilder respBuf = new StringBuilder();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String line = null;
+            String line;
             while ((line = br.readLine()) != null) {
                 respBuf.append(line);
             }

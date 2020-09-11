@@ -19,7 +19,7 @@ public class DsmLoginTest {
         DsmClient client = DsmClient.login(auth);
 
         Assert.assertNotNull(client);
-        Assert.assertNotNull(client.getSID());
+        Assert.assertNotNull(client.getDsmAuth());
     }
 
     @Test(expected = DsmLoginException.class)

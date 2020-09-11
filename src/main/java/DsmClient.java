@@ -1,21 +1,23 @@
 import Exeptions.DsmLoginException;
 import Requests.DsmAuth;
 import Requests.DsmLoginRequest;
+import Requests.DsmLogoutRequest;
 import Responses.DsmLoginResponse;
+import Responses.DsmLogoutResponse;
 import Responses.Response;
 
 import java.util.Optional;
 
 public class DsmClient {
 
-    private final String SID;
+    private DsmAuth dsmAuth;
 
-    public DsmClient(String SID) {
-        this.SID = SID;
+    public DsmClient(DsmAuth dsmAuth) {
+        this.dsmAuth = dsmAuth;
     }
 
-    public String getSID() {
-        return SID;
+    public DsmAuth getDsmAuth() {
+        return dsmAuth;
     }
 
     public static DsmClient login(DsmAuth auth) {
@@ -28,7 +30,22 @@ public class DsmClient {
         if(!response.isSuccess()) {
             throw new DsmLoginException(response.getError());
         }
+        auth = auth.setSid(response.getData().getSid());
 
-        return new DsmClient(response.getData().getSid());
+        return new DsmClient(auth);
+    }
+
+    public boolean logout() {
+        Optional.ofNullable(this.dsmAuth).orElseThrow(() -> new DsmLoginException("You are already logged out"));
+        Response<DsmLogoutResponse> response = new DsmLogoutRequest(this.dsmAuth)
+                .call();
+        this.dsmAuth = null;
+        Optional.ofNullable(response).orElseThrow(() -> new DsmLoginException("The request generates no response"));
+
+        if(!response.isSuccess()) {
+            throw new DsmLoginException(response.getError());
+        }
+
+        return response.isSuccess();
     }
 }

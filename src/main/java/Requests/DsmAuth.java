@@ -27,6 +27,7 @@ public class DsmAuth {
     private Integer port;
     private String userName;
     private String password;
+    private String sid;
 
     public String getHost() {
         return host;
@@ -34,6 +35,15 @@ public class DsmAuth {
 
     public DsmAuth setHost(String host) {
         this.host = host;
+        return this;
+    }
+
+    public String getSid() {
+        return sid;
+    }
+
+    public DsmAuth setSid(String sid) {
+        this.sid = sid;
         return this;
     }
 
@@ -88,7 +98,7 @@ public class DsmAuth {
         throw new DsmLoginException("Unable to login with the provided informations ");
     }
 
-    public static DsmAuth fromFile(File file) throws IOException {
+    public static DsmAuth fromFile(File file) {
 
         try {
             Map<String, String> properties = getPropertiesFromFile(file);
