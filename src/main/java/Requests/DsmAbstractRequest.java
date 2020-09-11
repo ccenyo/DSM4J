@@ -96,7 +96,6 @@ public abstract class DsmAbstractRequest<T> {
             LOG.trace("Response received: {}", resp);
 
             return deserialize(resp);
-
         }
         catch (IOException e) {
             e.printStackTrace();

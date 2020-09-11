@@ -1,7 +1,10 @@
 package Responses;
 
+import utils.DsmUtils;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Response<T>  {
 
@@ -25,10 +28,17 @@ public class Response<T>  {
 
     public static class Error {
         private String code;
-        private List<ErrorDetail> errors = new ArrayList<>();
+        private final List<ErrorDetail> errors = new ArrayList<>();
 
         public String getCode() {
             return code;
+        }
+
+        public Optional<String> getDescription() {
+            if(Optional.ofNullable(code).isPresent()) {
+                return Optional.of(DsmUtils.manageErrorMessage(Integer.valueOf(code)));
+            }
+           return Optional.empty();
         }
 
         public List<ErrorDetail> getErrors() {

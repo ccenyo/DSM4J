@@ -23,6 +23,6 @@ public class DsmException extends RuntimeException {
     }
 
     public DsmException(Response.Error error) {
-        super("MainErrorCode= "+error.getCode()+" Error= "+error.getErrors());
+        super("MainErrorCode= "+error.getCode()+" Desciption= "+ error.getDescription().orElse("") + " Error= "+error.getErrors());
     }
 }
