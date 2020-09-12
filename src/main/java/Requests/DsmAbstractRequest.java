@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Optional;
@@ -44,8 +45,7 @@ public abstract class DsmAbstractRequest<T> {
         addParameter("format", "sid");
         StringBuilder request = new StringBuilder();
         request.append(auth.getHost())
-                .append(":")
-                .append(auth.getPort())
+                .append(auth.getPort() == null? "" : ":"+auth.getPort())
                 .append("/")
                 .append(getPath())
                 .append("?")
@@ -86,11 +86,7 @@ public abstract class DsmAbstractRequest<T> {
         try {
 
             String url = build();
-            LOG.debug("Calling URL: {}", url);
-            HttpURLConnection conn = (HttpURLConnection) (new URL(url)).openConnection();
-
-            conn.setRequestMethod("GET");
-
+            HttpURLConnection conn = handleRequest(url);
             int responseCode = conn.getResponseCode();
 
             System.out.println("POST Response Code :  " + responseCode);
@@ -112,6 +108,15 @@ public abstract class DsmAbstractRequest<T> {
             e.printStackTrace();
             throw new DsmException(e);
         }
+    }
+
+    private HttpURLConnection handleRequest(String url) throws IOException {
+        LOG.debug("Calling URL: {}", url);
+        HttpURLConnection conn = (HttpURLConnection) (new URL(url)).openConnection();
+
+        conn.setRequestMethod("GET");
+
+        return conn;
     }
 
     protected void addParameter(String key, String value) {

@@ -108,7 +108,7 @@ public class DsmAuthTest extends BaseTest {
         DsmAuth.of(null, port, username, password);
     }
 
-    @Test(expected = DsmLoginException.class)
+    @Test
     public void createAuthOfPortIsNull() {
         //Given
         String host = "http://host";

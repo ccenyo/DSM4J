@@ -77,11 +77,12 @@ public class DsmAuth {
     public static DsmAuth of(String host, Integer port, String userName, String password) {
 
         Optional.ofNullable(host).orElseThrow(() -> new DsmLoginException("Unable to find property : host"));
-        Optional.ofNullable(port).orElseThrow(() -> new DsmLoginException("Unable to find property : port"));
         Optional.ofNullable(userName).orElseThrow(() -> new DsmLoginException("Unable to find property : userName"));
         Optional.ofNullable(password).orElseThrow(() -> new DsmLoginException("Unable to find property : password"));
 
-        return new DsmAuth().setHost(host).setPort(port).setUserName(userName).setPassword(password);
+        DsmAuth dsmAuth = new DsmAuth().setHost(host).setUserName(userName).setPassword(password);
+        Optional.ofNullable(port).ifPresent(dsmAuth::setPort);
+        return dsmAuth;
     }
 
     public static DsmAuth fromResource(String fileName) {
@@ -90,7 +91,7 @@ public class DsmAuth {
 
             validate(properties);
 
-            return DsmAuth.of(properties.get(HOST_KEY), Integer.valueOf(properties.get(PORT_KEY)), properties.get(USERNAME_KEY), properties.get(PASSWORD_KEY));
+            return DsmAuth.of(properties.get(HOST_KEY), properties.get(PORT_KEY) == null ? null : Integer.valueOf(properties.get(PORT_KEY)), properties.get(USERNAME_KEY), properties.get(PASSWORD_KEY));
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -143,7 +144,7 @@ public class DsmAuth {
         String userName = properties.get(USERNAME_KEY) != null && !properties.get(USERNAME_KEY).isEmpty() ? properties.get(USERNAME_KEY) : null;
         String password = properties.get(PASSWORD_KEY) != null && !properties.get(PASSWORD_KEY).isEmpty() ? properties.get(PASSWORD_KEY) : null;
 
-        if(host != null && port != null && userName != null && password != null) {
+        if(host != null  && userName != null && password != null) {
             return;
         }
 
