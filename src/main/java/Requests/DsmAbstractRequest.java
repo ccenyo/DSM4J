@@ -69,6 +69,12 @@ public abstract class DsmAbstractRequest<T> {
         return request.toString();
     }
 
+    protected String escape(String source) {
+       source = source.replace(",", "\\");
+       source = source.replace("\\", "\\\\");
+       return source;
+    }
+
     private Response<T> deserialize(String resp) throws JsonProcessingException {
         return (Response<T>) mapper.readValue(resp , getClassForMapper());
     }

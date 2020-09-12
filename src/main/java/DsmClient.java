@@ -1,5 +1,6 @@
 import Exeptions.DsmLoginException;
 import Requests.DsmAuth;
+import Requests.DsmSharedFolderRequest;
 import Requests.DsmLoginRequest;
 import Requests.DsmLogoutRequest;
 import Responses.DsmLoginResponse;
@@ -47,5 +48,9 @@ public class DsmClient {
         }
 
         return response.isSuccess();
+    }
+
+    DsmSharedFolderRequest getAllSharedFolders() {
+        return new DsmSharedFolderRequest(dsmAuth);
     }
 }
