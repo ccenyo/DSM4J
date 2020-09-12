@@ -1,5 +1,5 @@
 language: java
 
 before_install:
-  openssl aes-256-cbc -K $encrypted_a6425f150bd1_key -iv $encrypted_a6425f150bd1_iv -in env.properties.enc -out env.properties -d
-  cp  env.properties src/main/resources/
+  - openssl aes-256-cbc -K $encrypted_a6425f150bd1_key -iv $encrypted_a6425f150bd1_iv -in env.properties.enc -out env.properties -d
+  - cp  env.properties src/main/resources/
