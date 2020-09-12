@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderResponse> {
 
-    enum Sort {
+    public enum Sort {
         /**
          * file name
          */
@@ -46,7 +46,7 @@ public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderRe
         posix
     }
 
-    enum SortDirection {
+    public enum SortDirection {
         /**
          * sort ascending
          */
@@ -57,15 +57,11 @@ public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderRe
         desc
     }
 
-    enum Additional {
+    public enum Additional {
         /**
          * return a real path in volume
          */
         real_path,
-        /**
-         * return file byte size
-         */
-        size,
         /**
          * return information about file owner including user name, group name, UID and GID
          */

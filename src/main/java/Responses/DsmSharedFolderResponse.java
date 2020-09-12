@@ -93,23 +93,23 @@ public class DsmSharedFolderResponse {
                 * Byte size of free space of a volume where a shared
                 * folder is located.
                 */
-               private Integer freespace;
+               private Long freespace;
                /**
                 * Byte size of total space of a volume where a shared
                 * folder is located.
                 */
-               private Integer totalspace;
+               private Long totalspace;
                /**
                 * “true”: A volume where a shared folder is located is
                 * read-only; “false”: It’s writable.
                 */
                private boolean readonly;
 
-               public Integer getFreespace() {
+               public Long getFreespace() {
                    return freespace;
                }
 
-               public Integer getTotalspace() {
+               public Long getTotalspace() {
                    return totalspace;
                }
 
