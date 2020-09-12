@@ -58,7 +58,7 @@ public abstract class DsmAbstractRequest<T> {
                 .append("method=")
                 .append(getMethod());
 
-        Optional.ofNullable(auth.getSid()).ifPresent( sid -> request.append("&").append("sid").append("=").append(sid));
+        Optional.ofNullable(auth.getSid()).ifPresent( sid -> request.append("&").append("_sid").append("=").append(sid));
 
         params
                 .forEach((key, value) -> request.append("&")
