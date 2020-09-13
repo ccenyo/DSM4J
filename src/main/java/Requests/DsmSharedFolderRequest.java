@@ -11,85 +11,12 @@ import java.util.stream.Collectors;
 
 public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderResponse> {
 
-    public enum Sort {
-        /**
-         * file name
-         */
-        name,
-        /**
-         * file owner
-         */
-        user,
-        /**
-         * file group
-         */
-        group,
-        /**
-         * last modified time
-         */
-        mtime,
-        /**
-         * last access time
-         */
-        atime,
-        /**
-         * last change time
-         */
-        ctime,
-        /**
-         * create time
-         */
-        crtime,
-        /**
-         * POSIX permission
-         */
-        posix
-    }
-
-    public enum SortDirection {
-        /**
-         * sort ascending
-         */
-        asc,
-        /**
-         * sort descending
-         */
-        desc
-    }
-
-    public enum Additional {
-        /**
-         * return a real path in volume
-         */
-        real_path,
-        /**
-         * return information about file owner including user name, group name, UID and GID
-         */
-        owner,
-        /**
-         * return information about time including last access time, last modified time, last change time and create time
-         */
-        time,
-        /**
-         * return information about file permission
-         */
-        perm,
-        /**
-         * return a type of a virtual file system of a mount point
-         */
-        mount_point_type,
-        /**
-         * return volume statuses including free space, total space and read-only status
-         */
-        volume_status
-    }
-
     private Integer offset;
     private Integer limit;
-    private List<Sort> sorts = new LinkedList<>();
-    private SortDirection sortDirection;
+    private List<DsmRequestParameters.Sort> sorts = new LinkedList<>();
+    private DsmRequestParameters.SortDirection sortDirection;
     private boolean onlyWritable =false;
-    private List<Additional> additionals = new LinkedList<>();
+    private List<DsmRequestParameters.Additional> additionals = new LinkedList<>();
 
     public DsmSharedFolderRequest(DsmAuth auth) {
         super(auth);
@@ -154,7 +81,7 @@ public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderRe
      * @param sortDirection
      * @return
      */
-    public DsmSharedFolderRequest setSortDirection(SortDirection sortDirection) {
+    public DsmSharedFolderRequest setSortDirection(DsmRequestParameters.SortDirection sortDirection) {
         this.sortDirection = sortDirection;
         return this;
     }
@@ -171,22 +98,22 @@ public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderRe
         return this;
     }
 
-    public DsmSharedFolderRequest addAdditionalInfo(Additional additional) {
+    public DsmSharedFolderRequest addAdditionalInfo(DsmRequestParameters.Additional additional) {
         this.additionals.add(additional);
         return this;
     }
 
-    public DsmSharedFolderRequest removeAdditionalInfo(Additional additional) {
+    public DsmSharedFolderRequest removeAdditionalInfo(DsmRequestParameters.Additional additional) {
         this.additionals.remove(additional);
         return this;
     }
 
-    public DsmSharedFolderRequest addSort(Sort sort) {
+    public DsmSharedFolderRequest addSort(DsmRequestParameters.Sort sort) {
         this.sorts.add(sort);
         return this;
     }
 
-    public DsmSharedFolderRequest removeSort(Sort sort) {
+    public DsmSharedFolderRequest removeSort(DsmRequestParameters.Sort sort) {
         this.sorts.remove(sort);
         return this;
     }
@@ -199,11 +126,11 @@ public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderRe
         addParameter("onlywritable", String.valueOf(onlyWritable));
 
         if(!sorts.isEmpty()) {
-            addParameter("sort_by", sorts.stream().map(Sort::name).collect(Collectors.joining(",")));
+            addParameter("sort_by", sorts.stream().map(DsmRequestParameters.Sort::name).collect(Collectors.joining(",")));
         }
 
         if(!additionals.isEmpty()) {
-            addParameter("additional", additionals.stream().map(Additional::name).collect(Collectors.joining(",")));
+            addParameter("additional", additionals.stream().map(DsmRequestParameters.Additional::name).collect(Collectors.joining(",")));
         }
 
         return super.call();

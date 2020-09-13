@@ -1,4 +1,5 @@
 import Requests.DsmAuth;
+import Requests.DsmRequestParameters;
 import Requests.DsmSharedFolderRequest;
 import Responses.DsmSharedFolderResponse;
 import Responses.Response;
@@ -33,9 +34,9 @@ public class DsmSharedFolderTest {
         DsmClient client = DsmClient.login(auth);
 
         Response<DsmSharedFolderResponse> response = client.getAllSharedFolders()
-                                                        .addSort(DsmSharedFolderRequest.Sort.atime)
-                                                        .addSort(DsmSharedFolderRequest.Sort.name)
-                                                        .setSortDirection(DsmSharedFolderRequest.SortDirection.desc)
+                                                        .addSort(DsmRequestParameters.Sort.atime)
+                                                        .addSort(DsmRequestParameters.Sort.name)
+                                                        .setSortDirection(DsmRequestParameters.SortDirection.desc)
                                                         .call();
 
         Assert.assertTrue(response.isSuccess());
@@ -51,12 +52,12 @@ public class DsmSharedFolderTest {
         DsmClient client = DsmClient.login(auth);
 
         Response<DsmSharedFolderResponse> response = client.getAllSharedFolders()
-                .addAdditionalInfo(DsmSharedFolderRequest.Additional.real_path)
-                .addAdditionalInfo(DsmSharedFolderRequest.Additional.owner)
-                .addAdditionalInfo(DsmSharedFolderRequest.Additional.mount_point_type)
-                .addAdditionalInfo(DsmSharedFolderRequest.Additional.perm)
-                .addAdditionalInfo(DsmSharedFolderRequest.Additional.time)
-                .addAdditionalInfo(DsmSharedFolderRequest.Additional.volume_status)
+                .addAdditionalInfo(DsmRequestParameters.Additional.real_path)
+                .addAdditionalInfo(DsmRequestParameters.Additional.owner)
+                .addAdditionalInfo(DsmRequestParameters.Additional.mount_point_type)
+                .addAdditionalInfo(DsmRequestParameters.Additional.perm)
+                .addAdditionalInfo(DsmRequestParameters.Additional.time)
+                .addAdditionalInfo(DsmRequestParameters.Additional.volume_status)
                 .call();
 
         Assert.assertTrue(response.isSuccess());
