@@ -106,7 +106,7 @@ public class DsmAuth {
 
             return DsmAuth.of(properties.get(HOST_KEY), Integer.valueOf(properties.get(PORT_KEY)), properties.get(USERNAME_KEY), properties.get(PASSWORD_KEY));
         } catch (Exception exception) {
-            throw new DsmException(exception);
+            throw new DsmLoginException(exception);
         }
     }
 

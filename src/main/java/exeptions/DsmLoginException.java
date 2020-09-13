@@ -7,6 +7,10 @@ public class DsmLoginException extends DsmException{
         super(errorMessage);
     }
 
+    public DsmLoginException(Exception e) {
+        super(e);
+    }
+
     public DsmLoginException(Response.Error error) {
         super(error);
     }
