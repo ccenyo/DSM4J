@@ -1,6 +1,5 @@
 import Requests.DsmAuth;
 import Requests.DsmRequestParameters;
-import Requests.DsmSharedFolderRequest;
 import Responses.DsmSharedFolderResponse;
 import Responses.Response;
 import org.junit.Assert;

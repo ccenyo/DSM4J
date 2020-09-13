@@ -278,7 +278,7 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
      * @param additional
      * @return
      */
-    public DsmListFolderRequest addAdditional(DsmRequestParameters.Additional additional) {
+    public DsmListFolderRequest addAdditionalInfo(DsmRequestParameters.Additional additional) {
         this.additionals.add(additional);
         return this;
     }
@@ -295,9 +295,7 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
 
     @Override
     public Response<DsmListFolderResponse> call() {
-        Optional.ofNullable(this.folderPath).orElseThrow(() -> new DsmListFolderException("the root folder path can not be null"));
-
-        addParameter("folder_path", escape(this.folderPath));
+        addParameter("folder_path", escape(Optional.ofNullable(this.folderPath).orElseThrow(() -> new DsmListFolderException("the root folder path can not be null"))));
         Optional.ofNullable(this.offset).ifPresent(offset -> addParameter("offset", String.valueOf(offset)));
         Optional.ofNullable(this.limit).ifPresent(limit -> addParameter("limit", String.valueOf(limit)));
         Optional.ofNullable(this.sortDirection).ifPresent(sortDirection -> addParameter("sort_direction", sortDirection.name()));
