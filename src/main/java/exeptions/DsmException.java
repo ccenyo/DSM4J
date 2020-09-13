@@ -2,8 +2,6 @@ package exeptions;
 
 import responses.Response;
 
-import java.io.IOException;
-
 public class DsmException extends RuntimeException {
 
     public DsmException(String errorMessage) {

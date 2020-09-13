@@ -17,8 +17,6 @@ import java.util.stream.Collectors;
 
 public class DsmAuth {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DsmAuth.class.getName());
-
     private static final String HOST_KEY = "host";
     private static final String PORT_KEY = "port";
     private static final String USERNAME_KEY = "username";

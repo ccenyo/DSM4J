@@ -1,3 +1,3 @@
 package responses;
 
-public class DsmLogoutResponse { }
+public interface DsmLogoutResponse { }
