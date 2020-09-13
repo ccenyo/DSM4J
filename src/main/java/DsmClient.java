@@ -1,8 +1,5 @@
 import Exeptions.DsmLoginException;
-import Requests.DsmAuth;
-import Requests.DsmSharedFolderRequest;
-import Requests.DsmLoginRequest;
-import Requests.DsmLogoutRequest;
+import Requests.*;
 import Responses.DsmLoginResponse;
 import Responses.DsmLogoutResponse;
 import Responses.Response;
@@ -52,5 +49,10 @@ public class DsmClient {
 
     DsmSharedFolderRequest getAllSharedFolders() {
         return new DsmSharedFolderRequest(dsmAuth);
+    }
+
+    DsmListFolderRequest ls(String folderPath) {
+        return new DsmListFolderRequest(dsmAuth)
+                    .setFolderPath(folderPath);
     }
 }

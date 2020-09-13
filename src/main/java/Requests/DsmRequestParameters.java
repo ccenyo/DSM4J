@@ -33,7 +33,11 @@ public class DsmRequestParameters {
         /**
          * POSIX permission
          */
-        posix
+        posix,
+        /**
+         * file extension
+         */
+        type
     }
 
     public enum SortDirection {
@@ -71,7 +75,17 @@ public class DsmRequestParameters {
         /**
          * return volume statuses including free space, total space and read-only status
          */
-        volume_status
+        volume_status,
+        /**
+         *  return a file extension
+         */
+        type
+    }
+
+    public enum FileType {
+        all,
+        file,
+        dir
     }
 
 }

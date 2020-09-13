@@ -11,11 +11,83 @@ import java.util.stream.Collectors;
 
 public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderResponse> {
 
+    /**
+     * Optional. Specify how many shared
+     * folders are skipped before beginning
+     * to return listed shared folders.
+     */
     private Integer offset;
+    /**
+     * Optional. Number of shared folders
+     * requested. 0 lists all shared folders
+     */
     private Integer limit;
+    /**
+     * Optional. Specify which file
+     * information to sort on.
+     *
+     * Options include:
+     * name: file name
+     * user: file owner
+     * group: file group
+     * mtime: last modified time
+     * atime: last access time
+     * ctime: last change time
+     * crtime: create time
+     * posix: POSIX permission
+     */
     private List<DsmRequestParameters.Sort> sorts = new LinkedList<>();
+    /**
+     * Optional. Specify to sort ascending
+     * or to sort descending.
+     *
+     * Options include:
+     * asc: sort ascending
+     * desc: sort descending
+     */
     private DsmRequestParameters.SortDirection sortDirection;
+    /**
+     * Optional. “true”: List writable shared
+     * folders; “false”: List writable and
+     * read-only shared folders.
+     */
     private boolean onlyWritable =false;
+    /**
+     * Optional. Additional requested file
+     * information, separated by commas
+     * “,”. When an additional option is
+     * requested, responded objects will be
+     * provided in the specified additional
+     * option.
+     *
+     * Options include:
+     *  real_path: return a real path in
+     * volume
+     *
+     *  size: return file byte size
+     *
+     *  owner: return information
+     * about file owner including user
+     * name, group name, UID and
+     * GID
+     *
+     *  time: return information about
+     * time including last access time,
+     * last modified time, last change
+     * time and create time
+     *
+     *  perm: return information about
+     * file permission
+     *
+     *  mount_point_type: return a
+     * type of a virtual file system of a
+     * mount point
+     *
+     *  volume_status: return volume
+     * statuses including free space,
+     * total space and read-only
+     * status
+     */
     private List<DsmRequestParameters.Additional> additionals = new LinkedList<>();
 
     public DsmSharedFolderRequest(DsmAuth auth) {

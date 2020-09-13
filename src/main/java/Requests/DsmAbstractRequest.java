@@ -72,6 +72,7 @@ public abstract class DsmAbstractRequest<T> {
     protected String escape(String source) {
        source = source.replace(",", "\\");
        source = source.replace("\\", "\\\\");
+       source = source.replace("/", "%2F");
        return source;
     }
 
