@@ -119,7 +119,7 @@ public class DsmAuthTest {
         String username = "username";
         String password = "password";
 
-        Assert.assertNull(DsmAuth.of(host, null, username, password));
+        Assert.assertNotNull(DsmAuth.of(host, null, username, password));
     }
 
     @Test(expected = DsmLoginException.class)
