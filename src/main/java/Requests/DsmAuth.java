@@ -2,8 +2,6 @@ package requests;
 
 import exeptions.DsmException;
 import exeptions.DsmLoginException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,8 +14,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DsmAuth {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(DsmAuth.class.getName());
 
     private static final String HOST_KEY = "host";
     private static final String PORT_KEY = "port";
