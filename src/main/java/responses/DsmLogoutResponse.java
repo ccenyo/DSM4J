@@ -1,3 +1,3 @@
-package Responses;
+package responses;
 
 public class DsmLogoutResponse { }

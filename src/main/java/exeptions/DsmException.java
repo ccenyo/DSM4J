@@ -1,6 +1,6 @@
-package Exeptions;
+package exeptions;
 
-import Responses.Response;
+import responses.Response;
 
 import java.io.IOException;
 

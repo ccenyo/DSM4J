@@ -1,8 +1,8 @@
-package Requests;
+package requests;
 
-import Exeptions.DsmListFolderException;
-import Responses.DsmListFolderResponse;
-import Responses.Response;
+import exeptions.DsmListFolderException;
+import responses.DsmListFolderResponse;
+import responses.Response;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.util.LinkedList;

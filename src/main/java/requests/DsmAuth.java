@@ -1,6 +1,6 @@
-package Requests;
+package requests;
 
-import Exeptions.DsmLoginException;
+import exeptions.DsmLoginException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
