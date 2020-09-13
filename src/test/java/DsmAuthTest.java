@@ -27,10 +27,10 @@ public class DsmAuthTest {
         DsmAuth dsmAuth = DsmAuth.fromFile(file);
 
         Assert.assertNotNull(dsmAuth);
-        Assert.assertEquals(dsmAuth.getHost(), "dummyHost");
-        Assert.assertEquals(dsmAuth.getPort(), Integer.valueOf(2000));
-        Assert.assertEquals(dsmAuth.getUserName(), "dummyUsername");
-        Assert.assertEquals(dsmAuth.getPassword(), "dummyPassword");
+        Assert.assertEquals("dummyHost", dsmAuth.getHost() );
+        Assert.assertEquals(Integer.valueOf(2000), dsmAuth.getPort());
+        Assert.assertEquals("dummyUsername", dsmAuth.getUserName());
+        Assert.assertEquals("dummyPassword", dsmAuth.getPassword());
     }
 
     @Test(expected = DsmLoginException.class)
@@ -96,10 +96,10 @@ public class DsmAuthTest {
         DsmAuth dsmAuth = DsmAuth.of(host, port, username, password);
 
         Assert.assertNotNull(dsmAuth);
-        Assert.assertEquals(dsmAuth.getHost(), "http://host");
-        Assert.assertEquals(dsmAuth.getPort(), Integer.valueOf(5000));
-        Assert.assertEquals(dsmAuth.getUserName(), "username");
-        Assert.assertEquals(dsmAuth.getPassword(), "password");
+        Assert.assertEquals("http://host", dsmAuth.getHost() );
+        Assert.assertEquals(Integer.valueOf(5000), dsmAuth.getPort());
+        Assert.assertEquals("username", dsmAuth.getUserName());
+        Assert.assertEquals("password", dsmAuth.getPassword());
     }
 
     @Test(expected = DsmLoginException.class)
@@ -119,7 +119,7 @@ public class DsmAuthTest {
         String username = "username";
         String password = "password";
 
-        DsmAuth.of(host, null, username, password);
+        Assert.assertNull(DsmAuth.of(host, null, username, password));
     }
 
     @Test(expected = DsmLoginException.class)

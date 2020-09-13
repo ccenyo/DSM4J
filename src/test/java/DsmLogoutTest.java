@@ -1,3 +1,4 @@
+import clients.DsmClient;
 import requests.DsmAuth;
 import org.junit.Assert;
 import org.junit.Before;

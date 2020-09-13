@@ -1,3 +1,4 @@
+import clients.DsmClient;
 import exeptions.DsmException;
 import exeptions.DsmLoginException;
 import requests.DsmAuth;

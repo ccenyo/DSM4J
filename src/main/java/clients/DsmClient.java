@@ -1,3 +1,5 @@
+package clients;
+
 import exeptions.DsmLoginException;
 import requests.*;
 import responses.DsmLoginResponse;
@@ -19,11 +21,9 @@ public class DsmClient {
     }
 
     public static DsmClient login(DsmAuth auth) {
-        Optional.ofNullable(auth).orElseThrow(() -> new DsmLoginException("DsmAuth can't be null"));
+        Response<DsmLoginResponse> response = new DsmLoginRequest(Optional.ofNullable(auth).orElseThrow(() -> new DsmLoginException("DsmAuth can't be null"))).call();
 
-        Response<DsmLoginResponse> response = new DsmLoginRequest(auth).call();
-
-        Optional.ofNullable(response).orElseThrow(() -> new DsmLoginException("An error occurred while trying to connect"));
+        response = Optional.ofNullable(response).orElseThrow(() -> new DsmLoginException("An error occurred while trying to connect"));
 
         if(!response.isSuccess()) {
             throw new DsmLoginException(response.getError());
@@ -34,11 +34,13 @@ public class DsmClient {
     }
 
     public boolean logout() {
-        Optional.ofNullable(this.dsmAuth).orElseThrow(() -> new DsmLoginException("You are already logged out"));
-        Response<DsmLogoutResponse> response = new DsmLogoutRequest(this.dsmAuth)
-                .call();
+        Response<DsmLogoutResponse> response = new DsmLogoutRequest(
+                Optional.ofNullable(this.dsmAuth).orElseThrow(() -> new DsmLoginException("You are already logged out"))
+        )
+        .call();
+
         this.dsmAuth = null;
-        Optional.ofNullable(response).orElseThrow(() -> new DsmLoginException("The request generates no response"));
+        response = Optional.ofNullable(response).orElseThrow(() -> new DsmLoginException("The request generates no response"));
 
         if(!response.isSuccess()) {
             throw new DsmLoginException(response.getError());
@@ -47,11 +49,11 @@ public class DsmClient {
         return response.isSuccess();
     }
 
-    DsmSharedFolderRequest getAllSharedFolders() {
+    public DsmSharedFolderRequest getAllSharedFolders() {
         return new DsmSharedFolderRequest(dsmAuth);
     }
 
-    DsmListFolderRequest ls(String folderPath) {
+    public DsmListFolderRequest ls(String folderPath) {
         return new DsmListFolderRequest(dsmAuth)
                     .setFolderPath(folderPath);
     }

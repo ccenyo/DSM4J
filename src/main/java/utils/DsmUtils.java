@@ -2,6 +2,8 @@ package utils;
 
 public class DsmUtils {
 
+    private DsmUtils(){}
+
     public static String manageErrorMessage(Integer code) {
 
         switch (code) {

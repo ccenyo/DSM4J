@@ -7,8 +7,7 @@ public class JacksonFactory {
 
     private static final ObjectMapper mapper;
 
-    public JacksonFactory() {
-    }
+    private JacksonFactory() { }
 
     static {
         mapper = new ObjectMapper();

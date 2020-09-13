@@ -1,3 +1,4 @@
+import clients.DsmClient;
 import requests.DsmAuth;
 import requests.DsmRequestParameters;
 import responses.DsmListFolderResponse;
@@ -36,9 +37,9 @@ public class DsmListFolderTest {
         DsmClient client = DsmClient.login(auth);
 
         Response<DsmListFolderResponse> response = client.ls(ROOT_HOME)
-                .addSort(DsmRequestParameters.Sort.atime)
-                .addSort(DsmRequestParameters.Sort.name)
-                .setSortDirection(DsmRequestParameters.SortDirection.desc)
+                .addSort(DsmRequestParameters.Sort.ATIME)
+                .addSort(DsmRequestParameters.Sort.NAME)
+                .setSortDirection(DsmRequestParameters.SortDirection.DESC)
                 .call();
 
         Assert.assertTrue(response.isSuccess());
@@ -54,12 +55,12 @@ public class DsmListFolderTest {
         DsmClient client = DsmClient.login(auth);
 
         Response<DsmListFolderResponse> response = client.ls(ROOT_HOME)
-                .addAdditionalInfo(DsmRequestParameters.Additional.real_path)
-                .addAdditionalInfo(DsmRequestParameters.Additional.owner)
-                .addAdditionalInfo(DsmRequestParameters.Additional.mount_point_type)
-                .addAdditionalInfo(DsmRequestParameters.Additional.perm)
-                .addAdditionalInfo(DsmRequestParameters.Additional.time)
-                .addAdditionalInfo(DsmRequestParameters.Additional.type)
+                .addAdditionalInfo(DsmRequestParameters.Additional.REAL_PATH)
+                .addAdditionalInfo(DsmRequestParameters.Additional.OWNER)
+                .addAdditionalInfo(DsmRequestParameters.Additional.MOUNT_POINT_TYPE)
+                .addAdditionalInfo(DsmRequestParameters.Additional.PERM)
+                .addAdditionalInfo(DsmRequestParameters.Additional.TIME)
+                .addAdditionalInfo(DsmRequestParameters.Additional.TYPE)
                 .call();
 
         Assert.assertTrue(response.isSuccess());
