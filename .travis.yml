@@ -5,3 +5,4 @@ before_install:
   - touch src/main/resources/env.properties
   - printf 'host=%s\nport=%s\nusername=%s\npassword=%s'
     $host $port $username $password  > src/main/resources/env.properties
+  - mvn clean
