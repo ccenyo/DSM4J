@@ -155,8 +155,8 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
     /**
      * A listed folder path started with a
      * shared folder.
-     * @param folderPath
-     * @return
+     * @param folderPath the root path
+     * @return DsmListFolderRequest
      */
     public DsmListFolderRequest setFolderPath(String folderPath) {
         this.folderPath = folderPath;
@@ -167,8 +167,8 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
      * Optional. Specify how many files
      * are skipped before beginning to
      * return listed files.
-     * @param offset
-     * @return
+     * @param offset the offset
+     * @return DsmListFolderRequest
      */
     public DsmListFolderRequest setOffset(Integer offset) {
         this.offset = offset;
@@ -179,8 +179,8 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
      * Optional. Number of files
      * requested. 0 indicates to list all
      * files with a given folder.
-     * @param limit
-     * @return
+     * @param limit max number of files returned
+     * @return DsmListFolderRequest
      */
     public DsmListFolderRequest setLimit(Integer limit) {
         this.limit = limit;
@@ -190,8 +190,8 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
     /**
      * Optional. Specify which file
      * information to sort on.
-     * @param sort
-     * @return
+     * @param sort sorts
+     * @return DsmListFolderRequest
      */
     public DsmListFolderRequest addSort(DsmRequestParameters.Sort sort) {
         this.sorts.add(sort);
@@ -200,8 +200,8 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
 
     /**
      * delete sort
-     * @param sort
-     * @return
+     * @param sort sorts
+     * @return DsmListFolderRequest
      */
     public DsmListFolderRequest removeSort(DsmRequestParameters.Sort sort) {
         this.sorts.remove(sort);
@@ -211,8 +211,8 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
     /**
      * Optional. Specify to sort ascending
      * or to sort descending
-     * @param sortDirection
-     * @return
+     * @param sortDirection direction sort
+     * @return DsmListFolderRequest
      */
     public DsmListFolderRequest setSortDirection(DsmRequestParameters.SortDirection sortDirection) {
         this.sortDirection = sortDirection;
@@ -223,8 +223,8 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
      * Optional. Given glob pattern(s) to
      * find files whose names and
      * extensions match a caseinsensitive glob pattern
-     * @param pattern
-     * @return
+     * @param pattern pattern
+     * @return DsmListFolderRequest
      */
     public DsmListFolderRequest addPattern(String pattern) {
         this.patterns.add(pattern);
@@ -233,8 +233,8 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
 
     /**
      * remove pattern
-     * @param pattern
-     * @return
+     * @param pattern pattern
+     * @return DsmListFolderRequest
      */
     public DsmListFolderRequest removePattern(String pattern) {
         this.patterns.remove(pattern);
@@ -246,8 +246,8 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
      * regular files; “dir”: only enumerate
      * folders; “all” enumerate regular
      * files and folders
-     * @param fileType
-     * @return
+     * @param fileType type of file
+     * @return DsmListFolderRequest
      */
     public DsmListFolderRequest setFileType(DsmRequestParameters.FileType fileType) {
         this.fileType = fileType;
@@ -260,8 +260,8 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
      * sub-folders within folder_path
      * path until goto_path path
      * recursively.
-     * @param goToPath
-     * @return
+     * @param goToPath go to path
+     * @return DsmListFolderRequest
      */
     public DsmListFolderRequest setGoToPath(String goToPath) {
         this.goToPath = goToPath;
@@ -275,8 +275,8 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
      * option is requested, responded
      * objects will be provided in the
      * specified additional option
-     * @param additional
-     * @return
+     * @param additional additional
+     * @return DsmListFolderRequest
      */
     public DsmListFolderRequest addAdditionalInfo(DsmRequestParameters.Additional additional) {
         this.additionals.add(additional);
@@ -285,8 +285,8 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
 
     /**
      * remove additional
-     * @param additional
-     * @return
+     * @param additional additional
+     * @return DsmListFolderRequest
      */
     public DsmListFolderRequest removeAdditional(DsmRequestParameters.Additional additional) {
         this.additionals.remove(additional);
@@ -296,11 +296,11 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
     @Override
     public Response<DsmListFolderResponse> call() {
         addParameter("folder_path", escape(Optional.ofNullable(this.folderPath).orElseThrow(() -> new DsmListFolderException("the root folder path can not be null"))));
-        Optional.ofNullable(this.offset).ifPresent(offset -> addParameter("offset", String.valueOf(offset)));
-        Optional.ofNullable(this.limit).ifPresent(limit -> addParameter("limit", String.valueOf(limit)));
-        Optional.ofNullable(this.sortDirection).ifPresent(sortDirection -> addParameter("sort_direction", sortDirection.name()));
-        Optional.ofNullable(this.fileType).ifPresent(fileType -> addParameter("filetype", fileType.name()));
-        Optional.ofNullable(this.goToPath).ifPresent(goToPath -> addParameter("goto_path", goToPath));
+        Optional.ofNullable(this.offset).ifPresent(of -> addParameter("offset", String.valueOf(of)));
+        Optional.ofNullable(this.limit).ifPresent(lm -> addParameter("limit", String.valueOf(lm)));
+        Optional.ofNullable(this.sortDirection).ifPresent(direction -> addParameter("sort_direction", direction.name()));
+        Optional.ofNullable(this.fileType).ifPresent(type -> addParameter("filetype", type.name()));
+        Optional.ofNullable(this.goToPath).ifPresent(gtp -> addParameter("goto_path", gtp));
 
         if(!sorts.isEmpty()) {
             addParameter("sort_by", sorts.stream().map(DsmRequestParameters.Sort::name).collect(Collectors.joining(",")));

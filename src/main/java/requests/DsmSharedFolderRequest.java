@@ -123,8 +123,8 @@ public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderRe
      * Optional. Specify how many shared
      * folders are skipped before beginning
      * to return listed shared folders
-     * @param offset
-     * @return
+     * @param offset offset
+     * @return DsmSharedFolderRequest
      */
     public DsmSharedFolderRequest setOffset(Integer offset) {
         this.offset = offset;
@@ -135,8 +135,8 @@ public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderRe
      * Optional. Number of shared folders
      * requested. 0 lists all shared folders.
      * I
-     * @param limit
-     * @return
+     * @param limit number
+     * @return DsmSharedFolderRequest
      */
     public DsmSharedFolderRequest setLimit(Integer limit) {
         this.limit = limit;
@@ -150,8 +150,8 @@ public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderRe
      * Options include:
      * asc: sort ascending
      * desc: sort descending
-     * @param sortDirection
-     * @return
+     * @param sortDirection asc or desc
+     * @return DsmSharedFolderRequest
      */
     public DsmSharedFolderRequest setSortDirection(DsmRequestParameters.SortDirection sortDirection) {
         this.sortDirection = sortDirection;
@@ -162,8 +162,8 @@ public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderRe
      * Optional. “true”: List writable shared
      * folders; “false”: List writable and
      * read-only shared folders.
-     * @param onlyWritable
-     * @return
+     * @param onlyWritable onlyWritable
+     * @return DsmSharedFolderRequest
      */
     public DsmSharedFolderRequest setOnlyWritable(boolean onlyWritable) {
         this.onlyWritable = onlyWritable;
@@ -192,9 +192,9 @@ public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderRe
 
     @Override
     public Response<DsmSharedFolderResponse> call() {
-        Optional.ofNullable(this.offset).ifPresent(offset -> addParameter("offset", String.valueOf(offset)));
-        Optional.ofNullable(this.limit).ifPresent(limit -> addParameter("limit", String.valueOf(limit)));
-        Optional.ofNullable(this.sortDirection).ifPresent(sortDirection -> addParameter("sort_direction", sortDirection.name()));
+        Optional.ofNullable(this.offset).ifPresent(of -> addParameter("offset", String.valueOf(of)));
+        Optional.ofNullable(this.limit).ifPresent(lm -> addParameter("limit", String.valueOf(lm)));
+        Optional.ofNullable(this.sortDirection).ifPresent(direction -> addParameter("sort_direction", direction.name()));
         addParameter("onlywritable", String.valueOf(onlyWritable));
 
         if(!sorts.isEmpty()) {

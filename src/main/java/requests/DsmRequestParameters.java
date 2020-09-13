@@ -5,87 +5,87 @@ public class DsmRequestParameters {
         /**
          * file name
          */
-        name,
+        NAME,
         /**
          * file owner
          */
-        user,
+        USER,
         /**
          * file group
          */
-        group,
+        GROUP,
         /**
          * last modified time
          */
-        mtime,
+        MTIME,
         /**
          * last access time
          */
-        atime,
+        ATIME,
         /**
          * last change time
          */
-        ctime,
+        CTIME,
         /**
          * create time
          */
-        crtime,
+        CRTIME,
         /**
          * POSIX permission
          */
-        posix,
+        POSIX,
         /**
          * file extension
          */
-        type
+        TYPE
     }
 
     public enum SortDirection {
         /**
          * sort ascending
          */
-        asc,
+        ASC,
         /**
          * sort descending
          */
-        desc
+        DESC
     }
 
     public enum Additional {
         /**
          * return a real path in volume
          */
-        real_path,
+        REAL_PATH,
         /**
          * return information about file owner including user name, group name, UID and GID
          */
-        owner,
+        OWNER,
         /**
          * return information about time including last access time, last modified time, last change time and create time
          */
-        time,
+        TIME,
         /**
          * return information about file permission
          */
-        perm,
+        PERM,
         /**
          * return a type of a virtual file system of a mount point
          */
-        mount_point_type,
+        MOUNT_POINT_TYPE,
         /**
          * return volume statuses including free space, total space and read-only status
          */
-        volume_status,
+        VOLUME_STATUS,
         /**
          *  return a file extension
          */
-        type
+        TYPE
     }
 
     public enum FileType {
-        all,
-        file,
-        dir
+        ALL,
+        FILE,
+        DIR
     }
 
 }

@@ -18,8 +18,8 @@ public class DsmException extends RuntimeException {
         super(errorMessage, errCause);
     }
 
-    public DsmException(IOException e) {
-
+    public DsmException(Exception e) {
+        super(e);
     }
 
     public DsmException(Response.Error error) {

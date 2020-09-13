@@ -1,19 +1,18 @@
 package requests;
 
-import exeptions.DsmException;
-import responses.Response;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import exeptions.DsmException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import responses.Response;
 import utils.JacksonFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Optional;
@@ -80,7 +79,7 @@ public abstract class DsmAbstractRequest<T> {
         return (Response<T>) mapper.readValue(resp , getClassForMapper());
     }
 
-    protected abstract TypeReference getClassForMapper();
+    protected abstract TypeReference<T> getClassForMapper();
 
 
     public Response<T> call() {
@@ -90,8 +89,8 @@ public abstract class DsmAbstractRequest<T> {
             HttpURLConnection conn = handleRequest(url);
             int responseCode = conn.getResponseCode();
 
-            System.out.println("POST Response Code :  " + responseCode);
-            System.out.println("POST Response Message : " + conn.getResponseMessage());
+            LOG.info("POST Response Code : {}", responseCode );
+            LOG.info("POST Response Message : {}", conn.getResponseMessage() );
 
             StringBuilder respBuf = new StringBuilder();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -106,7 +105,6 @@ public abstract class DsmAbstractRequest<T> {
             return deserialize(resp);
         }
         catch (IOException e) {
-            e.printStackTrace();
             throw new DsmException(e);
         }
     }

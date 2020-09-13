@@ -1,5 +1,6 @@
 package requests;
 
+import exeptions.DsmException;
 import exeptions.DsmLoginException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,12 +76,11 @@ public class DsmAuth {
     }
 
     public static DsmAuth of(String host, Integer port, String userName, String password) {
+        DsmAuth dsmAuth = new DsmAuth()
+                .setHost(Optional.ofNullable(host).orElseThrow(() -> new DsmLoginException("Unable to find property : host")))
+                .setUserName(Optional.ofNullable(userName).orElseThrow(() -> new DsmLoginException("Unable to find property : userName")))
+                .setPassword(Optional.ofNullable(password).orElseThrow(() -> new DsmLoginException("Unable to find property : password")));
 
-        Optional.ofNullable(host).orElseThrow(() -> new DsmLoginException("Unable to find property : host"));
-        Optional.ofNullable(userName).orElseThrow(() -> new DsmLoginException("Unable to find property : userName"));
-        Optional.ofNullable(password).orElseThrow(() -> new DsmLoginException("Unable to find property : password"));
-
-        DsmAuth dsmAuth = new DsmAuth().setHost(host).setUserName(userName).setPassword(password);
         Optional.ofNullable(port).ifPresent(dsmAuth::setPort);
         return dsmAuth;
     }
@@ -93,10 +93,8 @@ public class DsmAuth {
 
             return DsmAuth.of(properties.get(HOST_KEY), properties.get(PORT_KEY) == null ? null : Integer.valueOf(properties.get(PORT_KEY)), properties.get(USERNAME_KEY), properties.get(PASSWORD_KEY));
         } catch (Exception exception) {
-            exception.printStackTrace();
+            throw new DsmException(exception);
         }
-
-        throw new DsmLoginException("Unable to login with the provided informations ");
     }
 
     public static DsmAuth fromFile(File file) {
@@ -108,20 +106,17 @@ public class DsmAuth {
 
             return DsmAuth.of(properties.get(HOST_KEY), Integer.valueOf(properties.get(PORT_KEY)), properties.get(USERNAME_KEY), properties.get(PASSWORD_KEY));
         } catch (Exception exception) {
-            exception.printStackTrace();
+            throw new DsmException(exception);
         }
-
-        throw new DsmLoginException("Unable to login with the provided informations ");
     }
 
     public static  Map<String, String> getPropertiesFromFile(File file) throws IOException {
         return Files.readAllLines(file.toPath(), StandardCharsets.UTF_8).stream()
                 .filter(l -> !l.isEmpty())
-                .peek(LOGGER::info)
                 .collect(Collectors.
                         toMap(
-                                l -> l.substring(0,l.indexOf("=")),
-                                l -> l.substring(l.indexOf("=")+1)
+                                l -> l.substring(0,l.indexOf('=')),
+                                l -> l.substring(l.indexOf('=')+1)
                         )
                 );
     }
@@ -131,9 +126,7 @@ public class DsmAuth {
         ClassLoader classLoader = DsmAuth.class.getClassLoader();
         URL resource = classLoader.getResource(fileName);
 
-        Optional.ofNullable(resource).orElseThrow(() -> new IllegalArgumentException("file not found! " + fileName));
-
-        File file = new File(resource.toURI());
+        File file = new File(Optional.ofNullable(resource).orElseThrow(() -> new IllegalArgumentException("file not found! " + fileName)).toURI());
         return getPropertiesFromFile(file);
     }
 

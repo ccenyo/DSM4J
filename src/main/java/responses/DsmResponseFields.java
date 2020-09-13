@@ -4,6 +4,8 @@ import java.util.List;
 
 public class DsmResponseFields {
 
+    private DsmResponseFields() { }
+
     public static class Owner {
         /**
          * User name of file owner.
