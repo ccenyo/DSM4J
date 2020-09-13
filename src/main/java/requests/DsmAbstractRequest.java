@@ -1,7 +1,7 @@
-package requests;
+package Requests;
 
-import exeptions.DsmException;
-import responses.Response;
+import Exeptions.DsmException;
+import Responses.Response;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

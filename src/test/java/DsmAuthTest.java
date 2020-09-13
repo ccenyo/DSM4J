@@ -1,12 +1,16 @@
-import Exeptions.DsmLoginException;
-import Requests.DsmAuth;
+import exeptions.DsmLoginException;
+import requests.DsmAuth;
 import org.junit.*;
+import org.junit.rules.TemporaryFolder;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DsmAuthTest extends BaseTest {
+public class DsmAuthTest {
+
+    @Rule
+    public TemporaryFolder folder= new TemporaryFolder();
 
     @Test
     public void createAuthFromResourceSuccess() throws IOException {
@@ -18,7 +22,7 @@ public class DsmAuthTest extends BaseTest {
         properties.add("port=2000");
         properties.add("username=dummyUsername");
         properties.add("password=dummyPassword");
-        File file = makeFile(properties, fileSuccess);
+        File file = Utils.makeFile(folder, properties, fileSuccess);
 
         DsmAuth dsmAuth = DsmAuth.fromFile(file);
 
@@ -39,7 +43,7 @@ public class DsmAuthTest extends BaseTest {
         properties.add("");
         properties.add("username=dummyUsername");
         properties.add("password=dummyPassword");
-        File file = makeFile(properties, fileSuccess);
+        File file = Utils.makeFile(folder, properties, fileSuccess);
         DsmAuth.fromFile(file);
     }
 
@@ -54,12 +58,12 @@ public class DsmAuthTest extends BaseTest {
         properties.add("port=");
         properties.add("username=dummyUsername");
         properties.add("password=dummyPassword");
-        File file = makeFile(properties, fileSuccess);
+        File file = Utils.makeFile(folder, properties, fileSuccess);
         DsmAuth.fromFile(file);
     }
 
     @Test(expected = DsmLoginException.class)
-    public void createAuthFromResourceFileNotExist() throws IOException {
+    public void createAuthFromResourceFileNotExist() {
         //Given
         String fileSuccess = "env-wrong.properties";
 
@@ -77,7 +81,7 @@ public class DsmAuthTest extends BaseTest {
 
         properties.add("username=dummyUsername");
         properties.add("password=dummyPassword");
-        File file = makeFile(properties, fileSuccess);
+        File file = Utils.makeFile(folder, properties, fileSuccess);
         DsmAuth.fromFile(file);
     }
 

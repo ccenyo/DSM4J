@@ -1,6 +1,6 @@
-import Exeptions.DsmException;
-import Exeptions.DsmLoginException;
-import Requests.DsmAuth;
+import exeptions.DsmException;
+import exeptions.DsmLoginException;
+import requests.DsmAuth;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

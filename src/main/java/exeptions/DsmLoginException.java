@@ -1,6 +1,6 @@
-package exeptions;
+package Exeptions;
 
-import responses.Response;
+import Responses.Response;
 
 public class DsmLoginException extends DsmException{
     public DsmLoginException(String errorMessage) {

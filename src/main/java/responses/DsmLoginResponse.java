@@ -1,4 +1,4 @@
-package responses;
+package Responses;
 
 public class DsmLoginResponse {
 

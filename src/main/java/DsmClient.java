@@ -1,8 +1,8 @@
-import Exeptions.DsmLoginException;
-import Requests.*;
-import Responses.DsmLoginResponse;
-import Responses.DsmLogoutResponse;
-import Responses.Response;
+import exeptions.DsmLoginException;
+import requests.*;
+import responses.DsmLoginResponse;
+import responses.DsmLogoutResponse;
+import responses.Response;
 
 import java.util.Optional;
 

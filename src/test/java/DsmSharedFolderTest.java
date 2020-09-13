@@ -1,7 +1,7 @@
-import Requests.DsmAuth;
-import Requests.DsmRequestParameters;
-import Responses.DsmSharedFolderResponse;
-import Responses.Response;
+import requests.DsmAuth;
+import requests.DsmRequestParameters;
+import responses.DsmSharedFolderResponse;
+import responses.Response;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

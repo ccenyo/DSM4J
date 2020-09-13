@@ -1,7 +1,7 @@
-package requests;
+package Requests;
 
-import responses.DsmSharedFolderResponse;
-import responses.Response;
+import Responses.DsmSharedFolderResponse;
+import Responses.Response;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.util.LinkedList;

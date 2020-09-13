@@ -1,8 +1,8 @@
-package requests;
+package Requests;
 
-import responses.DsmLoginResponse;
-import responses.DsmLogoutResponse;
-import responses.Response;
+import Responses.DsmLoginResponse;
+import Responses.DsmLogoutResponse;
+import Responses.Response;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 public class DsmLogoutRequest extends DsmAbstractRequest<DsmLogoutResponse>  {

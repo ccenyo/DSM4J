@@ -1,4 +1,4 @@
-package requests;
+package Requests;
 
 public class DsmRequestParameters {
     public enum Sort {
