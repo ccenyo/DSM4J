@@ -23,7 +23,7 @@ public abstract class DsmAbstractRequest<T> {
 
     private static final ObjectMapper mapper = JacksonFactory.getMapper();
 
-    private DsmAuth auth;
+    protected DsmAuth auth;
 
 
     private HashMap<String, String> params = new HashMap<>();
@@ -75,7 +75,7 @@ public abstract class DsmAbstractRequest<T> {
        return source;
     }
 
-    private Response<T> deserialize(String resp) throws JsonProcessingException {
+    protected Response<T> deserialize(String resp) throws JsonProcessingException {
         return (Response<T>) mapper.readValue(resp , getClassForMapper());
     }
 

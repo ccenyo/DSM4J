@@ -57,4 +57,10 @@ public class DsmClient {
         return new DsmListFolderRequest(dsmAuth)
                     .setFolderPath(folderPath);
     }
+
+    public DsmUploadRequest upload(String destinationPath, String filePath) {
+        return new DsmUploadRequest(dsmAuth)
+                .setDestinationFolderPath(destinationPath)
+                .setFilePath(filePath);
+    }
 }
