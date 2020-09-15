@@ -83,7 +83,8 @@ public class DsmUploadTest {
         Response<DsmUploadResponse> response =  client.
                 upload(ROOT_FOLDER+"/test", file.getAbsolutePath()).
                 createParentFolders(true).
-                call();
+                overwrite(DsmUploadRequest.OverwriteBehaviour.OVERWRITE)
+                .call();
 
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isSuccess());
