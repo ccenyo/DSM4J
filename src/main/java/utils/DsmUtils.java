@@ -87,13 +87,10 @@ public class DsmUtils {
 
             httppost.setEntity(reqEntity);
 
-            LOGGER.debug("executing request " + httppost.getRequestLine());
+            LOGGER.debug("executing request {}", httppost.getRequestLine());
             try (CloseableHttpResponse response = httpclient.execute(httppost)) {
-                LOGGER.debug("----------------------------------------");
-                LOGGER.debug(response.getStatusLine().toString());
                 HttpEntity resEntity = response.getEntity();
                 if (resEntity != null) {
-                    LOGGER.debug("Response content length: " + resEntity.getContentLength());
                     result = EntityUtils.toString(resEntity);
                     LOGGER.debug(result);
                 }
