@@ -1,9 +1,12 @@
-import exeptions.DsmLoginException;
-import requests.DsmAuth;
-import org.junit.*;
+import exeptions.DsmException;
+import org.junit.Assert;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import requests.DsmAuth;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +36,7 @@ public class DsmAuthTest {
         Assert.assertEquals("dummyPassword", dsmAuth.getPassword());
     }
 
-    @Test(expected = DsmLoginException.class)
+    @Test(expected = DsmException.class)
     public void createAuthFromResourceEmptyLineInFile() throws IOException {
         //Given
         String fileSuccess = "env-wrong.properties";
@@ -48,7 +51,7 @@ public class DsmAuthTest {
     }
 
 
-    @Test(expected = DsmLoginException.class)
+    @Test(expected = DsmException.class)
     public void createAuthFromResourceEmptyValue() throws IOException {
         //Given
         String fileSuccess = "env-wrong.properties";
@@ -62,7 +65,7 @@ public class DsmAuthTest {
         DsmAuth.fromFile(file);
     }
 
-    @Test(expected = DsmLoginException.class)
+    @Test(expected = DsmException.class)
     public void createAuthFromResourceFileNotExist() {
         //Given
         String fileSuccess = "env-wrong.properties";
@@ -71,7 +74,7 @@ public class DsmAuthTest {
         DsmAuth.fromFile(file);
     }
 
-    @Test(expected = DsmLoginException.class)
+    @Test(expected = DsmException.class)
     public void createAuthFromResourceParameterMissing() throws IOException {
         //Given
         String fileSuccess = "env-wrong.properties";
@@ -102,7 +105,7 @@ public class DsmAuthTest {
         Assert.assertEquals("password", dsmAuth.getPassword());
     }
 
-    @Test(expected = DsmLoginException.class)
+    @Test(expected = DsmException.class)
     public void createAuthOfHostIsNull() {
         //Given
         Integer port = 5000;
@@ -122,7 +125,7 @@ public class DsmAuthTest {
         Assert.assertNotNull(DsmAuth.of(host, null, username, password));
     }
 
-    @Test(expected = DsmLoginException.class)
+    @Test(expected = DsmException.class)
     public void createAuthOfUserNameIsNull() {
         //Given
         String host = "http://host";
@@ -132,7 +135,7 @@ public class DsmAuthTest {
         DsmAuth.of(host, port, null, password);
     }
 
-    @Test(expected = DsmLoginException.class)
+    @Test(expected = DsmException.class)
     public void createAuthOfPasswordIsNull() {
         //Given
         String host = "http://host";
