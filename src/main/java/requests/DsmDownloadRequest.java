@@ -48,26 +48,10 @@ public class DsmDownloadRequest extends DsmAbstractRequest<DsmDownloadResponse> 
     private String destinationPath;
     public DsmDownloadRequest(DsmAuth auth) {
         super(auth);
-    }
-
-    @Override
-    public String getAPIName() {
-        return "SYNO.FileStation.Download";
-    }
-
-    @Override
-    public Integer getVersion() {
-        return 1;
-    }
-
-    @Override
-    public String getPath() {
-        return "webapi/entry.cgi";
-    }
-
-    @Override
-    public String getMethod() {
-        return "download";
+        this.apiName = "SYNO.FileStation.Download";
+        this.version = 1;
+        this.method = "download";
+        this.path = "webapi/entry.cgi";
     }
 
     @Override

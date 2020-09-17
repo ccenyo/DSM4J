@@ -61,11 +61,11 @@ public class DsmUploadTest {
         DsmClient client = DsmClient.login(auth);
 
         client.upload(ROOT_FOLDER, file.getAbsolutePath()).
-                overwrite(DsmUploadRequest.OverwriteBehaviour.OVERWRITE).
+                overwrite(DsmRequestParameters.OverwriteBehaviour.OVERWRITE).
                 call();
         Response<DsmUploadResponse> response2 =
                 client.upload(ROOT_FOLDER, file.getAbsolutePath())
-                .overwrite(DsmUploadRequest.OverwriteBehaviour.OVERWRITE)
+                .overwrite(DsmRequestParameters.OverwriteBehaviour.OVERWRITE)
                 .call();
 
         Assert.assertNotNull(response2);
@@ -83,7 +83,7 @@ public class DsmUploadTest {
         Response<DsmUploadResponse> response =  client.
                 upload(ROOT_FOLDER+"/testResources", file.getAbsolutePath()).
                 createParentFolders(true).
-                overwrite(DsmUploadRequest.OverwriteBehaviour.OVERWRITE)
+                overwrite(DsmRequestParameters.OverwriteBehaviour.OVERWRITE)
                 .call();
 
         Assert.assertNotNull(response);

@@ -93,4 +93,19 @@ public class DsmRequestParameters {
         DOWNLOAD
     }
 
+    public enum OverwriteBehaviour {
+        SKIP(false),
+        OVERWRITE(true),
+        ERROR(null);
+
+        OverwriteBehaviour(Boolean value) {
+            this.value = value;
+        }
+        private final Boolean value;
+
+        public Boolean getValue() {
+            return value;
+        }
+    }
+
 }

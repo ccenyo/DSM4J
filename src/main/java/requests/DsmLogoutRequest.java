@@ -7,26 +7,10 @@ import responses.Response;
 public class DsmLogoutRequest extends DsmAbstractRequest<DsmLogoutResponse>  {
     public DsmLogoutRequest(DsmAuth auth) {
         super(auth);
-    }
-
-    @Override
-    public String getAPIName() {
-        return "SYNO.API.Auth";
-    }
-
-    @Override
-    public Integer getVersion() {
-        return 1;
-    }
-
-    @Override
-    public String getPath() {
-        return "/webapi/auth.cgi";
-    }
-
-    @Override
-    public String getMethod() {
-        return "logout";
+        this.apiName = "SYNO.API.Auth";
+        this.version = 1;
+        this.method = "logout";
+        this.path = "webapi/auth.cgi";
     }
 
     @Override

@@ -92,26 +92,10 @@ public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderRe
 
     public DsmSharedFolderRequest(DsmAuth auth) {
         super(auth);
-    }
-
-    @Override
-    public String getAPIName() {
-        return "SYNO.FileStation.List";
-    }
-
-    @Override
-    public Integer getVersion() {
-        return 1;
-    }
-
-    @Override
-    public String getPath() {
-        return "webapi/entry.cgi";
-    }
-
-    @Override
-    public String getMethod() {
-        return "list_share";
+        this.apiName = "SYNO.FileStation.List";
+        this.version = 1;
+        this.method = "list_share";
+        this.path = "webapi/entry.cgi";
     }
 
     @Override

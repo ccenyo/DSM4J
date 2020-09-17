@@ -62,6 +62,7 @@ public class DsmUtils {
         codeErrors.put(1803, "Upload connection is cancelled.");
         codeErrors.put(1804, "Failed to upload too big file to FAT file system.");
         codeErrors.put(1805, "Can’t overwrite or skip the existed file, if no overwrite parameter is given.");
+        codeErrors.put(900, "Failed to delete file(s)/folder(s). More information in <errors> object.");
     }
 
     private DsmUtils(){}

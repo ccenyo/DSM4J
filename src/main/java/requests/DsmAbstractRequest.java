@@ -23,8 +23,12 @@ public abstract class DsmAbstractRequest<T> {
 
     private static final ObjectMapper mapper = JacksonFactory.getMapper();
 
-    protected DsmAuth auth;
+    protected String apiName;
+    protected Integer version;
+    protected String path;
+    protected String method;
 
+    protected DsmAuth auth;
 
     private final HashMap<String, String> params = new HashMap<>();
 
@@ -32,13 +36,21 @@ public abstract class DsmAbstractRequest<T> {
         this.auth = auth;
     }
 
-    public  abstract String getAPIName();
+    public String getApiName() {
+        return apiName;
+    }
 
-    public abstract Integer getVersion();
+    public Integer getVersion() {
+        return version;
+    }
 
-    public abstract String getPath();
+    public String getPath() {
+        return path;
+    }
 
-    public abstract String getMethod();
+    public String getMethod() {
+        return method;
+    }
 
     protected String build() {
         addParameter("format", "sid");
@@ -49,7 +61,7 @@ public abstract class DsmAbstractRequest<T> {
                 .append(getPath())
                 .append("?")
                 .append("api=")
-                .append(getAPIName())
+                .append(getApiName())
                 .append("&")
                 .append("version=")
                 .append(getVersion())

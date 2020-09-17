@@ -7,6 +7,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 public class DsmLoginRequest extends DsmAbstractRequest<DsmLoginResponse> {
     public DsmLoginRequest(DsmAuth auth) {
         super(auth);
+        this.apiName = "SYNO.API.Auth";
+        this.version = 1;
+        this.method = "login";
+        this.path = "webapi/auth.cgi";
+
         addParameter("account", auth.getUserName());
         addParameter("passwd", auth.getPassword());
     }

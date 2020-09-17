@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
+import requests.DsmRequestParameters;
 import requests.DsmUploadRequest;
 import responses.DsmDownloadResponse;
 import responses.Response;
@@ -39,7 +40,7 @@ public class DsmDownloadTest {
 
         client.upload(ROOT_FOLDER, fileToDownload.getAbsolutePath())
                 .createParentFolders(true)
-                .overwrite(DsmUploadRequest.OverwriteBehaviour.OVERWRITE)
+                .overwrite(DsmRequestParameters.OverwriteBehaviour.OVERWRITE)
                 .call();
     }
 

@@ -21,23 +21,9 @@ import java.util.Optional;
  */
 public class DsmUploadRequest  extends DsmAbstractRequest<DsmUploadResponse> {
 
-    public enum OverwriteBehaviour {
-        SKIP(false),
-        OVERWRITE(true),
-        ERROR(null);
-
-        OverwriteBehaviour(Boolean value) {
-            this.value = value;
-        }
-        private final Boolean value;
-
-        public Boolean getValue() {
-            return value;
-        }
-    }
     private String destinationFolderPath;
     private Boolean createParents;
-    private OverwriteBehaviour overwrite = OverwriteBehaviour.ERROR;
+    private DsmRequestParameters.OverwriteBehaviour overwrite = DsmRequestParameters.OverwriteBehaviour.ERROR;
     private String filePath;
     private LocalDateTime lastModifiedTime;
     private LocalDateTime createdTime;
@@ -45,27 +31,12 @@ public class DsmUploadRequest  extends DsmAbstractRequest<DsmUploadResponse> {
 
     public DsmUploadRequest(DsmAuth auth) {
         super(auth);
+        this.apiName = "SYNO.FileStation.Upload";
+        this.version = 2;
+        this.method = "upload";
+        this.path = "webapi/entry.cgi";
     }
 
-    @Override
-    public String getAPIName() {
-        return "SYNO.FileStation.Upload";
-    }
-
-    @Override
-    public Integer getVersion() {
-        return 2;
-    }
-
-    @Override
-    public String getPath() {
-        return "webapi/entry.cgi";
-    }
-
-    @Override
-    public String getMethod() {
-        return "upload";
-    }
 
     @Override
     protected TypeReference getClassForMapper() {
@@ -82,7 +53,7 @@ public class DsmUploadRequest  extends DsmAbstractRequest<DsmUploadResponse> {
         return this;
     }
 
-    public DsmUploadRequest overwrite(OverwriteBehaviour overwrite) {
+    public DsmUploadRequest overwrite(DsmRequestParameters.OverwriteBehaviour overwrite) {
         this.overwrite = overwrite;
         return this;
     }
@@ -110,12 +81,11 @@ public class DsmUploadRequest  extends DsmAbstractRequest<DsmUploadResponse> {
 
     @Override
     public Response<DsmUploadResponse> call() {
-
         Map<String, String> params = new HashMap<>();
         params.put("path", Optional.ofNullable(this.destinationFolderPath).orElseThrow(() -> new DsmException("you must define destination folder")));
         Optional.ofNullable(this.createParents).ifPresent(c -> params.put("create_parents", c.toString()));
 
-        if(!this.overwrite.equals(OverwriteBehaviour.ERROR)) {
+        if(!this.overwrite.equals(DsmRequestParameters.OverwriteBehaviour.ERROR)) {
             params.put("overwrite", String.valueOf(this.overwrite.getValue()));
         }
 
@@ -151,7 +121,7 @@ public class DsmUploadRequest  extends DsmAbstractRequest<DsmUploadResponse> {
                 getPath()+
                 "?_sid="+
                 auth.getSid()+"&"+
-                "api="+getAPIName()+"&"+
+                "api="+getApiName()+"&"+
                 "method="+getMethod()+"&"+
                 "version="+getVersion();
     }
