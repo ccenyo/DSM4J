@@ -13,7 +13,7 @@ import java.util.Optional;
  */
 public class DsmSimpleDeleteRequest extends DsmAbstractRequest<DsmSimpleDeleteResponse> {
 
-    private String filePath = new String();
+    private String filePath;
     private boolean recursive = true;
     private Boolean searchTaskId;
 
@@ -68,10 +68,11 @@ public class DsmSimpleDeleteRequest extends DsmAbstractRequest<DsmSimpleDeleteRe
         return  new TypeReference<Response<DsmSimpleDeleteResponse>>() {};
     }
 
+    @Override
     public Response<DsmSimpleDeleteResponse> call() {
         addParameter("path", Optional.ofNullable(this.filePath).orElseThrow(() -> new DsmDeleteException("the files to delete can't be empty")));
         addParameter("recursive", String.valueOf(this.recursive));
-        Optional.ofNullable(this.searchTaskId).ifPresent(searchTaskId -> addParameter("search_taskid", searchTaskId.toString()));
+        Optional.ofNullable(this.searchTaskId).ifPresent(taskId -> addParameter("search_taskid", taskId.toString()));
         return super.call();
     }
 }
