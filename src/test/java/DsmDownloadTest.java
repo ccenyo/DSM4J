@@ -53,7 +53,7 @@ public class DsmDownloadTest {
         Assert.assertTrue(response.isSuccess());
         Assert.assertNotNull(response.getData());
         Assert.assertNotNull(response.getData().getFile());
-        Assert.assertEquals(folder.getRoot().getAbsoluteFile()+"\\"+fileToDownload.getName(), response.getData().getFile().getAbsolutePath());
+        Assert.assertTrue(response.getData().getFile().exists());
     }
 
 
