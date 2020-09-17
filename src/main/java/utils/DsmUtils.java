@@ -1,5 +1,6 @@
 package utils;
 
+import exeptions.DsmException;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -13,8 +14,7 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -100,6 +100,23 @@ public class DsmUtils {
             httpclient.close();
         }
         return result;
+    }
+
+    public static File downloadFile(InputStream inputStream, String destinationPath) throws IOException {
+        File file = new File(destinationPath);
+        FileOutputStream fos = new FileOutputStream(file);
+        int inByte;
+        while((inByte = inputStream.read()) != -1)
+            fos.write(inByte);
+        inputStream.close();
+        fos.close();
+        return file;
+    }
+
+    public static String extractFileName(String path) {
+       String completePath = Optional.ofNullable(path).orElseThrow(() -> new DsmException("Unable to get file name"));
+
+       return completePath.substring(completePath.lastIndexOf("/")+1);
     }
 
 }

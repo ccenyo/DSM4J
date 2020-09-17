@@ -63,4 +63,11 @@ public class DsmClient {
                 .setDestinationFolderPath(destinationPath)
                 .setFilePath(filePath);
     }
+
+    public DsmDownloadRequest download(String fileOrFolderToDownload, String destinationPath) {
+        return new DsmDownloadRequest(dsmAuth)
+                .setFileToDownload(fileOrFolderToDownload)
+                .setDestinationPath(destinationPath);
+
+    }
 }

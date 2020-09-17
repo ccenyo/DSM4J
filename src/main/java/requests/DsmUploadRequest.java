@@ -15,6 +15,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Upload a file by RFC 1867, http://tools.ietf.org/html/rfc1867.
+ * Note that each parameter is passed within each part but binary file data must be the last part.
+ */
 public class DsmUploadRequest  extends DsmAbstractRequest<DsmUploadResponse> {
 
     public enum OverwriteBehaviour {

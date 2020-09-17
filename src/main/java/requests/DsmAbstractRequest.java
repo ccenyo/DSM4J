@@ -26,7 +26,7 @@ public abstract class DsmAbstractRequest<T> {
     protected DsmAuth auth;
 
 
-    private HashMap<String, String> params = new HashMap<>();
+    private final HashMap<String, String> params = new HashMap<>();
 
     public DsmAbstractRequest(DsmAuth auth) {
         this.auth = auth;
@@ -109,7 +109,7 @@ public abstract class DsmAbstractRequest<T> {
         }
     }
 
-    private HttpURLConnection handleRequest(String url) throws IOException {
+    protected HttpURLConnection handleRequest(String url) throws IOException {
         LOG.debug("Calling URL: {}", url);
         HttpURLConnection conn = (HttpURLConnection) (new URL(url)).openConnection();
 

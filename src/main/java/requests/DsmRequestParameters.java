@@ -88,4 +88,9 @@ public class DsmRequestParameters {
         DIR
     }
 
+    public enum Mode {
+        OPEN,
+        DOWNLOAD
+    }
+
 }

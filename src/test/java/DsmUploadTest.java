@@ -81,7 +81,7 @@ public class DsmUploadTest {
         DsmClient client = DsmClient.login(auth);
 
         Response<DsmUploadResponse> response =  client.
-                upload(ROOT_FOLDER+"/test", file.getAbsolutePath()).
+                upload(ROOT_FOLDER+"/testResources", file.getAbsolutePath()).
                 createParentFolders(true).
                 overwrite(DsmUploadRequest.OverwriteBehaviour.OVERWRITE)
                 .call();
