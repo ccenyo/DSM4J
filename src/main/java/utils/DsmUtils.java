@@ -103,22 +103,13 @@ public class DsmUtils {
     }
 
     public static File downloadFile(InputStream inputStream, String destinationPath) throws IOException {
-        File file;
-        FileOutputStream fos = null;
-        try {
-            file = new File(destinationPath);
-            fos = new FileOutputStream(file);
+        File file = new File(destinationPath);
+        try(FileOutputStream fos = new FileOutputStream(file) ) {
             int inByte;
             while((inByte = inputStream.read()) != -1)
                 fos.write(inByte);
-        } catch (IOException e) {
-            throw new DsmException("");
-        } finally {
-            inputStream.close();
-            if(fos != null) {
-                fos.close();
-            }
         }
+
         return file;
     }
 
