@@ -14,7 +14,10 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -118,6 +121,10 @@ public class DsmUtils {
        String completePath = Optional.ofNullable(path).orElseThrow(() -> new DsmException("Unable to get file name"));
 
        return completePath.substring(completePath.lastIndexOf('/')+1);
+    }
+
+    public static String extractRootFolderPath(String filePath) {
+        return Optional.of(filePath).orElse("").replace("/"+extractFileName(filePath), "");
     }
 
 }

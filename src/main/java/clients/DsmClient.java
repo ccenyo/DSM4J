@@ -5,6 +5,7 @@ import requests.*;
 import responses.DsmLoginResponse;
 import responses.DsmLogoutResponse;
 import responses.Response;
+import utils.DsmUtils;
 
 import java.util.Optional;
 
@@ -69,5 +70,19 @@ public class DsmClient {
                 .setFileToDownload(fileOrFolderToDownload)
                 .setDestinationPath(destinationPath);
 
+    }
+
+    public DsmSimpleDeleteRequest simpleDelete(String filePath) {
+        return new DsmSimpleDeleteRequest(dsmAuth)
+                .addFileToDelete(filePath);
+    }
+
+    public boolean exists(String filePath) {
+       return this.ls(DsmUtils.extractRootFolderPath(filePath))
+               .call()
+               .getData()
+               .getFiles()
+               .stream()
+               .anyMatch(f -> f.getName().equals(DsmUtils.extractFileName(filePath)));
     }
 }

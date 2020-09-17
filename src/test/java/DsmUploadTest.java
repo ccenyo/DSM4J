@@ -10,7 +10,6 @@ import org.junit.rules.TemporaryFolder;
 import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
 import requests.DsmRequestParameters;
-import requests.DsmUploadRequest;
 import responses.DsmListFolderResponse;
 import responses.DsmResponseFields;
 import responses.DsmUploadResponse;
@@ -139,7 +138,6 @@ public class DsmUploadTest {
         Assert.assertTrue(filesOptional.isPresent());
 
         return filesOptional.get();
-
     }
     
 }
