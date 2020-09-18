@@ -1,4 +1,4 @@
-package requests;
+package requests.fileStation;
 
 public class DsmRequestParameters {
     public enum Sort {

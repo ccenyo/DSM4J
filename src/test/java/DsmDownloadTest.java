@@ -1,6 +1,6 @@
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
-import clients.DsmClient;
+import clients.DsmFileStationClient;
 import exeptions.DsmDownloadException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,9 +9,9 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
-import requests.DsmRequestParameters;
-import responses.DsmDownloadResponse;
+import requests.fileStation.DsmRequestParameters;
 import responses.Response;
+import responses.fileStation.DsmDownloadResponse;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +19,7 @@ import java.io.IOException;
 public class DsmDownloadTest {
 
     private final String ROOT_FOLDER = "/homes/testResource";
-    private DsmClient client;
+    private DsmFileStationClient client;
     private File fileToDownload;
 
     @Rule
@@ -35,7 +35,7 @@ public class DsmDownloadTest {
         String content = "success content";
 
         fileToDownload = Utils.makeFile(folder, content, fileSuccess);
-        client = DsmClient.login(DsmAuth.fromResource("env.properties"));
+        client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));
 
         client.upload(ROOT_FOLDER, fileToDownload.getAbsolutePath())
                 .createParentFolders(true)

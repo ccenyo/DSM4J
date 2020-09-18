@@ -1,8 +1,10 @@
-package requests;
+package requests.fileStation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import exeptions.DsmDeleteException;
-import responses.DsmDeleteResponse;
+import requests.DsmAbstractRequest;
+import requests.DsmAuth;
+import responses.fileStation.DsmDeleteResponse;
 import responses.Response;
 
 import java.util.LinkedList;

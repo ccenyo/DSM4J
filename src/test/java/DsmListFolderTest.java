@@ -1,11 +1,11 @@
-import clients.DsmClient;
-import requests.DsmAuth;
-import requests.DsmRequestParameters;
-import responses.DsmListFolderResponse;
-import responses.Response;
+import clients.DsmFileStationClient;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import requests.DsmAuth;
+import requests.fileStation.DsmRequestParameters;
+import responses.Response;
+import responses.fileStation.DsmListFolderResponse;
 
 public class DsmListFolderTest {
     DsmAuth auth;
@@ -21,7 +21,7 @@ public class DsmListFolderTest {
 
     @Test
     public void testDefaultFolderList() {
-        DsmClient client = DsmClient.login(auth);
+        DsmFileStationClient client = DsmFileStationClient.login(auth);
 
         Response<DsmListFolderResponse> response = client.ls(ROOT_HOME).call();
 
@@ -34,7 +34,7 @@ public class DsmListFolderTest {
 
     @Test
     public void testGetListFoldersSort() {
-        DsmClient client = DsmClient.login(auth);
+        DsmFileStationClient client = DsmFileStationClient.login(auth);
 
         Response<DsmListFolderResponse> response = client.ls(ROOT_HOME)
                 .addSort(DsmRequestParameters.Sort.ATIME)
@@ -52,7 +52,7 @@ public class DsmListFolderTest {
 
     @Test
     public void testGetListFoldersAdditionalInformation() {
-        DsmClient client = DsmClient.login(auth);
+        DsmFileStationClient client = DsmFileStationClient.login(auth);
 
         Response<DsmListFolderResponse> response = client.ls(ROOT_HOME)
                 .addAdditionalInfo(DsmRequestParameters.Additional.REAL_PATH)
@@ -78,7 +78,7 @@ public class DsmListFolderTest {
 
     @Test
     public void testGetListFoldersLimit() {
-        DsmClient client = DsmClient.login(auth);
+        DsmFileStationClient client = DsmFileStationClient.login(auth);
 
         Response<DsmListFolderResponse> response = client.ls(ROOT_HOME)
                 .setLimit(2)
@@ -93,7 +93,7 @@ public class DsmListFolderTest {
 
     @Test
     public void testGetListFolderRootNotExist() {
-        DsmClient client = DsmClient.login(auth);
+        DsmFileStationClient client = DsmFileStationClient.login(auth);
 
         Response<DsmListFolderResponse> response = client.ls(NOT_ROOT_HOME).call();
 

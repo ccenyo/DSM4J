@@ -1,4 +1,4 @@
-package responses;
+package responses.fileStation;
 
 import java.util.List;
 

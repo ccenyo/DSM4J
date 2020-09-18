@@ -1,7 +1,9 @@
-package requests;
+package requests.fileStation;
 
 import exeptions.DsmListFolderException;
-import responses.DsmListFolderResponse;
+import requests.DsmAbstractRequest;
+import requests.DsmAuth;
+import responses.fileStation.DsmListFolderResponse;
 import responses.Response;
 import com.fasterxml.jackson.core.type.TypeReference;
 

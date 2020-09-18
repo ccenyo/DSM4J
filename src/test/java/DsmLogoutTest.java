@@ -1,8 +1,8 @@
-import clients.DsmClient;
-import requests.DsmAuth;
+import clients.DsmFileStationClient;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import requests.DsmAuth;
 
 public class DsmLogoutTest {
 
@@ -15,7 +15,7 @@ public class DsmLogoutTest {
 
     @Test
     public void logoutAnsSuccess() {
-        DsmClient client = DsmClient.login(auth);
+        DsmFileStationClient client = DsmFileStationClient.login(auth);
         Assert.assertTrue(client.logout());
     }
 }

@@ -1,10 +1,12 @@
-package requests;
+package requests.fileStation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import responses.DsmLogoutResponse;
+import requests.DsmAbstractRequest;
+import requests.DsmAuth;
+import responses.fileStation.DsmLogoutResponse;
 import responses.Response;
 
-public class DsmLogoutRequest extends DsmAbstractRequest<DsmLogoutResponse>  {
+public class DsmLogoutRequest extends DsmAbstractRequest<DsmLogoutResponse> {
     public DsmLogoutRequest(DsmAuth auth) {
         super(auth);
         this.apiName = "SYNO.API.Auth";

@@ -1,11 +1,11 @@
-import clients.DsmClient;
-import requests.DsmAuth;
-import requests.DsmRequestParameters;
-import responses.DsmSharedFolderResponse;
-import responses.Response;
+import clients.DsmFileStationClient;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import requests.DsmAuth;
+import requests.fileStation.DsmRequestParameters;
+import responses.Response;
+import responses.fileStation.DsmSharedFolderResponse;
 
 public class DsmSharedFolderTest {
     DsmAuth auth;
@@ -17,7 +17,7 @@ public class DsmSharedFolderTest {
 
     @Test
     public void testGetSharedFoldersAndSuccess() {
-        DsmClient client = DsmClient.login(auth);
+        DsmFileStationClient client = DsmFileStationClient.login(auth);
 
        Response<DsmSharedFolderResponse> response = client.getAllSharedFolders().call();
 
@@ -31,7 +31,7 @@ public class DsmSharedFolderTest {
 
     @Test
     public void testGetSharedFoldersSort() {
-        DsmClient client = DsmClient.login(auth);
+        DsmFileStationClient client = DsmFileStationClient.login(auth);
 
         Response<DsmSharedFolderResponse> response = client.getAllSharedFolders()
                                                         .addSort(DsmRequestParameters.Sort.ATIME)
@@ -49,7 +49,7 @@ public class DsmSharedFolderTest {
 
     @Test
     public void testGetSharedFoldersAdditionalInformation() {
-        DsmClient client = DsmClient.login(auth);
+        DsmFileStationClient client = DsmFileStationClient.login(auth);
 
         Response<DsmSharedFolderResponse> response = client.getAllSharedFolders()
                 .addAdditionalInfo(DsmRequestParameters.Additional.REAL_PATH)
@@ -75,7 +75,7 @@ public class DsmSharedFolderTest {
 
     @Test
     public void testGetSharedFoldersLimit() {
-        DsmClient client = DsmClient.login(auth);
+        DsmFileStationClient client = DsmFileStationClient.login(auth);
 
         Response<DsmSharedFolderResponse> response = client.getAllSharedFolders()
                 .setLimit(2)
@@ -90,7 +90,7 @@ public class DsmSharedFolderTest {
 
     @Test
     public void testGetSharedFoldersOnlyWritable() {
-        DsmClient client = DsmClient.login(auth);
+        DsmFileStationClient client = DsmFileStationClient.login(auth);
 
         Response<DsmSharedFolderResponse> response = client.getAllSharedFolders()
                 .setOnlyWritable(true)

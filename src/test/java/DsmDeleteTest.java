@@ -1,6 +1,6 @@
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
-import clients.DsmClient;
+import clients.DsmFileStationClient;
 import exeptions.DsmDeleteException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,9 +9,9 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
-import requests.DsmRequestParameters;
-import responses.DsmDeleteResponse;
+import requests.fileStation.DsmRequestParameters;
 import responses.Response;
+import responses.fileStation.DsmDeleteResponse;
 import utils.DsmUtils;
 
 import java.io.File;
@@ -20,7 +20,7 @@ import java.io.IOException;
 public class DsmDeleteTest {
 
     private final String ROOT_FOLDER = "/homes/testResource";
-    private DsmClient client;
+    private DsmFileStationClient client;
     private File fileToDownload;
 
     @Rule
@@ -33,7 +33,7 @@ public class DsmDeleteTest {
 
         fileToDownload = createNewFile();
 
-        client = DsmClient.login(DsmAuth.fromResource("env.properties"));
+        client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));
 
         client.upload(ROOT_FOLDER, fileToDownload.getAbsolutePath())
                 .createParentFolders(true)

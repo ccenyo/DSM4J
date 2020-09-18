@@ -1,10 +1,10 @@
-import clients.DsmClient;
+import clients.DsmFileStationClient;
 import exeptions.DsmException;
 import exeptions.DsmLoginException;
-import requests.DsmAuth;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import requests.DsmAuth;
 
 public class DsmLoginTest {
 
@@ -17,7 +17,7 @@ public class DsmLoginTest {
 
     @Test
     public void testLoginFromResourceSuccess() {
-        DsmClient client = DsmClient.login(auth);
+        DsmFileStationClient client = DsmFileStationClient.login(auth);
 
         Assert.assertNotNull(client);
         Assert.assertNotNull(client.getDsmAuth());
@@ -25,7 +25,7 @@ public class DsmLoginTest {
 
     @Test(expected = DsmLoginException.class)
     public void testLoginWithAuthNull() {
-        DsmClient.login(null);
+        DsmFileStationClient.login(null);
     }
 
     @Test(expected = DsmLoginException.class)
@@ -33,27 +33,27 @@ public class DsmLoginTest {
         DsmAuth dsmAuth = auth
                 .setUserName("username")
                 .setPassword("password");
-        DsmClient.login(dsmAuth);
+        DsmFileStationClient.login(dsmAuth);
     }
 
     @Test(expected = DsmLoginException.class)
     public void testLoginAuthenticationWrongPassword() {
         DsmAuth dsmAuth = auth
                 .setPassword("password");
-        DsmClient.login(dsmAuth);
+        DsmFileStationClient.login(dsmAuth);
     }
 
     @Test(expected = DsmException.class)
     public void testLoginAuthenticationWrongPort() {
         DsmAuth dsmAuth = auth
                 .setPort(5444);
-        DsmClient.login(dsmAuth);
+        DsmFileStationClient.login(dsmAuth);
     }
 
     @Test(expected = DsmException.class)
     public void testLoginAuthenticationWrongHost() {
         DsmAuth dsmAuth = auth
                 .setHost("host");
-        DsmClient.login(dsmAuth);
+        DsmFileStationClient.login(dsmAuth);
     }
 }

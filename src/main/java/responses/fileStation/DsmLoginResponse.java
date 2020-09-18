@@ -1,4 +1,4 @@
-package responses;
+package responses.fileStation;
 
 public class DsmLoginResponse {
 

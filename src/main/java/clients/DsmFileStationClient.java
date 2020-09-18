@@ -2,18 +2,19 @@ package clients;
 
 import exeptions.DsmLoginException;
 import requests.*;
-import responses.DsmLoginResponse;
-import responses.DsmLogoutResponse;
+import requests.fileStation.*;
+import responses.fileStation.DsmLoginResponse;
+import responses.fileStation.DsmLogoutResponse;
 import responses.Response;
 import utils.DsmUtils;
 
 import java.util.Optional;
 
-public class DsmClient {
+public class DsmFileStationClient {
 
     private DsmAuth dsmAuth;
 
-    public DsmClient(DsmAuth dsmAuth) {
+    public DsmFileStationClient(DsmAuth dsmAuth) {
         this.dsmAuth = dsmAuth;
     }
 
@@ -21,7 +22,7 @@ public class DsmClient {
         return dsmAuth;
     }
 
-    public static DsmClient login(DsmAuth auth) {
+    public static DsmFileStationClient login(DsmAuth auth) {
         Response<DsmLoginResponse> response = new DsmLoginRequest(Optional.ofNullable(auth).orElseThrow(() -> new DsmLoginException("DsmAuth can't be null"))).call();
 
         response = Optional.ofNullable(response).orElseThrow(() -> new DsmLoginException("An error occurred while trying to connect"));
@@ -31,7 +32,7 @@ public class DsmClient {
         }
         auth = auth.setSid(response.getData().getSid());
 
-        return new DsmClient(auth);
+        return new DsmFileStationClient(auth);
     }
 
     public boolean logout() {

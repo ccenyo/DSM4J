@@ -1,6 +1,8 @@
-package requests;
+package requests.fileStation;
 
-import responses.DsmSharedFolderResponse;
+import requests.DsmAbstractRequest;
+import requests.DsmAuth;
+import responses.fileStation.DsmSharedFolderResponse;
 import responses.Response;
 import com.fasterxml.jackson.core.type.TypeReference;
 
