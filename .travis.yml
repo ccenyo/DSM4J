@@ -1,5 +1,8 @@
 language: java
 
+jdk:
+  - oraclejdk8
+
 before_install:
   - mkdir src/main/resources/
   - touch src/main/resources/env.properties
