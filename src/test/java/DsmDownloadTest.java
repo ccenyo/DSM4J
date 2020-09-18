@@ -9,9 +9,9 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
-import requests.fileStation.DsmRequestParameters;
+import requests.filestation.DsmRequestParameters;
 import responses.Response;
-import responses.fileStation.DsmDownloadResponse;
+import responses.filestation.DsmDownloadResponse;
 
 import java.io.File;
 import java.io.IOException;

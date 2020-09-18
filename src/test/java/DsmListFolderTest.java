@@ -3,9 +3,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import requests.DsmAuth;
-import requests.fileStation.DsmRequestParameters;
+import requests.filestation.DsmRequestParameters;
 import responses.Response;
-import responses.fileStation.DsmListFolderResponse;
+import responses.filestation.DsmListFolderResponse;
 
 public class DsmListFolderTest {
     DsmAuth auth;

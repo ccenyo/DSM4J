@@ -9,11 +9,11 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
-import requests.fileStation.DsmRequestParameters;
+import requests.filestation.DsmRequestParameters;
 import responses.Response;
-import responses.fileStation.DsmListFolderResponse;
-import responses.fileStation.DsmResponseFields;
-import responses.fileStation.DsmUploadResponse;
+import responses.filestation.DsmListFolderResponse;
+import responses.filestation.DsmResponseFields;
+import responses.filestation.DsmUploadResponse;
 import utils.DateUtils;
 
 import java.io.File;

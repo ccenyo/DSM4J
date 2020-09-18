@@ -2,9 +2,9 @@ package clients;
 
 import exeptions.DsmLoginException;
 import requests.*;
-import requests.fileStation.*;
-import responses.fileStation.DsmLoginResponse;
-import responses.fileStation.DsmLogoutResponse;
+import requests.filestation.*;
+import responses.filestation.DsmLoginResponse;
+import responses.filestation.DsmLogoutResponse;
 import responses.Response;
 import utils.DsmUtils;
 

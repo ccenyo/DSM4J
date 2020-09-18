@@ -1,10 +1,10 @@
-package requests.fileStation;
+package requests.filestation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import exeptions.DsmDeleteException;
 import requests.DsmAbstractRequest;
 import requests.DsmAuth;
-import responses.fileStation.DsmDeleteResponse;
+import responses.filestation.DsmDeleteResponse;
 import responses.Response;
 
 import java.util.LinkedList;
@@ -116,18 +116,23 @@ public class DsmAdvancedDeleteRequest  extends DsmAbstractRequest<DsmDeleteRespo
 
     @Override
     public Response<DsmDeleteResponse> status() {
-        Optional.ofNullable(this.taskid).orElseThrow(() -> new DsmDeleteException("You have to set taskid"));
+        if(this.taskid == null) {
+            throw new DsmDeleteException("You have to set taskid");
+        }
         this.method = "status";
         return this.call();
     }
 
     @Override
     public Response<DsmDeleteResponse> stop() {
-        Optional.ofNullable(this.taskid).orElseThrow(() -> new DsmDeleteException("You have to set taskid"));
+        if(this.taskid == null) {
+            throw new DsmDeleteException("You have to set taskid");
+        }
         this.method = "stop";
         return this.call();
     }
 
+    @Override
     public Response<DsmDeleteResponse> call() {
         addParameter("accurate_progress", String.valueOf(this.accurateProgress));
         addParameter("recursive", String.valueOf(this.recursive));

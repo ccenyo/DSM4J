@@ -25,7 +25,8 @@ import java.util.Optional;
 public class DsmUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(DsmUtils.class);
 
-    public static final Map<Integer, String> codeErrors = new HashMap<>();
+    private static final Map<Integer, String> codeErrors = new HashMap<>();
+
     static {
         codeErrors.put(101, "No parameter of API, method or version");
         codeErrors.put(102, "The requested API does not exist");
@@ -126,6 +127,4 @@ public class DsmUtils {
     public static String extractRootFolderPath(String filePath) {
         return Optional.of(filePath).orElse("").replace("/"+extractFileName(filePath), "");
     }
-
-
 }

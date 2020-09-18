@@ -9,9 +9,9 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
-import requests.fileStation.DsmRequestParameters;
+import requests.filestation.DsmRequestParameters;
 import responses.Response;
-import responses.fileStation.DsmDeleteResponse;
+import responses.filestation.DsmDeleteResponse;
 import utils.DsmUtils;
 
 import java.io.File;
@@ -131,7 +131,7 @@ public class DsmDeleteTest {
         Assert.assertNull(statusResponse.getData());
         Assert.assertNotNull(statusResponse.getError());
         Assert.assertNotNull(statusResponse.getError().getCode());
-        Assert.assertEquals("No such task of the file operation", DsmUtils.codeErrors.get(Integer.valueOf(statusResponse.getError().getCode())));
+        Assert.assertEquals("No such task of the file operation", DsmUtils.manageErrorMessage(Integer.valueOf(statusResponse.getError().getCode())));
     }
 
     @Test

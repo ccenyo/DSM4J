@@ -1,3 +1,3 @@
-package responses.fileStation;
+package responses.filestation;
 
 public interface DsmLogoutResponse { }

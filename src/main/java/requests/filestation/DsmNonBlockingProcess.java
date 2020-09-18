@@ -1,4 +1,4 @@
-package requests.fileStation;
+package requests.filestation;
 
 import responses.Response;
 
