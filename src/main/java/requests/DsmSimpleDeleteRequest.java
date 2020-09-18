@@ -2,7 +2,7 @@ package requests;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import exeptions.DsmDeleteException;
-import responses.DsmSimpleDeleteResponse;
+import responses.DsmDeleteResponse;
 import responses.Response;
 
 import java.util.Optional;
@@ -11,7 +11,7 @@ import java.util.Optional;
  * Delete files/folders. This is a blocking method. The response is not returned until the deletion
  * operation is completed.
  */
-public class DsmSimpleDeleteRequest extends DsmAbstractRequest<DsmSimpleDeleteResponse> {
+public class DsmSimpleDeleteRequest extends DsmAbstractRequest<DsmDeleteResponse> {
 
     private String filePath;
     private boolean recursive = true;
@@ -65,11 +65,11 @@ public class DsmSimpleDeleteRequest extends DsmAbstractRequest<DsmSimpleDeleteRe
 
     @Override
     protected TypeReference getClassForMapper() {
-        return  new TypeReference<Response<DsmSimpleDeleteResponse>>() {};
+        return  new TypeReference<Response<DsmDeleteResponse>>() {};
     }
 
     @Override
-    public Response<DsmSimpleDeleteResponse> call() {
+    public Response<DsmDeleteResponse> call() {
         addParameter("path", Optional.ofNullable(this.filePath).orElseThrow(() -> new DsmDeleteException("the files to delete can't be empty")));
         addParameter("recursive", String.valueOf(this.recursive));
         Optional.ofNullable(this.searchTaskId).ifPresent(taskId -> addParameter("search_taskid", taskId.toString()));

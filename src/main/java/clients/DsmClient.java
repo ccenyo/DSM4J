@@ -77,6 +77,11 @@ public class DsmClient {
                 .addFileToDelete(filePath);
     }
 
+    public DsmAdvancedDeleteRequest advancedDelete() {
+        return new DsmAdvancedDeleteRequest(dsmAuth);
+    }
+
+
     public boolean exists(String filePath) {
        return this.ls(DsmUtils.extractRootFolderPath(filePath))
                .call()

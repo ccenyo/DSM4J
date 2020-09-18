@@ -25,7 +25,7 @@ import java.util.Optional;
 public class DsmUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(DsmUtils.class);
 
-    private static final Map<Integer, String> codeErrors = new HashMap<>();
+    public static final Map<Integer, String> codeErrors = new HashMap<>();
     static {
         codeErrors.put(101, "No parameter of API, method or version");
         codeErrors.put(102, "The requested API does not exist");
@@ -56,7 +56,7 @@ public class DsmUtils {
         codeErrors.put(419, "Illegal file name");
         codeErrors.put(420, "Illegal file name on FAT file system");
         codeErrors.put(421, "Device or resource busy");
-        codeErrors.put(500, "No such task of the file operation");
+        codeErrors.put(599, "No such task of the file operation");
         codeErrors.put(1800, "There is no Content-Length information in the HTTP header or the received\n" +
                 "size does not match the value of Content-Length information in the HTTP\n" +
                 "header.");
