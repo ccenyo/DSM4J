@@ -96,5 +96,7 @@ I will be completing new methods regularely
 
 ## Author
 * **Cenyo Medewou** - [medewou@gmail.com](mailto:medewou@gmail.com). 
-                                                                        
+ 
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details                                                                        
 
