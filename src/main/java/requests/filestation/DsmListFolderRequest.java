@@ -229,7 +229,7 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
 
     /**
      * Optional. file: only enumerate
-     * regular files; “dir”: only enumerate
+     * regular files; dir: only enumerate
      * folders; all enumerate regular
      * files and folders
      * @param fileType type of file
