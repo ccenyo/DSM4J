@@ -53,8 +53,8 @@ public class DsmResponseFields {
          */
         private Long totalspace;
         /**
-         * “true”: A volume where a shared folder is located is
-         * read-only; “false”: It’s writable.
+         * true: A volume where a shared folder is located is
+         * read-only; false: It’s writable.
          */
         private boolean readonly;
 
@@ -153,7 +153,7 @@ public class DsmResponseFields {
 
     public static class Perm {
         /**
-         * “RW: The shared folder is writable; “RO”: the shared
+         * “RW: The shared folder is writable; RO: the shared
          * folder is read-only.
          */
         private String share_right;
@@ -174,8 +174,8 @@ public class DsmResponseFields {
          */
         boolean acl_enable;
         /**
-         * “true”: The privilege of the shared folder is set to be
-         * ACL-mode. “false”: The privilege of the shared folder
+         * true: The privilege of the shared folder is set to be
+         * ACL-mode. false: The privilege of the shared folder
          * is set to be POSIX-mode.
          */
         boolean is_acl_mode;

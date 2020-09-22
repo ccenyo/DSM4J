@@ -30,7 +30,7 @@ public class DsmSimpleDeleteRequest extends DsmAbstractRequest<DsmDeleteResponse
     /**
      * One or more deleted file/folder path(s)
      * started with a shared folder, separated by
-     * a comma, “,”.
+     * a comma.
      * @param filePath the path
      * @return DsmSimpleDeleteRequest
      */
@@ -41,8 +41,8 @@ public class DsmSimpleDeleteRequest extends DsmAbstractRequest<DsmDeleteResponse
 
 
     /**
-     * Optional. “true”: Recursively delete files
-     * within a folder. “false”: Only delete firstlevel file/folder. If a deleted folder contains
+     * Optional. true: Recursively delete files
+     * within a folder. false: Only delete firstlevel file/folder. If a deleted folder contains
      * any file, an error will occur because the
      * folder can’t be directly deleted.
      * @param recursive recursive or not

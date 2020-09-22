@@ -22,7 +22,7 @@ public class DsmDownloadRequest extends DsmAbstractRequest<DsmDownloadResponse> 
     /**
      * One or more file/folder paths starting with a
      * shared folder to be downloaded, separated
-     * by a commas “,”. When more than one file
+     * by a commas. When more than one file
      * is to be downloaded, files/folders will be
      * compressed as a zip file.
      */

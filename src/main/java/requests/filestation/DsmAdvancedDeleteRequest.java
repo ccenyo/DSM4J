@@ -16,14 +16,14 @@ public class DsmAdvancedDeleteRequest  extends DsmAbstractRequest<DsmDeleteRespo
     /**
      * One or more deleted file/folder
      * paths starting with a shared
-     * folder, separated by commas “,”
+     * folder, separated by commas
      */
     private List<String> filePaths = new LinkedList<>();
 
     /**
-     * Optional. “true”: calculates the
+     * Optional. true: calculates the
      * progress of each deleted file with
-     * the sub-folder recursively; “false”:
+     * the sub-folder recursively; false:
      * calculates the progress of files
      * which you give in path
      * parameters. The latter is faster
@@ -36,8 +36,8 @@ public class DsmAdvancedDeleteRequest  extends DsmAbstractRequest<DsmDeleteRespo
     private boolean accurateProgress = true;
 
     /**
-     * Optional. “true”: Recursively
-     * delete files within a folder. “false”:
+     * Optional. true: Recursively
+     * delete files within a folder. false:
      * Only delete first-level file/folder. If
      * a deleted folder contains any file,
      * an error occurs because the

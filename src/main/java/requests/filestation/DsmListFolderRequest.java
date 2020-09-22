@@ -70,14 +70,14 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
      * automatically for partially
      * matching the pattern.
      *
-     * 2. You can use ”,” to separate
+     * 2. You can use commas to separate
      * multiple glob patterns.
      */
     private List<String> patterns = new LinkedList<>();
     /**
-     * Optional. “file”: only enumerate
-     * regular files; “dir”: only enumerate
-     * folders; “all” enumerate regular
+     * Optional. file: only enumerate
+     * regular files; dir: only enumerate
+     * folders; all enumerate regular
      * files and folders
      */
     private DsmRequestParameters.FileType fileType;
@@ -92,36 +92,36 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
     /**
      * Optional. Additional requested file
      * information, separated by a
-     * comma, “,”. When an additional
+     * comma. When an additional
      * option is requested, responded
      * objects will be provided in the
      * specified additional option.
      * Options include:
      *
-     *  real_path: return a real path
+     * real_path: return a real path
      * in volume
      *
-     *  size: return file byte size
+     * size: return file byte size
      *
-     *  owner: return information
+     * owner: return information
      * about file owner including
      * user name, group name, UID
      * and GID
      *
-     *  time: return information
+     * time: return information
      * about time including last
      * access time, last modified
      * time, last change time and
      * create time
      *
-     *  perm: return information
+     * perm: return information
      * about file permission
      *
-     *  mount_point_type: return a
+     * mount_point_type: return a
      * type of a virtual file system of
      * a mount point
      *
-     *  type: return a file extension
+     * type: return a file extension
      */
     private List<DsmRequestParameters.Additional> additionals = new LinkedList<>();
 
@@ -228,9 +228,9 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
     }
 
     /**
-     * Optional. “file”: only enumerate
+     * Optional. file: only enumerate
      * regular files; “dir”: only enumerate
-     * folders; “all” enumerate regular
+     * folders; all enumerate regular
      * files and folders
      * @param fileType type of file
      * @return DsmListFolderRequest
@@ -257,7 +257,7 @@ public class DsmListFolderRequest extends DsmAbstractRequest<DsmListFolderRespon
     /**
      * Optional. Additional requested file
      * information, separated by a
-     * comma, “,”. When an additional
+     * comma. When an additional
      * option is requested, responded
      * objects will be provided in the
      * specified additional option

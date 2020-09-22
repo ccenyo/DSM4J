@@ -49,43 +49,43 @@ public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderRe
      */
     private DsmRequestParameters.SortDirection sortDirection;
     /**
-     * Optional. “true”: List writable shared
-     * folders; “false”: List writable and
+     * Optional. true: List writable shared
+     * folders; false: List writable and
      * read-only shared folders.
      */
     private boolean onlyWritable =false;
     /**
      * Optional. Additional requested file
      * information, separated by commas
-     * “,”. When an additional option is
+     * . When an additional option is
      * requested, responded objects will be
      * provided in the specified additional
      * option.
      *
      * Options include:
-     *  real_path: return a real path in
+     * real_path: return a real path in
      * volume
      *
-     *  size: return file byte size
+     * size: return file byte size
      *
-     *  owner: return information
+     * owner: return information
      * about file owner including user
      * name, group name, UID and
      * GID
      *
-     *  time: return information about
+     * time: return information about
      * time including last access time,
      * last modified time, last change
      * time and create time
      *
-     *  perm: return information about
+     * perm: return information about
      * file permission
      *
-     *  mount_point_type: return a
+     * mount_point_type: return a
      * type of a virtual file system of a
      * mount point
      *
-     *  volume_status: return volume
+     * volume_status: return volume
      * statuses including free space,
      * total space and read-only
      * status
@@ -145,8 +145,8 @@ public class DsmSharedFolderRequest extends DsmAbstractRequest<DsmSharedFolderRe
     }
 
     /**
-     * Optional. “true”: List writable shared
-     * folders; “false”: List writable and
+     * Optional. true: List writable shared
+     * folders; false: List writable and
      * read-only shared folders.
      * @param onlyWritable onlyWritable
      * @return DsmSharedFolderRequest

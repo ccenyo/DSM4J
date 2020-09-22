@@ -10,16 +10,16 @@ public class DsmDeleteResponse {
 
     //status
     /**
-     * If accurate_progress parameter is “true,” the
+     * If accurate_progress parameter is true the
      * number of all deleted files will be accumulated. If
-     * “false,” only the number of file you give in path
+     * false only the number of file you give in path
      * parameter is accumulated.
      */
     private Integer processed_num;
     /**
-     * If accurate_progress parameter is “true,” the
+     * If accurate_progress parameter is true the
      * value indicates how many files including subfolders
-     * will be deleted. If “false,” it indicates how many files
+     * will be deleted. If false it indicates how many files
      * you give in path parameter. When the total number
      * is calculating, the value is -1.
      */
