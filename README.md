@@ -1,5 +1,5 @@
 # DSM4J
-
+[![Build Status](https://travis-ci.com/ccenyo/JDSM.svg?branch=master)](https://travis-ci.com/github/ccenyo/JDSM)
 
 Dsm for java is an open source java library for DSM Api, it's basically a wrapper for the API.
 you can find all informations about the api [here](https://global.download.synology.com/download/Document/Software/DeveloperGuide/Package/FileStation/All/enu/Synology_File_Station_API_Guide.pdf) available for developers who want's to know how the api works.
