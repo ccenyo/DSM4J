@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.cenyo</groupId>
-    <artifactId>DSM-JAW</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>DSM4J</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
     <properties>
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
         <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
