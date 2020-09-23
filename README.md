@@ -1,5 +1,6 @@
 # DSM4J
-[![Build Status](https://travis-ci.com/ccenyo/JDSM.svg?branch=master)](https://travis-ci.com/github/ccenyo/JDSM)
+[![Build Status](https://travis-ci.com/ccenyo/DSM4J.svg?branch=master)](https://travis-ci.com/github/ccenyo/DSM4J)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.ccenyo/DSM4J/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.ccenyo/DSM4J)
 
 Dsm for java is an open source java library for DSM Api, it's basically a wrapper for the API.
 you can find all informations about the api [here](https://global.download.synology.com/download/Document/Software/DeveloperGuide/Package/FileStation/All/enu/Synology_File_Station_API_Guide.pdf) available for developers who want's to know how the api works.
@@ -33,9 +34,11 @@ you have to define an environment file  in your resource folder``env.properties`
 add the maven repository to your pom.xml
 
 ```java
-    <dependency>
-
-    </dependency>
+        <dependency>
+            <groupId>com.github.ccenyo</groupId>
+            <artifactId>DSM4J</artifactId>
+            <version>1.0.2</version>
+        </dependency>
 ```
 
 ##Basic usage
