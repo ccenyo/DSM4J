@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.ccenyo</groupId>
     <artifactId>DSM4J</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <properties>
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
         <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
@@ -26,7 +24,8 @@
         <connection>scm:git:https://github.com/ccenyo/DSM4J.git</connection>
         <developerConnection>scm:git:ssh://ccenyo@github.com/ccenyo/DSM4J.git</developerConnection>
         <url>https://github.com/ccenyo/DSM4J</url>
-    </scm>
+      <tag>DSM4J-1.0.1</tag>
+  </scm>
     <profiles>
         <profile>
             <id>release</id>
