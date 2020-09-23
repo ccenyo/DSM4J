@@ -22,7 +22,11 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
-
+    <scm>
+        <connection>scm:git:https://github.com/ccenyo/DSM4J.git</connection>
+        <developerConnection>scm:git:ssh://ccenyo@github.com/ccenyo/DSM4J.git</developerConnection>
+        <url>https://github.com/ccenyo/DSM4J</url>
+    </scm>
     <profiles>
         <profile>
             <id>release</id>
