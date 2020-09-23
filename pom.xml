@@ -5,6 +5,23 @@
     <groupId>com.github.ccenyo</groupId>
     <artifactId>DSM4J</artifactId>
     <version>1.0.2-SNAPSHOT</version>
+
+    <description>A java wrapper for Synology DSM API</description>
+    <name>DSM for Java</name>
+    <url>https://github.com/ccenyo/DSM4J</url>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://github.com/ccenyo/DSM4J/blob/master/LICENSE</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Cenyo Medewou</name>
+            <email>medewou@gmail.com</email>
+        </developer>
+    </developers>
     <properties>
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
         <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
