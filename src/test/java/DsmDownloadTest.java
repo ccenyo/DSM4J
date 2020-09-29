@@ -2,10 +2,7 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import clients.DsmFileStationClient;
 import exeptions.DsmDownloadException;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
@@ -43,6 +40,10 @@ public class DsmDownloadTest {
                 .call();
     }
 
+    @After
+    public void postTest() {
+        client.simpleDelete(ROOT_FOLDER).setRecursive(true).call();
+    }
 
     @Test
     public void downloadOneFileAndSuccess() {

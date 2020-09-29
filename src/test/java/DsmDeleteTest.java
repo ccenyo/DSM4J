@@ -2,10 +2,7 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import clients.DsmFileStationClient;
 import exeptions.DsmDeleteException;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
@@ -39,6 +36,11 @@ public class DsmDeleteTest {
                 .createParentFolders(true)
                 .overwrite(DsmRequestParameters.OverwriteBehaviour.OVERWRITE)
                 .call();
+    }
+
+    @After
+    public void postTest() {
+        client.simpleDelete(ROOT_FOLDER).setRecursive(true).call();
     }
 
     @Test
