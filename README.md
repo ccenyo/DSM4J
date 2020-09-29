@@ -83,6 +83,7 @@ or
 | Download files            | `SYNO.FileStation.Download`   | download          | Download files/folders. If only one file is specified, the file content is responded. If more than one file/folder is given, binary content in ZIP format which they are compressed to is responded.
 | Delete a file or folder   | `SYNO.FileStation.Delete`     | delete            | Delete file synchoniously                                                                                 
 | Delete a file or folder   | `SYNO.FileStation.Delete`     | start/status/stop | Delete file asynchoniously, non-blocking method     
+| rename a file or folder   | `SYNO.FileStation.Rename`     | rename            | rename files or folders    
 
 If you don't know how to use the methods, feel free to look at the tests, i always make sure to use the methods in different ways in the tests.
 
