@@ -91,4 +91,8 @@ public class DsmFileStationClient {
                .stream()
                .anyMatch(f -> f.getName().equals(DsmUtils.extractFileName(filePath)));
     }
+
+    public DsmRenameRequest rename(String path, String newName) {
+        return new DsmRenameRequest(dsmAuth).addFileOrFolderToRename(path).addNewNames(newName);
+    }
 }
