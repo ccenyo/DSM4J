@@ -2,13 +2,13 @@
 [![Build Status](https://travis-ci.com/ccenyo/DSM4J.svg?branch=master)](https://travis-ci.com/github/ccenyo/DSM4J)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.ccenyo/DSM4J/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.ccenyo/DSM4J)
 
-Dsm for java is an open source java library for DSM Api, it's basically a wrapper for the API.
-you can find all informations about the api [here](https://global.download.synology.com/download/Document/Software/DeveloperGuide/Package/FileStation/All/enu/Synology_File_Station_API_Guide.pdf) available for developers who want's to know how the api works.
+Dsm for java is an open source java library for Synology DSM Api, it's basically a wrapper for the API.
+you can find all information about the api [here](https://global.download.synology.com/download/Document/Software/DeveloperGuide/Package/FileStation/All/enu/Synology_File_Station_API_Guide.pdf) available for developers who want's to know how the api works.
 
 If you find yourself on this page, it means that you have a java project and you need to communicate with your Nas Synology.
 This wrapper can be a great startup for that.
 I am trying to build the most complete wrapper for synology.
-You are welcome if you want to help me, i will be greatfull.
+You are welcome if you want to help me, I will be greatfull.
 
 ##Prerequisites
 
@@ -17,8 +17,8 @@ if you want to use it in any environment, make sure you the right JVM installed 
 
 ##Integration tests
 
-Most of the tests need an actual synology Nas. 
-Make sure you have the synology in the same network as your server, or set a DDNS to access your synology easily from internet. Look at this official tutorial : [How to make Synology NAS accessible over the Internet](https://www.synology.com/en-global/knowledgebase/DSM/tutorial/Network/How_to_make_Synology_NAS_accessible_over_the_Internet)
+Most of the tests need an actual Synology Nas. 
+Make sure you have the Synology in the same network as your server, or set a DDNS to access your synology easily from internet. Look at this official tutorial : [How to make Synology NAS accessible over the Internet](https://www.synology.com/en-global/knowledgebase/DSM/tutorial/Network/How_to_make_Synology_NAS_accessible_over_the_Internet)
 Don't forget to use the firewall to restrict unknown ip from accessing your portal.
 
 you have to define an environment file  in your resource folder``env.properties`` in which you have to put this lines :
