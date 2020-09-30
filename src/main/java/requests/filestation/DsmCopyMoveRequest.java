@@ -134,7 +134,7 @@ public class DsmCopyMoveRequest extends DsmAbstractRequest<DsmCopyMoveResponse> 
 
     @Override
     public Response<DsmCopyMoveResponse> status() {
-        if(this.searchTaskId == null) {
+        if(this.taskId == null) {
             throw new DsmDeleteException("You have to set taskId");
         }
         this.method = "status";
