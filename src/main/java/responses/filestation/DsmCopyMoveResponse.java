@@ -52,7 +52,7 @@ public class DsmCopyMoveResponse {
      */
     private String dest_folder_path;
 
-    public String getTaskId() {
+    public String getTaskid() {
         return taskid;
     }
 

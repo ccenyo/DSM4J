@@ -17,7 +17,7 @@ public class DsmCreateFolderRequest  extends DsmAbstractRequest<DsmCreateFolderR
         this.apiName = "SYNO.FileStation.CreateFolder";
         this.version = 1;
         this.method = "create";
-        this.path = "webapi/auth.cgi";
+        this.path = "webapi/entry.cgi";
     }
 
     /**
@@ -87,12 +87,8 @@ public class DsmCreateFolderRequest  extends DsmAbstractRequest<DsmCreateFolderR
         return  new TypeReference<Response<DsmCreateFolderResponse>>() {};
     }
 
-    public DsmCreateFolderRequest addParentPath(String parentPath) {
+    public DsmCreateFolderRequest addNewFolder(String parentPath, String name) {
         this.folderPaths.add(parentPath);
-        return this;
-    }
-
-    public DsmCreateFolderRequest addFolderName(String name) {
         this.names.add(name);
         return this;
     }

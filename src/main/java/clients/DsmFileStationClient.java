@@ -101,4 +101,9 @@ public class DsmFileStationClient {
                 .addPathToCopy(pathToCopy)
                 .setDestinationFolderPath(destination);
     }
+
+    public DsmCreateFolderRequest createFolder(String parentPath, String newFolderName) {
+        return new DsmCreateFolderRequest(dsmAuth)
+                .addNewFolder(parentPath, newFolderName);
+    }
 }
