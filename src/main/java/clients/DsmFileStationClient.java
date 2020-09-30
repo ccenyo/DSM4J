@@ -95,4 +95,10 @@ public class DsmFileStationClient {
     public DsmRenameRequest rename(String path, String newName) {
         return new DsmRenameRequest(dsmAuth).addFileOrFolderToRename(path).addNewNames(newName);
     }
+
+    public DsmCopyMoveRequest copyOrMove(String pathToCopy, String destination) {
+        return new DsmCopyMoveRequest(dsmAuth)
+                .addPathToCopy(pathToCopy)
+                .setDestinationFolderPath(destination);
+    }
 }
