@@ -75,6 +75,8 @@ public class DsmUtils {
         codeErrors.put(1004, "File cannot overwrite a folder with the same name, or folder cannot overwrite a file with the same name.");
         codeErrors.put(1006, "Cannot copy/move file/folder with special characters to a FAT32 file system.");
         codeErrors.put(1007, "Cannot copy/move a file bigger than 4G to a FAT32 file system.");
+        codeErrors.put(1100, "Failed to create a folder. More information in <errors> object");
+        codeErrors.put(1101, "The number of folders to the parent folder would exceed the system limitation");
     }
 
     private DsmUtils(){}
