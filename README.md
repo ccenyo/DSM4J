@@ -73,19 +73,20 @@ or
 
 #### FileStation features
 
-| Feature                   | API                           | method            | Description                                                           
-| ---                       | ---                           |---                |---                                                                   
-| Login session             | `SYNO.API.Auth`               | login             | Login to synology dsm
-| Logout session            | `SYNO.API.Auth`               | logout            | Logout 
-| List all shared folders   | `SYNO.FileStation.List`       | list_share        | List all shared folders,  and get detailed file information
-| List of folders/files     | `SYNO.FileStation.List`       | list              | Enumerate files in a shared folder, and get detailed file information
-| upload file               | `SYNO.FileStation.Upload`     | upload            | Upload content to the cloud.
-| Download files            | `SYNO.FileStation.Download`   | download          | Download files/folders. If only one file is specified, the file content is responded. If more than one file/folder is given, binary content in ZIP format which they are compressed to is responded.
-| Delete a file or folder   | `SYNO.FileStation.Delete`     | delete            | Delete file synchoniously                                                                                 
-| Delete a file or folder   | `SYNO.FileStation.Delete`     | start/status/stop | Delete file asynchoniously, non-blocking method     
-| Rename a file or folder   | `SYNO.FileStation.Rename`     | rename            | rename files or folders    
-| Copy or move file/folder  | `SYNO.FileStation.CopyMove`   | start/status/stop | copy or move folder or file asynchroniously 
-| Create folder             |`SYNO.FileStation.CreateFolder`| create            | Create new Folder 
+| Feature                   | API                           | method                                    | Description                                                           
+| ---                       | ---                           |---                                        |---                                                                   
+| Login session             | `SYNO.API.Auth`               | login                                     | Login to synology dsm
+| Logout session            | `SYNO.API.Auth`               | logout                                    | Logout 
+| List all shared folders   | `SYNO.FileStation.List`       | list_share                                | List all shared folders,  and get detailed file information
+| List of folders/files     | `SYNO.FileStation.List`       | list                                      | Enumerate files in a shared folder, and get detailed file information
+| upload file               | `SYNO.FileStation.Upload`     | upload                                    | Upload content to the cloud.
+| Download files            | `SYNO.FileStation.Download`   | download                                  | Download files/folders. If only one file is specified, the file content is responded. If more than one file/folder is given, binary content in ZIP format which they are compressed to is responded.
+| Delete a file or folder   | `SYNO.FileStation.Delete`     | delete                                    | Delete file synchoniously                                                                                 
+| Delete a file or folder   | `SYNO.FileStation.Delete`     | start/status/stop                         | Delete file asynchoniously, non-blocking method     
+| Rename a file or folder   | `SYNO.FileStation.Rename`     | rename                                    | rename files or folders    
+| Copy or move file/folder  | `SYNO.FileStation.CopyMove`   | start/status/stop                         | copy or move folder or file asynchroniously 
+| Create folder             |`SYNO.FileStation.CreateFolder`| create                                    | Create new Folder 
+| Share file of folder      |`SYNO.FileStation.Sharing`     | create,edit,delete, info, clear_invalid   | Share a file of folder ans get a link
 
 If you don't know how to use the methods, feel free to look at the tests, i always make sure to use the methods in different ways in the tests.
 
