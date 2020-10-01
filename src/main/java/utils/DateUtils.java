@@ -1,14 +1,13 @@
 package utils;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 public class DateUtils {
 
-    public static String DSM_DATE_FORMAT = "YYYY-MM-dd";
+    public static String DSM_DATE_FORMAT = "YYYY-MM-dd hh:mm:ss";
 
     private DateUtils(){}
 
@@ -17,7 +16,7 @@ public class DateUtils {
         return instant.toEpochMilli();
     }
 
-    public static String convertDateToString(LocalDate localDate) {
+    public static String convertDateToString(LocalDateTime localDate) {
         return localDate.format(DateTimeFormatter.ofPattern(DSM_DATE_FORMAT));
     }
 }

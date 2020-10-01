@@ -8,7 +8,7 @@ import responses.Response;
 import responses.filestation.share.DsmShareCreateResponse;
 import utils.DateUtils;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +31,7 @@ public class DsmShareCreateOrEditRequest extends DsmAbstractRequest<DsmShareCrea
      * generate sharing links, separated by
      * commas
      */
-    private List<String> paths = new LinkedList<>();
+    private final List<String> paths = new LinkedList<>();
     /**
      * Optional The password for the sharing link
      * when accessing it. The max password
@@ -40,18 +40,18 @@ public class DsmShareCreateOrEditRequest extends DsmAbstractRequest<DsmShareCrea
     private String password;
     /**
      * Optional. The expiration date for the
-     * sharing link, written in the format YYYYMM-DD. When set to 0 (default), the
+     * sharing link, written in the format YYYYMM-DD hh:mm:ss. When set to 0 (default), the
      * sharing link is permanent.
      */
-    private LocalDate dateExpired;
+    private LocalDateTime dateExpired;
     /**
      * Optional. The available date for the sharing
      * link to become effective, written in the
-     * format YYYY-MM-DD. When set to 0
+     * format YYYY-MM-DD hh:mm:ss. When set to 0
      * (default), the sharing link is valid
      * immediately after creation.
      */
-    private LocalDate dateAvailable;
+    private LocalDateTime dateAvailable;
 
     public DsmShareCreateOrEditRequest setId(String id) {
         this.id = id;
@@ -68,12 +68,12 @@ public class DsmShareCreateOrEditRequest extends DsmAbstractRequest<DsmShareCrea
         return this;
     }
 
-    public DsmShareCreateOrEditRequest setDateExpired(LocalDate dateExpired) {
+    public DsmShareCreateOrEditRequest setDateExpired(LocalDateTime dateExpired) {
         this.dateExpired = dateExpired;
         return this;
     }
 
-    public DsmShareCreateOrEditRequest setDateAvailable(LocalDate dateAvailable) {
+    public DsmShareCreateOrEditRequest setDateAvailable(LocalDateTime dateAvailable) {
         this.dateAvailable = dateAvailable;
         return this;
     }
@@ -86,7 +86,7 @@ public class DsmShareCreateOrEditRequest extends DsmAbstractRequest<DsmShareCrea
     @Override
     public Response<DsmShareCreateResponse> call() {
 
-        if(paths.isEmpty()) {
+        if(paths.isEmpty() && !Optional.ofNullable(this.id).isPresent()) {
             throw new DsmCreateFolderException("You have to specify at least one content to share");
         }
 
@@ -96,7 +96,9 @@ public class DsmShareCreateOrEditRequest extends DsmAbstractRequest<DsmShareCrea
             this.method = "create";
         }
 
-        addParameter("path", String.join(",", this.paths));
+        if(!paths.isEmpty()) {
+            addParameter("path", String.join(",", this.paths));
+        }
         Optional.ofNullable(this.password).ifPresent(password -> addParameter("password", password));
         Optional.ofNullable(this.dateExpired).ifPresent(date -> addParameter("date_expired", DateUtils.convertDateToString(date)));
         Optional.ofNullable(this.dateAvailable).ifPresent(date -> addParameter("date_available", DateUtils.convertDateToString(date)));

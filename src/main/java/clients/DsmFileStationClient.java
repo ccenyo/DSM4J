@@ -133,7 +133,7 @@ public class DsmFileStationClient {
                 .setId(id);
     }
 
-    public DsmShareCreateOrEditRequest createLink(String fileOrFilePath) {
+    public DsmShareCreateOrEditRequest createShareLink(String fileOrFilePath) {
         return new DsmShareCreateOrEditRequest(dsmAuth)
                 .addFileOrFolder(fileOrFilePath);
     }

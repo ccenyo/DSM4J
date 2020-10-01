@@ -16,7 +16,7 @@ public class DsmShareListRequest extends DsmAbstractRequest<DsmShareListResponse
     public DsmShareListRequest(DsmAuth auth) {
         super(auth);
         this.apiName = "SYNO.FileStation.Sharing";
-        this.version = 1;
+        this.version = 3;
         this.method = "list";
         this.path = "webapi/entry.cgi";
     }
@@ -56,7 +56,7 @@ public class DsmShareListRequest extends DsmAbstractRequest<DsmShareListResponse
      * link_owner: the user name of
      * the sharing link owner
      */
-    private List<DsmRequestParameters.ShareSort> sorts = new LinkedList<>();
+    private final List<DsmRequestParameters.ShareSort> sorts = new LinkedList<>();
     /**
      * Optional. Specify to sort
      * ascending or to sort descending.

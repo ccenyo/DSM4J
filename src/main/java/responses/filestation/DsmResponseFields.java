@@ -456,6 +456,19 @@ public class DsmResponseFields {
     }
 
     public  static class SharingLink {
+
+        /**
+         * The accessibility status of the sharing link might be
+         * one of the following:
+         */
+        public static enum Status {
+            valid, // the sharing link is active
+            invalid, // the sharing link is not active because the available date has not arrived yet
+            expired, // the sharing link expired.
+            broken, //the sharing link broke due to a change in the file path or access permission
+            inactive
+        }
+
         /**
          * A unique ID of a sharing link.
          */
@@ -503,7 +516,7 @@ public class DsmResponseFields {
          * (4) broken: the sharing link broke due to a change
          * in the file path or access permission.
          */
-        private String status;
+        private Status status;
 
         public String getId() {
             return id;
@@ -537,7 +550,7 @@ public class DsmResponseFields {
             return date_available;
         }
 
-        public String getStatus() {
+        public Status getStatus() {
             return status;
         }
     }
