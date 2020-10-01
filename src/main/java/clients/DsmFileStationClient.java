@@ -25,6 +25,10 @@ import utils.DsmUtils;
 
 import java.util.Optional;
 
+/**
+ * this is the principal client of fileStation
+ * all the functions are specified here
+ */
 public class DsmFileStationClient {
 
     private DsmAuth dsmAuth;
@@ -37,6 +41,11 @@ public class DsmFileStationClient {
         return dsmAuth;
     }
 
+    /**
+     * login to the server
+     * @param auth information about the server and user to connect
+     * @return DsmFileStationClient
+     */
     public static DsmFileStationClient login(DsmAuth auth) {
         Response<DsmLoginResponse> response = new DsmLoginRequest(Optional.ofNullable(auth).orElseThrow(() -> new DsmLoginException("DsmAuth can't be null"))).call();
 
@@ -50,6 +59,10 @@ public class DsmFileStationClient {
         return new DsmFileStationClient(auth);
     }
 
+    /**
+     * logout from server
+     * @return boolean
+     */
     public boolean logout() {
         Response<DsmSimpleResponse> response = new DsmLogoutRequest(
                 Optional.ofNullable(this.dsmAuth).orElseThrow(() -> new DsmLoginException("You are already logged out"))
@@ -70,34 +83,64 @@ public class DsmFileStationClient {
         return new DsmSharedFolderRequest(dsmAuth);
     }
 
+    /**
+     * get the list of the files and folder in a folder
+     * @param folderPath the path to the folder
+     * @return DsmListFolderRequest
+     */
     public DsmListFolderRequest ls(String folderPath) {
         return new DsmListFolderRequest(dsmAuth)
                     .setFolderPath(folderPath);
     }
 
+    /**
+     * upload a file to the server
+     * @param destinationPath the destination path
+     * @param filePath the file to upload
+     * @return DsmUploadRequest
+     */
     public DsmUploadRequest upload(String destinationPath, String filePath) {
         return new DsmUploadRequest(dsmAuth)
                 .setDestinationFolderPath(destinationPath)
                 .setFilePath(filePath);
     }
 
+    /**
+     * download a file
+     * @param fileOrFolderToDownload the path of the file to download
+     * @param destinationPath the destination path
+     * @return DsmDownloadRequest
+     */
     public DsmDownloadRequest download(String fileOrFolderToDownload, String destinationPath) {
         return new DsmDownloadRequest(dsmAuth)
                 .setFileToDownload(fileOrFolderToDownload)
                 .setDestinationPath(destinationPath);
-
     }
 
+    /**
+     *
+     * @param filePath the path of the file to delete
+     * @return DsmSimpleDeleteRequest
+     */
     public DsmSimpleDeleteRequest simpleDelete(String filePath) {
         return new DsmSimpleDeleteRequest(dsmAuth)
                 .addFileToDelete(filePath);
     }
 
+    /**
+     * delete folder of file asynchroniously
+     * @return DsmAdvancedDeleteRequest
+     */
     public DsmAdvancedDeleteRequest advancedDelete() {
         return new DsmAdvancedDeleteRequest(dsmAuth);
     }
 
 
+    /**
+     * check if the file or folder exits
+     * @param filePath the path of the file or folder
+     * @return boolean
+     */
     public boolean exists(String filePath) {
        return this.ls(DsmUtils.extractRootFolderPath(filePath))
                .call()
@@ -107,42 +150,88 @@ public class DsmFileStationClient {
                .anyMatch(f -> f.getName().equals(DsmUtils.extractFileName(filePath)));
     }
 
+    /**
+     * rename a file or folder
+     * @param path the path of the folder or dile
+     * @param newName the new name of the folder or file
+     * @return DsmRenameRequest
+     */
     public DsmRenameRequest rename(String path, String newName) {
         return new DsmRenameRequest(dsmAuth).addFileOrFolderToRename(path).addNewNames(newName);
     }
 
+    /**
+     * copy or move a file or folder
+     * @param pathToCopy the path of the file or folder to move or copy
+     * @param destination the destination where to copy or move the file
+     * @return DsmCopyMoveRequest
+     */
     public DsmCopyMoveRequest copyOrMove(String pathToCopy, String destination) {
         return new DsmCopyMoveRequest(dsmAuth)
                 .addPathToCopy(pathToCopy)
                 .setDestinationFolderPath(destination);
     }
 
+    /**
+     * create a new folder
+     * @param parentPath the path of the parent folder
+     * @param newFolderName the name of the new folder
+     * @return DsmCreateFolderRequest
+     */
     public DsmCreateFolderRequest createFolder(String parentPath, String newFolderName) {
         return new DsmCreateFolderRequest(dsmAuth)
                 .addNewFolder(parentPath, newFolderName);
     }
 
+    /**
+     * get the information about the share links
+     * @param id the id of the shared link
+     * @return Response<DsmResponseFields.SharingLink>
+     */
     public Response<DsmResponseFields.SharingLink> getShareLinkInfo(String id) {
         return new DsmShareInfoRequest(dsmAuth).getInfo(id);
     }
 
+    /**
+     * get all shared links
+     * @return DsmShareListRequest
+     */
     public DsmShareListRequest getAllShareLinks() {
         return new DsmShareListRequest(dsmAuth);
     }
 
+    /**
+     * delete a shared link
+     * @param id the id of the share link to delete
+     * @return Response<DsmSimpleResponse>
+     */
     public Response<DsmSimpleResponse> deleteShareLink(String id) {
         return new DsmShareDeleteRequest(dsmAuth).delete(id);
     }
 
+    /**
+     * clear invalid links
+     * @return Response<DsmSimpleResponse>
+     */
     public Response<DsmSimpleResponse> clearInvalidShareLinks() {
         return new DsmShareDeleteRequest(dsmAuth).clearInvalidLinks();
     }
 
+    /**
+     * edit the shared link
+     * @param id the id of the shared link to edit
+     * @return DsmShareCreateOrEditRequest
+     */
     public DsmShareCreateOrEditRequest editShareLink(String id) {
         return new DsmShareCreateOrEditRequest(dsmAuth)
                 .setId(id);
     }
 
+    /**
+     * create a new shared link
+     * @param fileOrFilePath the path of the file or folder to share
+     * @return DsmShareCreateOrEditRequest
+     */
     public DsmShareCreateOrEditRequest createShareLink(String fileOrFilePath) {
         return new DsmShareCreateOrEditRequest(dsmAuth)
                 .addFileOrFolder(fileOrFilePath);
