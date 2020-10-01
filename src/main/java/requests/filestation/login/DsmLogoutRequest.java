@@ -1,12 +1,12 @@
-package requests.filestation;
+package requests.filestation.login;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import requests.DsmAbstractRequest;
 import requests.DsmAuth;
-import responses.filestation.DsmLogoutResponse;
+import responses.filestation.DsmSimpleResponse;
 import responses.Response;
 
-public class DsmLogoutRequest extends DsmAbstractRequest<DsmLogoutResponse> {
+public class DsmLogoutRequest extends DsmAbstractRequest<DsmSimpleResponse> {
     public DsmLogoutRequest(DsmAuth auth) {
         super(auth);
         this.apiName = "SYNO.API.Auth";
@@ -17,6 +17,6 @@ public class DsmLogoutRequest extends DsmAbstractRequest<DsmLogoutResponse> {
 
     @Override
     protected TypeReference getClassForMapper() {
-        return  new TypeReference<Response<DsmLogoutResponse>>() {};
+        return  new TypeReference<Response<DsmSimpleResponse>>() {};
     }
 }

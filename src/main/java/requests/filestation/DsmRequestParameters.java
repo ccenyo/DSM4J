@@ -40,6 +40,57 @@ public class DsmRequestParameters {
         TYPE
     }
 
+    public enum ShareSort {
+        /**
+         * a unique ID of sharing a
+         * file/folder
+         */
+        id,
+        /**
+         * file name
+         */
+        name,
+        /**
+         * if it’s a folder or not
+         */
+        isFolder,
+        /**
+         * file path
+         */
+        path,
+        /**
+         *   the expiration
+         * date for the sharing link
+         */
+        date_expired,
+        /**
+         * the available
+         * date for the sharing link start
+         * effective
+         */
+        date_available,
+        /**
+         * the link accessibility
+         * status
+         */
+        status,
+        /**
+         * If the sharing
+         * link is protected or not
+         */
+        has_password,
+        /**
+         * a URL of a sharing link
+         */
+        url,
+        /**
+         * the user name of
+         * the sharing link owner
+         */
+        link_owner
+
+    }
+
     public enum SortDirection {
         /**
          * sort ascending

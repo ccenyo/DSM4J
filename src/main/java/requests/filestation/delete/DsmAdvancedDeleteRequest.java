@@ -1,17 +1,18 @@
-package requests.filestation;
+package requests.filestation.delete;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import exeptions.DsmDeleteException;
 import requests.DsmAbstractRequest;
 import requests.DsmAuth;
-import responses.filestation.DsmDeleteResponse;
+import requests.filestation.DsmNonBlockingProcess;
+import responses.filestation.delete.DsmDeleteResponse;
 import responses.Response;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-public class DsmAdvancedDeleteRequest  extends DsmAbstractRequest<DsmDeleteResponse> implements DsmNonBlockingProcess<DsmDeleteResponse>{
+public class DsmAdvancedDeleteRequest  extends DsmAbstractRequest<DsmDeleteResponse> implements DsmNonBlockingProcess<DsmDeleteResponse> {
 
     /**
      * One or more deleted file/folder

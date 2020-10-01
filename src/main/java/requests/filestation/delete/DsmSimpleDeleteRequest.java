@@ -1,10 +1,10 @@
-package requests.filestation;
+package requests.filestation.delete;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import exeptions.DsmDeleteException;
 import requests.DsmAbstractRequest;
 import requests.DsmAuth;
-import responses.filestation.DsmDeleteResponse;
+import responses.filestation.delete.DsmDeleteResponse;
 import responses.Response;
 
 import java.util.Optional;

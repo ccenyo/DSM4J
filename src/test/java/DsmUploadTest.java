@@ -2,18 +2,15 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import clients.DsmFileStationClient;
 import exeptions.DsmUploadException;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
 import requests.filestation.DsmRequestParameters;
 import responses.Response;
-import responses.filestation.DsmListFolderResponse;
+import responses.filestation.lists.DsmListFolderResponse;
 import responses.filestation.DsmResponseFields;
-import responses.filestation.DsmUploadResponse;
+import responses.filestation.transfert.DsmUploadResponse;
 import utils.DateUtils;
 
 import java.io.File;
@@ -23,17 +20,22 @@ import java.util.Optional;
 
 public class DsmUploadTest {
 
-    private final String ROOT_FOLDER = "/homes";
+    private final String ROOT_FOLDER = "/homes/testResource";
     @Rule
     public TemporaryFolder folder= new TemporaryFolder();
 
-    DsmAuth auth;
+    public DsmFileStationClient client;
 
     @Before
     public void initTest() {
         Logger rootLogger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
         rootLogger.setLevel(Level.ALL);
-        auth = DsmAuth.fromResource("env.properties");
+        client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));
+    }
+
+    @After
+    public void postTest() {
+        client.simpleDelete(ROOT_FOLDER).setRecursive(true).call();
     }
 
     @Test
@@ -41,11 +43,12 @@ public class DsmUploadTest {
         String fileSuccess = "dummy-upload-file"+System.currentTimeMillis()+".txt";
         String content = "success";
         File file = Utils.makeFile(folder, content, fileSuccess);
-        DsmFileStationClient client = DsmFileStationClient.login(auth);
+
 
         Response<DsmUploadResponse> response =  client.
-                upload(ROOT_FOLDER, file.getAbsolutePath()).
-                call();
+                upload(ROOT_FOLDER, file.getAbsolutePath())
+                .createParentFolders(true)
+                .call();
 
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isSuccess());
@@ -57,13 +60,13 @@ public class DsmUploadTest {
         String fileSuccess = "dummy-upload-file.txt";
         String content = "success";
         File file = Utils.makeFile(folder, content, fileSuccess);
-        DsmFileStationClient client = DsmFileStationClient.login(auth);
 
         client.upload(ROOT_FOLDER, file.getAbsolutePath()).
                 overwrite(DsmRequestParameters.OverwriteBehaviour.OVERWRITE).
                 call();
         Response<DsmUploadResponse> response2 =
                 client.upload(ROOT_FOLDER, file.getAbsolutePath())
+                .createParentFolders(true)
                 .overwrite(DsmRequestParameters.OverwriteBehaviour.OVERWRITE)
                 .call();
 
@@ -77,9 +80,8 @@ public class DsmUploadTest {
         String fileSuccess = "dummy-upload-file.txt";
         String content = "success";
         File file = Utils.makeFile(folder, content, fileSuccess);
-        DsmFileStationClient client = DsmFileStationClient.login(auth);
 
-        Response<DsmUploadResponse> response =  client.
+                Response<DsmUploadResponse> response =  client.
                 upload(ROOT_FOLDER+"/testResources", file.getAbsolutePath()).
                 createParentFolders(true).
                 overwrite(DsmRequestParameters.OverwriteBehaviour.OVERWRITE)
@@ -94,8 +96,6 @@ public class DsmUploadTest {
     public void uploadFileWithSourceFileNotExist() {
         String fileSuccess = "dummy-upload-file"+System.currentTimeMillis()+".txt";
         File file = new File(fileSuccess);
-        DsmFileStationClient client = DsmFileStationClient.login(auth);
-
         client.upload(ROOT_FOLDER+"/test", file.getAbsolutePath()).call();
     }
 
@@ -104,7 +104,6 @@ public class DsmUploadTest {
         String fileSuccess = "dummy-upload-file"+System.currentTimeMillis()+".txt";
         String content = "success";
         File file = Utils.makeFile(folder, content, fileSuccess);
-        DsmFileStationClient client = DsmFileStationClient.login(auth);
 
         Response<DsmUploadResponse> response =  client.
                 upload(ROOT_FOLDER, file.getAbsolutePath())

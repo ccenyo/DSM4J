@@ -1,4 +1,4 @@
-package responses.filestation;
+package responses.filestation.transfert;
 
 public class DsmUploadResponse {
     private boolean blSki;

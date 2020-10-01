@@ -1,9 +1,9 @@
-package requests.filestation;
+package requests.filestation.login;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import requests.DsmAbstractRequest;
 import requests.DsmAuth;
-import responses.filestation.DsmLoginResponse;
+import responses.filestation.login.DsmLoginResponse;
 import responses.Response;
 
 public class DsmLoginRequest extends DsmAbstractRequest<DsmLoginResponse> {

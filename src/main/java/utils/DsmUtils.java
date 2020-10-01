@@ -66,7 +66,20 @@ public class DsmUtils {
         codeErrors.put(1803, "Upload connection is cancelled.");
         codeErrors.put(1804, "Failed to upload too big file to FAT file system.");
         codeErrors.put(1805, "Can’t overwrite or skip the existed file, if no overwrite parameter is given.");
-        codeErrors.put(900, "Failed to delete file(s)/folder(s). More information in <errors> object.");
+        codeErrors.put(900,  "Failed to delete file(s)/folder(s). More information in <errors> object.");
+        codeErrors.put(1200, "Failed to rename it. More information in <errors> object.");
+        codeErrors.put(1000, "Failed to copy files/folders. More information in <errors> object.");
+        codeErrors.put(1001, "Failed to move files/folders. More information in <errors> object.");
+        codeErrors.put(1002, "An error occurred at the destination. More information in <errors> object.");
+        codeErrors.put(1003, "Cannot overwrite or skip the existing file because no overwrite parameter is given.");
+        codeErrors.put(1004, "File cannot overwrite a folder with the same name, or folder cannot overwrite a file with the same name.");
+        codeErrors.put(1006, "Cannot copy/move file/folder with special characters to a FAT32 file system.");
+        codeErrors.put(1007, "Cannot copy/move a file bigger than 4G to a FAT32 file system.");
+        codeErrors.put(1100, "Failed to create a folder. More information in <errors> object");
+        codeErrors.put(1101, "The number of folders to the parent folder would exceed the system limitation");
+        codeErrors.put(2000, "Sharing link does not exist");
+        codeErrors.put(2001, "Cannot generate sharing link because too many sharing links exist.");
+        codeErrors.put(2002, "Failed to access sharing links.");
     }
 
     private DsmUtils(){}

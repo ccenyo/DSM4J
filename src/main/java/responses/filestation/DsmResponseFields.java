@@ -454,4 +454,150 @@ public class DsmResponseFields {
             return additional;
         }
     }
+
+    public  static class SharingLink {
+
+        /**
+         * The accessibility status of the sharing link might be
+         * one of the following:
+         */
+        public enum Status {
+            valid, // the sharing link is active
+            invalid, // the sharing link is not active because the available date has not arrived yet
+            expired, // the sharing link expired.
+            broken, //the sharing link broke due to a change in the file path or access permission
+            inactive
+        }
+
+        /**
+         * A unique ID of a sharing link.
+         */
+        private String id;
+        /**
+         * A URL of a sharing link.
+         */
+        private String url;
+        /**
+         * A user name of a sharing link owner
+         */
+        private String link_owner;
+        /**
+         * A file or folder path of a sharing link.
+         */
+        private String path;
+        /**
+         * Whether the sharing link is for a folder
+         */
+        private String isFolder;
+        /**
+         * Whether the sharing link has password.
+         */
+        private boolean has_password;
+        /**
+         * The expiration date of the sharing link in the format
+         * YYYY-MM-DD. If the value is set to 0, the link will
+         * be permanent.
+         */
+        private String date_expired;
+        /**
+         * The date when the sharing link becomes active in
+         * the format YYYY-MM-DD. If the value is set to 0,
+         * the file sharing link will be active immediately after
+         * creation.
+         */
+        private String date_available;
+        /**
+         * The accessibility status of the sharing link might be
+         * one of the following:
+         * (1) valid: the sharing link is active.
+         * (2) invalid: the sharing link is not active because
+         * the available date has not arrived yet.
+         * (3) expired: the sharing link expired.
+         * (4) broken: the sharing link broke due to a change
+         * in the file path or access permission.
+         */
+        private Status status;
+
+        public String getId() {
+            return id;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public String getLink_owner() {
+            return link_owner;
+        }
+
+        public String getPath() {
+            return path;
+        }
+
+        public String getIsFolder() {
+            return isFolder;
+        }
+
+        public boolean isHas_password() {
+            return has_password;
+        }
+
+        public String getDate_expired() {
+            return date_expired;
+        }
+
+        public String getDate_available() {
+            return date_available;
+        }
+
+        public Status getStatus() {
+            return status;
+        }
+    }
+
+    public static class SharedLink {
+        /**
+         * A file/folder path of the sharing link.
+         */
+        private String path;
+        /**
+         * A created URL of the sharing link.
+         */
+        private String url;
+        /**
+         * A created unique ID of the sharing link.
+         */
+        private String id;
+        /**
+         * Base64-encoded image of QR code describing
+         * the URL of the sharing link
+         */
+        private String qrcode;
+
+        /**
+         * 0 for creating it successfully, otherwise is the
+         * error code for failed to create it.
+         */
+        private Integer error;
+
+        public String getPath() {
+            return path;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public String getQrcode() {
+            return qrcode;
+        }
+
+        public Integer getError() {
+            return error;
+        }
+    }
 }
