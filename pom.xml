@@ -4,7 +4,7 @@
 
     <groupId>com.github.ccenyo</groupId>
     <artifactId>DSM4J</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
 
     <description>A java wrapper for Synology DSM API</description>
     <name>DSM for Java</name>
@@ -41,7 +41,7 @@
         <connection>scm:git:https://github.com/ccenyo/DSM4J.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/ccenyo/DSM4J.git</developerConnection>
         <url>https://github.com/ccenyo/DSM4J</url>
-      <tag>HEAD</tag>
+      <tag>DSM4J-1.1.0</tag>
   </scm>
     <profiles>
         <profile>
