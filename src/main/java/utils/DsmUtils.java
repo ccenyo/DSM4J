@@ -77,6 +77,9 @@ public class DsmUtils {
         codeErrors.put(1007, "Cannot copy/move a file bigger than 4G to a FAT32 file system.");
         codeErrors.put(1100, "Failed to create a folder. More information in <errors> object");
         codeErrors.put(1101, "The number of folders to the parent folder would exceed the system limitation");
+        codeErrors.put(2000, "Sharing link does not exist");
+        codeErrors.put(2001, "Cannot generate sharing link because too many sharing links exist.");
+        codeErrors.put(2002, "Failed to access sharing links.");
     }
 
     private DsmUtils(){}

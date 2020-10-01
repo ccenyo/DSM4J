@@ -1,14 +1,16 @@
 package clients;
 
 import exeptions.DsmLoginException;
-import requests.*;
+import requests.DsmAuth;
 import requests.filestation.*;
+import requests.filestation.share.DsmShareCreateOrEditRequest;
+import requests.filestation.share.DsmShareDeleteRequest;
 import requests.filestation.share.DsmShareInfoRequest;
 import requests.filestation.share.DsmShareListRequest;
-import responses.filestation.DsmLoginResponse;
-import responses.filestation.DsmLogoutResponse;
 import responses.Response;
+import responses.filestation.DsmLoginResponse;
 import responses.filestation.DsmResponseFields;
+import responses.filestation.DsmSimpleResponse;
 import utils.DsmUtils;
 
 import java.util.Optional;
@@ -39,7 +41,7 @@ public class DsmFileStationClient {
     }
 
     public boolean logout() {
-        Response<DsmLogoutResponse> response = new DsmLogoutRequest(
+        Response<DsmSimpleResponse> response = new DsmLogoutRequest(
                 Optional.ofNullable(this.dsmAuth).orElseThrow(() -> new DsmLoginException("You are already logged out"))
         )
         .call();
@@ -116,5 +118,23 @@ public class DsmFileStationClient {
 
     public DsmShareListRequest getAllShareLinks() {
         return new DsmShareListRequest(dsmAuth);
+    }
+
+    public Response<DsmSimpleResponse> deleteShareLink(String id) {
+        return new DsmShareDeleteRequest(dsmAuth).delete(id);
+    }
+
+    public Response<DsmSimpleResponse> clearInvalidShareLinks() {
+        return new DsmShareDeleteRequest(dsmAuth).clearInvalidLinks();
+    }
+
+    public DsmShareCreateOrEditRequest editShareLink(String id) {
+        return new DsmShareCreateOrEditRequest(dsmAuth)
+                .setId(id);
+    }
+
+    public DsmShareCreateOrEditRequest createLink(String fileOrFilePath) {
+        return new DsmShareCreateOrEditRequest(dsmAuth)
+                .addFileOrFolder(fileOrFilePath);
     }
 }

@@ -4,7 +4,7 @@ import responses.filestation.DsmResponseFields;
 
 import java.util.List;
 
-public class DsmCreateShareResponse {
+public class DsmShareCreateResponse {
 
     List<DsmResponseFields.SharedLink> links;
 
