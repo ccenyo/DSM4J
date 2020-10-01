@@ -1,4 +1,4 @@
-package responses.filestation;
+package responses.filestation.delete;
 
 public class DsmDeleteResponse {
     //start

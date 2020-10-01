@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
 import requests.filestation.DsmRequestParameters;
 import responses.Response;
-import responses.filestation.DsmCreateFolderResponse;
+import responses.filestation.action.DsmCreateFolderResponse;
 
 public class DsmCreateFolderTest {
 

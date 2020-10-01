@@ -1,4 +1,4 @@
-package requests.filestation;
+package requests.filestation.login;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import requests.DsmAbstractRequest;

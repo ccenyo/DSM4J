@@ -1,4 +1,6 @@
-package responses.filestation;
+package responses.filestation.action;
+
+import responses.filestation.DsmResponseFields;
 
 import java.util.List;
 

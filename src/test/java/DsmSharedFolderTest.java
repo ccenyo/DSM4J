@@ -5,7 +5,7 @@ import org.junit.Test;
 import requests.DsmAuth;
 import requests.filestation.DsmRequestParameters;
 import responses.Response;
-import responses.filestation.DsmSharedFolderResponse;
+import responses.filestation.lists.DsmSharedFolderResponse;
 
 public class DsmSharedFolderTest {
     DsmAuth auth;

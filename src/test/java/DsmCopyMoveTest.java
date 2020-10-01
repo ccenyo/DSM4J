@@ -5,10 +5,10 @@ import org.junit.*;
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
-import requests.filestation.DsmCopyMoveRequest;
+import requests.filestation.action.DsmCopyMoveRequest;
 import requests.filestation.DsmRequestParameters;
 import responses.Response;
-import responses.filestation.DsmCopyMoveResponse;
+import responses.filestation.action.DsmCopyMoveResponse;
 
 import java.io.File;
 import java.io.IOException;

@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
 import requests.filestation.DsmRequestParameters;
 import responses.Response;
-import responses.filestation.DsmDeleteResponse;
+import responses.filestation.delete.DsmDeleteResponse;
 import utils.DsmUtils;
 
 import java.io.File;

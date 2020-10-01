@@ -1,9 +1,10 @@
-package requests.filestation;
+package requests.filestation.lists;
 
 import exeptions.DsmListFolderException;
 import requests.DsmAbstractRequest;
 import requests.DsmAuth;
-import responses.filestation.DsmListFolderResponse;
+import requests.filestation.DsmRequestParameters;
+import responses.filestation.lists.DsmListFolderResponse;
 import responses.Response;
 import com.fasterxml.jackson.core.type.TypeReference;
 

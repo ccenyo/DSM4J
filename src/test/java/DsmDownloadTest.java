@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
 import requests.filestation.DsmRequestParameters;
 import responses.Response;
-import responses.filestation.DsmDownloadResponse;
+import responses.filestation.transfert.DsmDownloadResponse;
 
 import java.io.File;
 import java.io.IOException;

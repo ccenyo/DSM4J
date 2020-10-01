@@ -1,12 +1,14 @@
-package requests.filestation;
+package requests.filestation.action;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import exeptions.DsmCopyMoveException;
 import exeptions.DsmDeleteException;
 import requests.DsmAbstractRequest;
 import requests.DsmAuth;
+import requests.filestation.DsmNonBlockingProcess;
+import requests.filestation.DsmRequestParameters;
 import responses.Response;
-import responses.filestation.DsmCopyMoveResponse;
+import responses.filestation.action.DsmCopyMoveResponse;
 
 import java.util.LinkedList;
 import java.util.List;

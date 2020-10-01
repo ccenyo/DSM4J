@@ -1,4 +1,4 @@
-package responses.filestation;
+package responses.filestation.login;
 
 public class DsmLoginResponse {
 

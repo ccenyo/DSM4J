@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
 import requests.filestation.DsmRequestParameters;
 import responses.Response;
-import responses.filestation.DsmRenameResponse;
+import responses.filestation.action.DsmRenameResponse;
 
 import java.io.File;
 import java.io.IOException;

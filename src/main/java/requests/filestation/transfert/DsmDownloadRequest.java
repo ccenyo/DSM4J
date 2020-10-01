@@ -1,10 +1,11 @@
-package requests.filestation;
+package requests.filestation.transfert;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import exeptions.DsmDownloadException;
 import requests.DsmAbstractRequest;
 import requests.DsmAuth;
-import responses.filestation.DsmDownloadResponse;
+import requests.filestation.DsmRequestParameters;
+import responses.filestation.transfert.DsmDownloadResponse;
 import responses.Response;
 import utils.DsmUtils;
 

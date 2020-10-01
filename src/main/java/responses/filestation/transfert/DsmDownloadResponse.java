@@ -1,4 +1,4 @@
-package responses.filestation;
+package responses.filestation.transfert;
 
 import java.io.File;
 

@@ -1,11 +1,12 @@
-package requests.filestation;
+package requests.filestation.action;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import exeptions.DsmRenameException;
 import requests.DsmAbstractRequest;
 import requests.DsmAuth;
+import requests.filestation.DsmRequestParameters;
 import responses.Response;
-import responses.filestation.DsmRenameResponse;
+import responses.filestation.action.DsmRenameResponse;
 
 import java.util.LinkedList;
 import java.util.List;

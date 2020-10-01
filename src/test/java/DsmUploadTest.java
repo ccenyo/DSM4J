@@ -8,9 +8,9 @@ import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
 import requests.filestation.DsmRequestParameters;
 import responses.Response;
-import responses.filestation.DsmListFolderResponse;
+import responses.filestation.lists.DsmListFolderResponse;
 import responses.filestation.DsmResponseFields;
-import responses.filestation.DsmUploadResponse;
+import responses.filestation.transfert.DsmUploadResponse;
 import utils.DateUtils;
 
 import java.io.File;
