@@ -3,9 +3,12 @@ package clients;
 import exeptions.DsmLoginException;
 import requests.*;
 import requests.filestation.*;
+import requests.filestation.share.DsmShareInfoRequest;
+import requests.filestation.share.DsmShareListRequest;
 import responses.filestation.DsmLoginResponse;
 import responses.filestation.DsmLogoutResponse;
 import responses.Response;
+import responses.filestation.DsmResponseFields;
 import utils.DsmUtils;
 
 import java.util.Optional;
@@ -105,5 +108,13 @@ public class DsmFileStationClient {
     public DsmCreateFolderRequest createFolder(String parentPath, String newFolderName) {
         return new DsmCreateFolderRequest(dsmAuth)
                 .addNewFolder(parentPath, newFolderName);
+    }
+
+    public Response<DsmResponseFields.SharingLink> getShareLinkInfo(String id) {
+        return new DsmShareInfoRequest(dsmAuth).getInfo(id);
+    }
+
+    public DsmShareListRequest getAllShareLinks() {
+        return new DsmShareListRequest(dsmAuth);
     }
 }
