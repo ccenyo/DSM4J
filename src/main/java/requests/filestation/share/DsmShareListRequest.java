@@ -115,7 +115,7 @@ public class DsmShareListRequest extends DsmAbstractRequest<DsmShareListResponse
         if(!sorts.isEmpty()) {
             addParameter("sort_by", sorts.stream().map(DsmRequestParameters.ShareSort::name).collect(Collectors.joining(",")));
         }
-        Optional.ofNullable(this.direction).ifPresent(direction -> addParameter("sort_direction", direction.name()));
+        Optional.ofNullable(this.direction).ifPresent(d -> addParameter("sort_direction", d.name()));
         addParameter("force_clean", String.valueOf(forceClean));
         return super.call();
     }

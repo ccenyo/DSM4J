@@ -99,7 +99,7 @@ public class DsmShareCreateOrEditRequest extends DsmAbstractRequest<DsmShareCrea
         if(!paths.isEmpty()) {
             addParameter("path", String.join(",", this.paths));
         }
-        Optional.ofNullable(this.password).ifPresent(password -> addParameter("password", password));
+        Optional.ofNullable(this.password).ifPresent(p -> addParameter("password", p));
         Optional.ofNullable(this.dateExpired).ifPresent(date -> addParameter("date_expired", DateUtils.convertDateToString(date)));
         Optional.ofNullable(this.dateAvailable).ifPresent(date -> addParameter("date_available", DateUtils.convertDateToString(date)));
 

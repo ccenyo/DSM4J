@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 public class DateUtils {
 
-    public static String DSM_DATE_FORMAT = "YYYY-MM-dd hh:mm:ss";
+    private static final String DsmDateFormat = "YYYY-MM-dd hh:mm:ss";
 
     private DateUtils(){}
 
@@ -17,6 +17,6 @@ public class DateUtils {
     }
 
     public static String convertDateToString(LocalDateTime localDate) {
-        return localDate.format(DateTimeFormatter.ofPattern(DSM_DATE_FORMAT));
+        return localDate.format(DateTimeFormatter.ofPattern(DsmDateFormat));
     }
 }

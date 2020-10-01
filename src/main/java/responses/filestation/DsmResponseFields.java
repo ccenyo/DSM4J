@@ -461,7 +461,7 @@ public class DsmResponseFields {
          * The accessibility status of the sharing link might be
          * one of the following:
          */
-        public static enum Status {
+        public enum Status {
             valid, // the sharing link is active
             invalid, // the sharing link is not active because the available date has not arrived yet
             expired, // the sharing link expired.

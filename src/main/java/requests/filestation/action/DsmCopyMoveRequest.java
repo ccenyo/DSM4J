@@ -120,15 +120,15 @@ public class DsmCopyMoveRequest extends DsmAbstractRequest<DsmCopyMoveResponse> 
 
     @Override
     public Response<DsmCopyMoveResponse> start() {
-        String paths = String.join(",", this.paths);
+        String path = String.join(",", this.paths);
         String destinationPath = Optional.ofNullable(this.destinationFolderPath).orElseThrow(() -> new DsmCopyMoveException("You have to set destination path"));
-        if(paths.isEmpty()) {
+        if(path.isEmpty()) {
             throw new DsmCopyMoveException("The paths to copy or move cannot be empty");
         }
         if(!this.overwrite.equals(DsmRequestParameters.OverwriteBehaviour.ERROR)) {
             addParameter("overwrite", String.valueOf(this.overwrite.getValue()));
         }
-        addParameter("path", paths);
+        addParameter("path", path);
         addParameter("dest_folder_path", destinationPath);
         this.method = "start";
         return this.call();
