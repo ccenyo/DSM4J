@@ -41,7 +41,7 @@ public class DsmCopyMoveRequest extends DsmAbstractRequest<DsmCopyMoveResponse> 
     private DsmRequestParameters.OverwriteBehaviour overwrite = DsmRequestParameters.OverwriteBehaviour.ERROR;
     /**
      * Optional. true: move
-     * filess/folders;”false”: copy
+     * filess/folders; false: copy
      * files/folders
      */
     private boolean removeSrc = false;
