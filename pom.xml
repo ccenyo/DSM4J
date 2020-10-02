@@ -4,7 +4,7 @@
 
     <groupId>com.github.ccenyo</groupId>
     <artifactId>DSM4J</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1-SNAPSHOT</version>
 
     <description>A java wrapper for Synology DSM API</description>
     <name>DSM for Java</name>
