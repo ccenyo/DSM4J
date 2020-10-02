@@ -37,7 +37,7 @@ add the maven repository to your pom.xml
         <dependency>
             <groupId>com.github.ccenyo</groupId>
             <artifactId>DSM4J</artifactId>
-            <version>1.0.2</version>
+            <version>1.1.2</version>
         </dependency>
 ```
 
