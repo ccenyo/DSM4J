@@ -186,7 +186,7 @@ public class DsmFileStationClient {
     /**
      * get the information about the share links
      * @param id the id of the shared link
-     * @return Response<DsmResponseFields.SharingLink>
+     * @return DsmResponseFields.SharingLink
      */
     public Response<DsmResponseFields.SharingLink> getShareLinkInfo(String id) {
         return new DsmShareInfoRequest(dsmAuth).getInfo(id);
@@ -203,7 +203,7 @@ public class DsmFileStationClient {
     /**
      * delete a shared link
      * @param id the id of the share link to delete
-     * @return Response<DsmSimpleResponse>
+     * @return DsmSimpleResponse
      */
     public Response<DsmSimpleResponse> deleteShareLink(String id) {
         return new DsmShareDeleteRequest(dsmAuth).delete(id);
@@ -211,7 +211,7 @@ public class DsmFileStationClient {
 
     /**
      * clear invalid links
-     * @return Response<DsmSimpleResponse>
+     * @return DsmSimpleResponse
      */
     public Response<DsmSimpleResponse> clearInvalidShareLinks() {
         return new DsmShareDeleteRequest(dsmAuth).clearInvalidLinks();
