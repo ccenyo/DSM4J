@@ -1,4 +1,4 @@
-## Release 1.1.1 - 2020-10-01
+## Release 1.1.2 - 2020-10-01
 - Add support for FileStation tasks: `createFolder`, `share`, `rename`
    `copy`, `move`
 - Refactoring the code, put some classes into new packages
