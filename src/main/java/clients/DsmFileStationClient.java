@@ -11,6 +11,9 @@ import requests.filestation.lists.DsmListFolderRequest;
 import requests.filestation.lists.DsmSharedFolderRequest;
 import requests.filestation.login.DsmLoginRequest;
 import requests.filestation.login.DsmLogoutRequest;
+import requests.filestation.search.DsmSearchResultRequest;
+import requests.filestation.search.DsmSearchStartRequest;
+import requests.filestation.search.DsmSearchStopRequest;
 import requests.filestation.share.DsmShareCreateOrEditRequest;
 import requests.filestation.share.DsmShareDeleteRequest;
 import requests.filestation.share.DsmShareInfoRequest;
@@ -235,5 +238,19 @@ public class DsmFileStationClient {
     public DsmShareCreateOrEditRequest createShareLink(String fileOrFilePath) {
         return new DsmShareCreateOrEditRequest(dsmAuth)
                 .addFileOrFolder(fileOrFilePath);
+    }
+
+    public DsmSearchStartRequest startSearch(String fileName) {
+        return new DsmSearchStartRequest(dsmAuth)
+                .addPattern(fileName);
+    }
+
+    public DsmSearchResultRequest getSearchResult(String id) {
+        return new DsmSearchResultRequest(dsmAuth)
+                .setTaskId(id);
+    }
+
+    public DsmSearchStopRequest stopSearch(String id) {
+        return new DsmSearchStopRequest(dsmAuth).addTaskId(id);
     }
 }

@@ -24,7 +24,14 @@ public class DsmSearchStopRequest  extends DsmAbstractRequest<DsmSimpleResponse>
      * gotten from start method. Specify
      * multiple search task IDs by commas.
      */
-    private List<String> taskIds = new LinkedList<>();
+    private final List<String> taskIds = new LinkedList<>();
+
+    public DsmSearchStopRequest addTaskId(String taskId) {
+        this.taskIds.add(taskId);
+        return this;
+    }
+
+
 
     @Override
     protected TypeReference getClassForMapper() {
