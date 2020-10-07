@@ -1,6 +1,6 @@
 package responses.filestation.favorite;
 
-import requests.filestation.DsmRequestParameters;
+import responses.filestation.DsmResponseFields;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class DsmListFavoriteResponse {
 
     private Integer offset;
 
-    private List<DsmRequestParameters.Favorite> favorites;
+    private List<DsmResponseFields.Favorite> favorites;
 
     public Integer getTotal() {
         return total;
@@ -20,7 +20,7 @@ public class DsmListFavoriteResponse {
         return offset;
     }
 
-    public List<DsmRequestParameters.Favorite> getFavorites() {
+    public List<DsmResponseFields.Favorite> getFavorites() {
         return favorites;
     }
 }

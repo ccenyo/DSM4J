@@ -1,16 +1,15 @@
 package requests.filestation.favorite;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import exeptions.DsmFavoriteException;
 import requests.DsmAbstractRequest;
 import requests.DsmAuth;
-import requests.filestation.DsmRequestParameters;
 import responses.Response;
 import responses.filestation.DsmSimpleResponse;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class DsmManageFavoriteRequest extends DsmAbstractRequest<DsmSimpleResponse> {
     public DsmManageFavoriteRequest(DsmAuth auth) {
@@ -58,15 +57,12 @@ public class DsmManageFavoriteRequest extends DsmAbstractRequest<DsmSimpleRespon
      */
     private Integer index;
 
-    public DsmManageFavoriteRequest addPath(String path) {
+    public DsmManageFavoriteRequest addPath(String path, String name) {
         this.paths.add(path);
-        return this;
-    }
-
-    public DsmManageFavoriteRequest addName(String name) {
         this.names.add(name);
         return this;
     }
+
 
     public DsmManageFavoriteRequest setIndex(Integer index) {
         this.index = index;
@@ -74,12 +70,20 @@ public class DsmManageFavoriteRequest extends DsmAbstractRequest<DsmSimpleRespon
     }
 
     public Response<DsmSimpleResponse> add() {
+        if(this.paths.isEmpty() || this.names.isEmpty()) {
+            throw new DsmFavoriteException("You have to add path or names to make favorite");
+        }
+
         this.method = "add";
         prepareDate();
         return super.call();
     }
 
     public Response<DsmSimpleResponse> delete() {
+        if(this.paths.isEmpty()) {
+            throw new DsmFavoriteException("You have to add path to delete favorite");
+        }
+
         this.method = "delete";
         prepareDate();
         return super.call();
@@ -93,12 +97,18 @@ public class DsmManageFavoriteRequest extends DsmAbstractRequest<DsmSimpleRespon
 
 
     public Response<DsmSimpleResponse> edit() {
+        if(this.paths.size() > 1) {
+            throw new DsmFavoriteException("use replaceAll function to edit multiple favorites");
+        }
         this.method = "edit";
         prepareDate();
         return super.call();
     }
 
     public Response<DsmSimpleResponse> replaceAll() {
+        if(this.paths.isEmpty()) {
+            throw new DsmFavoriteException("You have to add path to edit favorite");
+        }
         this.method = "replace_all";
         prepareDate();
         return super.call();

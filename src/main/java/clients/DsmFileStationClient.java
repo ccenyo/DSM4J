@@ -7,6 +7,8 @@ import requests.filestation.action.DsmCreateFolderRequest;
 import requests.filestation.action.DsmRenameRequest;
 import requests.filestation.delete.DsmAdvancedDeleteRequest;
 import requests.filestation.delete.DsmSimpleDeleteRequest;
+import requests.filestation.favorite.DsmListFavoriteRequest;
+import requests.filestation.favorite.DsmManageFavoriteRequest;
 import requests.filestation.lists.DsmListFolderRequest;
 import requests.filestation.lists.DsmSharedFolderRequest;
 import requests.filestation.login.DsmLoginRequest;
@@ -252,5 +254,18 @@ public class DsmFileStationClient {
 
     public DsmSearchStopRequest stopSearch(String id) {
         return new DsmSearchStopRequest(dsmAuth).addTaskId(id);
+    }
+
+    public DsmManageFavoriteRequest favoriteManager(String path, String name) {
+        return new DsmManageFavoriteRequest(dsmAuth)
+                .addPath(path, name);
+    }
+
+    public DsmManageFavoriteRequest favoriteManager() {
+        return new DsmManageFavoriteRequest(dsmAuth);
+    }
+
+    public DsmListFavoriteRequest listFavorite() {
+        return new DsmListFavoriteRequest(dsmAuth);
     }
 }

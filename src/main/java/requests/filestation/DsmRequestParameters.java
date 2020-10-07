@@ -168,32 +168,4 @@ public class DsmRequestParameters {
         BROKEN,
         ALL
     }
-
-    public static class Favorite {
-
-        public enum Status {
-            valid,
-            broken
-        }
-        private String path;
-        private String name;
-        private DsmResponseFields.SharingLink.Status status;
-        private Additional additional;
-
-        public String getPath() {
-            return path;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public DsmResponseFields.SharingLink.Status getStatus() {
-            return status;
-        }
-
-        public Additional getAdditional() {
-            return additional;
-        }
-    }
 }
