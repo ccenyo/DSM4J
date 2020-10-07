@@ -6,7 +6,6 @@ import org.junit.rules.TemporaryFolder;
 import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
 import requests.filestation.DsmRequestParameters;
-import requests.filestation.search.DsmSearchStopRequest;
 import responses.Response;
 import responses.filestation.DsmSimpleResponse;
 import responses.filestation.search.DsmSearchResultResponse;
