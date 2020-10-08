@@ -4,6 +4,7 @@ import exeptions.DsmLoginException;
 import requests.DsmAuth;
 import requests.filestation.action.DsmCopyMoveRequest;
 import requests.filestation.action.DsmCreateFolderRequest;
+import requests.filestation.action.DsmDirSizeRequest;
 import requests.filestation.action.DsmRenameRequest;
 import requests.filestation.delete.DsmAdvancedDeleteRequest;
 import requests.filestation.delete.DsmSimpleDeleteRequest;
@@ -267,5 +268,10 @@ public class DsmFileStationClient {
 
     public DsmListFavoriteRequest listFavorite() {
         return new DsmListFavoriteRequest(dsmAuth);
+    }
+
+    public DsmDirSizeRequest getSize(String path) {
+        return new DsmDirSizeRequest(dsmAuth)
+                .addPath(path);
     }
 }
