@@ -37,7 +37,7 @@ add the maven repository to your pom.xml
         <dependency>
             <groupId>com.github.ccenyo</groupId>
             <artifactId>DSM4J</artifactId>
-            <version>1.1.2</version>
+            <version>1.2.1</version>
         </dependency>
 ```
 
@@ -69,6 +69,25 @@ or
     DsmAuth dsmAuth = DsmAuth.of(host, port, username, password);
 ```
 
+## Non blocking usage
+
+Some features are non-blocking you have to start the request and then check the status before getting the result
+
+```java
+            Response<DsmDeleteResponse> deleteResponse = client.advancedDelete()
+                    .addFileToDelete(ROOT_FOLDER+"/"+fileToDownload.getName())
+                    .start();
+
+            Response<DsmDeleteResponse> statusResponse = client.advancedDelete()
+                    .taskId(deleteResponse.getData().getTaskid())
+                    .status();
+
+// you can stop the request if you don't want the result anymore
+
+            client.advancedDelete()
+                .taskId(deleteResponse.getData().getTaskid())
+                .stop();
+```
 ## Features
 
 #### FileStation features
@@ -86,14 +105,17 @@ or
 | Rename a file or folder   | `SYNO.FileStation.Rename`     | rename                                    | rename files or folders    
 | Copy or move file/folder  | `SYNO.FileStation.CopyMove`   | start/status/stop                         | copy or move folder or file asynchroniously 
 | Create folder             |`SYNO.FileStation.CreateFolder`| create                                    | Create new Folder 
+| Favorite to file/folder   |`SYNO.FileStation.Favorite`    | add,edit,delete, replace, clrear          | add favorite on folder or file
 | Share file of folder      |`SYNO.FileStation.Sharing`     | create,edit,delete, info, clear_invalid   | Share a file of folder ans get a link
+| Get file or folder size   |`SYNO.FileStation.DirSize`     | start/status/stop                         | get the size of file or folder
+| Search for file of folder |`SYNO.FileStation.Search`      | start/list/stop                           | look for file or folder and get all informations
 
 If you don't know how to use the methods, feel free to look at the tests, i always make sure to use the methods in different ways in the tests.
 
 ##RoadMap
 I will be completing new methods regularely
 
- * Adding all methods for FileStation
+ * Adding rest of methods for FileStation : Thumb, VirtualFolder, MD5, CheckPermission, Extract, Compress, BackgroundTask
  * Adding features for DownloadStation
  * Adding features for AudioStation
  

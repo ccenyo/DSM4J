@@ -1,5 +1,9 @@
 package requests.filestation;
 
+import responses.filestation.DsmResponseFields;
+
+import java.util.List;
+
 public class DsmRequestParameters {
     public enum Sort {
         /**
@@ -159,4 +163,9 @@ public class DsmRequestParameters {
         }
     }
 
+    public enum  StatusFilter {
+        VALID,
+        BROKEN,
+        ALL
+    }
 }

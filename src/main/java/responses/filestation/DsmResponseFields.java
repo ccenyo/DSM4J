@@ -1,5 +1,7 @@
 package responses.filestation;
 
+import requests.filestation.DsmRequestParameters;
+
 import java.util.List;
 
 public class DsmResponseFields {
@@ -18,11 +20,11 @@ public class DsmResponseFields {
         /**
          * File UID.
          */
-        private Integer uid;
+        private Long uid;
         /**
          * File GID.
          */
-        private Integer gid;
+        private Long gid;
 
         public String getUser() {
             return user;
@@ -32,11 +34,11 @@ public class DsmResponseFields {
             return group;
         }
 
-        public Integer getUid() {
+        public Long getUid() {
             return uid;
         }
 
-        public Integer getGid() {
+        public Long getGid() {
             return gid;
         }
     }
@@ -407,6 +409,34 @@ public class DsmResponseFields {
 
         public Files getFiles() {
             return files;
+        }
+    }
+
+    public static class Favorite {
+
+        public enum Status {
+            valid,
+            broken
+        }
+        private String path;
+        private String name;
+        private DsmResponseFields.SharingLink.Status status;
+        private DsmResponseFields.AdditionalListFolder additional;
+
+        public String getPath() {
+            return path;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public DsmResponseFields.SharingLink.Status getStatus() {
+            return status;
+        }
+
+        public DsmResponseFields.AdditionalListFolder getAdditional() {
+            return additional;
         }
     }
 

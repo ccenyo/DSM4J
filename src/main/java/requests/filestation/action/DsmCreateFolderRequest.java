@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DsmCreateFolderRequest  extends DsmAbstractRequest<DsmCreateFolderResponse> {
+public class DsmCreateFolderRequest extends DsmAbstractRequest<DsmCreateFolderResponse> {
     public DsmCreateFolderRequest(DsmAuth auth) {
         super(auth);
         this.apiName = "SYNO.FileStation.CreateFolder";

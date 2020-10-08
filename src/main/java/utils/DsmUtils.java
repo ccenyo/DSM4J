@@ -79,6 +79,9 @@ public class DsmUtils {
         codeErrors.put(1101, "The number of folders to the parent folder would exceed the system limitation");
         codeErrors.put(2000, "Sharing link does not exist");
         codeErrors.put(2001, "Cannot generate sharing link because too many sharing links exist.");
+        codeErrors.put(800, "A folder path of favorite folder is already added to user’s favorites");
+        codeErrors.put(801, "A name of favorite folder conflicts with an existing folder path in the user’s favorites.");
+        codeErrors.put(802, "There are too many favorites to be added");
         codeErrors.put(2002, "Failed to access sharing links.");
     }
 
