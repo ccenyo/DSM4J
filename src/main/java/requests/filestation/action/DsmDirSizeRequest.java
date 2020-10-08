@@ -63,6 +63,18 @@ public class DsmDirSizeRequest extends DsmAbstractRequest<DsmDirSizeResponse> im
         return super.call();
     }
 
+    public Response<DsmDirSizeResponse> status(String taskId) {
+        this.method = "status";
+        this.taskId = taskId;
+        return this.status();
+    }
+
+    public Response<DsmDirSizeResponse> stop(String taskId) {
+        this.method = "stop";
+        this.taskId = taskId;
+        return this.stop();
+    }
+
     @Override
     public Response<DsmDirSizeResponse> stop() {
         this.method = "stop";
