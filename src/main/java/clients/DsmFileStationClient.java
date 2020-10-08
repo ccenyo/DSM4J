@@ -243,33 +243,68 @@ public class DsmFileStationClient {
                 .addFileOrFolder(fileOrFilePath);
     }
 
+    /**
+     * Search for file or directory
+     *
+     * @param fileName the file or directoru to search
+     * @return DsmSearchStartRequest
+     */
     public DsmSearchStartRequest startSearch(String fileName) {
         return new DsmSearchStartRequest(dsmAuth)
                 .addPattern(fileName);
     }
 
+    /**
+     * get the search result
+     *
+     * @param id the search task id
+     * @return DsmSearchResultRequest
+     */
     public DsmSearchResultRequest getSearchResult(String id) {
         return new DsmSearchResultRequest(dsmAuth)
                 .setTaskId(id);
     }
 
+    /**
+     * stop the search task
+     * @param id the it of the search task
+     * @return DsmSearchStopRequest
+     */
     public DsmSearchStopRequest stopSearch(String id) {
         return new DsmSearchStopRequest(dsmAuth).addTaskId(id);
     }
 
+    /**
+     * @param path the path of file or folder for favorite
+     * @param name the favorite name
+     * @return DsmManageFavoriteRequest
+     */
     public DsmManageFavoriteRequest favoriteManager(String path, String name) {
         return new DsmManageFavoriteRequest(dsmAuth)
                 .addPath(path, name);
     }
 
+    /**
+     * get favorite manager
+     * @return DsmManageFavoriteRequest
+     */
     public DsmManageFavoriteRequest favoriteManager() {
         return new DsmManageFavoriteRequest(dsmAuth);
     }
 
+    /**
+     * the list of all favorite
+     * @return DsmListFavoriteRequest
+     */
     public DsmListFavoriteRequest listFavorite() {
         return new DsmListFavoriteRequest(dsmAuth);
     }
 
+    /**
+     * get the size of directory or file
+     * @param path the path the file or folder
+     * @return DsmDirSizeRequest
+     */
     public DsmDirSizeRequest getSize(String path) {
         return new DsmDirSizeRequest(dsmAuth)
                 .addPath(path);
