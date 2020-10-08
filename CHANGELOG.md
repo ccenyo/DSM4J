@@ -1,3 +1,6 @@
+## Release 1.2.1 - 2020-10-08
+- Add support for FileStation tasks: `Search`, `Favorite`, `DirSize`
+
 ## Release 1.1.2 - 2020-10-01
 - Add support for FileStation tasks: `createFolder`, `share`, `rename`
    `copy`, `move`
