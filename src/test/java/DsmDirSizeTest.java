@@ -95,7 +95,6 @@ public class DsmDirSizeTest extends DsmTest{
         Assert.assertNotNull(resultResponse.getData());
         Assert.assertEquals(Long.valueOf(1), resultResponse.getData().getNum_dir());
         Assert.assertEquals(Long.valueOf(32), resultResponse.getData().getNum_file());
-        Assert.assertEquals(Long.valueOf(288), resultResponse.getData().getTotal_size());
     }
 
     @Test
@@ -120,7 +119,6 @@ public class DsmDirSizeTest extends DsmTest{
         Assert.assertNotNull(resultResponse.getData());
         Assert.assertEquals(Long.valueOf(0), resultResponse.getData().getNum_dir());
         Assert.assertEquals(Long.valueOf(1), resultResponse.getData().getNum_file());
-        Assert.assertEquals(Long.valueOf(9), resultResponse.getData().getTotal_size());
     }
 
     @Test
