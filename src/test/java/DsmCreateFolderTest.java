@@ -9,7 +9,9 @@ import requests.filestation.DsmRequestParameters;
 import responses.Response;
 import responses.filestation.action.DsmCreateFolderResponse;
 
-public class DsmCreateFolderTest {
+import java.io.IOException;
+
+public class DsmCreateFolderTest extends DsmTest{
 
 
     private final String ROOT_FOLDER = "/homes/testResource";
@@ -19,9 +21,9 @@ public class DsmCreateFolderTest {
     public TemporaryFolder folder= new TemporaryFolder();
 
     @Before
-    public void initTest() {
+    public void initTest() throws IOException {
+        super.initTest();
         client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));
-
     }
 
     @After

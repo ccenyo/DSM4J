@@ -7,7 +7,9 @@ import requests.filestation.DsmRequestParameters;
 import responses.Response;
 import responses.filestation.lists.DsmListFolderResponse;
 
-public class DsmListFolderTest {
+import java.io.IOException;
+
+public class DsmListFolderTest extends DsmTest{
     DsmAuth auth;
 
     private static final String ROOT_HOME = "/homes";
@@ -15,7 +17,8 @@ public class DsmListFolderTest {
     private static final String NOT_ROOT_HOME_ERROR_CODE = "408";
 
     @Before
-    public void initTest() {
+    public void initTest() throws IOException {
+        super.initTest();
         auth = DsmAuth.fromResource("env.properties");
     }
 

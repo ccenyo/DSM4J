@@ -1,9 +1,6 @@
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.Logger;
 import clients.DsmFileStationClient;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
-import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
 import requests.filestation.DsmRequestParameters;
 import responses.Response;
@@ -16,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-public class DsmShareTest {
+public class DsmShareTest extends DsmTest{
 
 
     private final String ROOT_FOLDER = "/homes/testResource";
@@ -28,7 +25,7 @@ public class DsmShareTest {
 
     @Before
     public void initTest() throws IOException {
-
+        super.initTest();
         fileToDownload = createNewFile();
 
         client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));

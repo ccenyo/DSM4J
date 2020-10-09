@@ -14,7 +14,7 @@ import responses.filestation.favorite.DsmListFavoriteResponse;
 import java.io.File;
 import java.io.IOException;
 
-public class DsmFavoriteTest {
+public class DsmFavoriteTest extends DsmTest{
     private final String ROOT_FOLDER = "/homes/testResource";
     private DsmFileStationClient client;
     private File uploadedFile;
@@ -27,6 +27,7 @@ public class DsmFavoriteTest {
 
     @Before
     public void initTest() throws IOException {
+        super.initTest();
         favorite = "favorite"+System.currentTimeMillis();
         favorite2 = "favorite"+System.currentTimeMillis();
 

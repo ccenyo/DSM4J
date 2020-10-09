@@ -13,7 +13,7 @@ import responses.filestation.action.DsmCopyMoveResponse;
 import java.io.File;
 import java.io.IOException;
 
-public class DsmCopyMoveTest {
+public class DsmCopyMoveTest extends DsmTest{
 
     private final String ROOT_FOLDER = "/homes/testResource";
     private DsmFileStationClient client;
@@ -24,9 +24,7 @@ public class DsmCopyMoveTest {
 
     @Before
     public void initTest() throws IOException {
-        Logger rootLogger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-        rootLogger.setLevel(Level.ALL);
-
+        super.initTest();
         fileToUpload = createNewFile();
 
         client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));

@@ -1,10 +1,7 @@
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.Logger;
 import clients.DsmFileStationClient;
 import exeptions.DsmDownloadException;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
-import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
 import requests.filestation.DsmRequestParameters;
 import responses.Response;
@@ -13,7 +10,7 @@ import responses.filestation.transfert.DsmDownloadResponse;
 import java.io.File;
 import java.io.IOException;
 
-public class DsmDownloadTest {
+public class DsmDownloadTest extends DsmTest{
 
     private final String ROOT_FOLDER = "/homes/testResource";
     private DsmFileStationClient client;
@@ -25,6 +22,7 @@ public class DsmDownloadTest {
 
     @Before
     public void initTest() throws IOException {
+        super.initTest();
         String fileSuccess = "dummy-upload-file"+System.currentTimeMillis()+".txt";
         String content = "success content";
 

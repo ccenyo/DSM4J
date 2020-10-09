@@ -1,10 +1,7 @@
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.Logger;
 import clients.DsmFileStationClient;
 import exeptions.DsmRenameException;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
-import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
 import requests.filestation.DsmRequestParameters;
 import responses.Response;
@@ -13,7 +10,7 @@ import responses.filestation.action.DsmRenameResponse;
 import java.io.File;
 import java.io.IOException;
 
-public class DsmRenameTest {
+public class DsmRenameTest extends DsmTest{
     private final String ROOT_FOLDER = "/homes/testResource";
     private DsmFileStationClient client;
     private File fileToUpload;
@@ -23,7 +20,7 @@ public class DsmRenameTest {
 
     @Before
     public void initTest() throws IOException {
-
+        super.initTest();
         fileToUpload = createNewFile();
 
         client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));

@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public class DsmUploadTest {
+public class DsmUploadTest extends DsmTest{
 
     private final String ROOT_FOLDER = "/homes/testResource";
     @Rule
@@ -27,7 +27,8 @@ public class DsmUploadTest {
     public DsmFileStationClient client;
 
     @Before
-    public void initTest() {
+    public void initTest() throws IOException {
+        super.initTest();
         client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));
     }
 

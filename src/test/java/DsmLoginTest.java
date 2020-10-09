@@ -6,12 +6,15 @@ import org.junit.Before;
 import org.junit.Test;
 import requests.DsmAuth;
 
-public class DsmLoginTest {
+import java.io.IOException;
+
+public class DsmLoginTest extends DsmTest{
 
     DsmAuth auth;
 
     @Before
-    public void initTest() {
+    public void initTest() throws IOException {
+        super.initTest();
         auth = DsmAuth.fromResource("env.properties");
     }
 

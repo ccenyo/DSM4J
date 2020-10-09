@@ -1,10 +1,7 @@
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.Logger;
 import clients.DsmFileStationClient;
 import exeptions.DsmDeleteException;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
-import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
 import requests.filestation.DsmRequestParameters;
 import responses.Response;
@@ -14,7 +11,7 @@ import utils.DsmUtils;
 import java.io.File;
 import java.io.IOException;
 
-public class DsmDeleteTest {
+public class DsmDeleteTest extends DsmTest{
 
     private final String ROOT_FOLDER = "/homes/testResource";
     private DsmFileStationClient client;
@@ -25,6 +22,7 @@ public class DsmDeleteTest {
 
     @Before
     public void initTest() throws IOException {
+        super.initTest();
         fileToDownload = createNewFile();
 
         client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));

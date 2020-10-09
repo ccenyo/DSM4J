@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DsmDirSizeTest {
+public class DsmDirSizeTest extends DsmTest{
 
     private final String ROOT_FOLDER = "/homes/testResource";
     @Rule
@@ -24,6 +24,7 @@ public class DsmDirSizeTest {
 
     @Before
     public void initTest() throws IOException {
+        super.initTest();
         client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));
 
         for(int i =0; i < 30; i++) {

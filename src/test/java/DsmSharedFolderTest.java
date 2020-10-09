@@ -7,11 +7,14 @@ import requests.filestation.DsmRequestParameters;
 import responses.Response;
 import responses.filestation.lists.DsmSharedFolderResponse;
 
-public class DsmSharedFolderTest {
+import java.io.IOException;
+
+public class DsmSharedFolderTest extends DsmTest{
     DsmAuth auth;
 
     @Before
-    public void initTest() {
+    public void initTest() throws IOException {
+        super.initTest();
         auth = DsmAuth.fromResource("env.properties");
     }
 

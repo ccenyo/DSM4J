@@ -1,9 +1,6 @@
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.Logger;
 import clients.DsmFileStationClient;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
-import org.slf4j.LoggerFactory;
 import requests.DsmAuth;
 import requests.filestation.DsmRequestParameters;
 import responses.Response;
@@ -17,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class DsmSearchTest {
+public class DsmSearchTest extends DsmTest{
 
     private final String ROOT_FOLDER = "/homes/testResource";
     @Rule
@@ -29,6 +26,7 @@ public class DsmSearchTest {
 
     @Before
     public void initTest() throws IOException {
+        super.initTest();
         client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));
 
         for(int i =0; i < 30; i++) {
