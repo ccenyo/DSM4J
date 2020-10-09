@@ -29,8 +29,6 @@ public class DsmSearchTest {
 
     @Before
     public void initTest() throws IOException {
-        Logger rootLogger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-        rootLogger.setLevel(Level.ALL);
         client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));
 
         for(int i =0; i < 30; i++) {

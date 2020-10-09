@@ -27,8 +27,6 @@ public class DsmFavoriteTest {
 
     @Before
     public void initTest() throws IOException {
-        Logger rootLogger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-        rootLogger.setLevel(Level.ALL);
         favorite = "favorite"+System.currentTimeMillis();
         favorite2 = "favorite"+System.currentTimeMillis();
 

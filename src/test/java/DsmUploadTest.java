@@ -28,8 +28,6 @@ public class DsmUploadTest {
 
     @Before
     public void initTest() {
-        Logger rootLogger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-        rootLogger.setLevel(Level.ALL);
         client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));
     }
 

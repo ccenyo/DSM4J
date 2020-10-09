@@ -25,9 +25,6 @@ public class DsmDownloadTest {
 
     @Before
     public void initTest() throws IOException {
-        Logger rootLogger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-        rootLogger.setLevel(Level.ALL);
-
         String fileSuccess = "dummy-upload-file"+System.currentTimeMillis()+".txt";
         String content = "success content";
 

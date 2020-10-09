@@ -25,9 +25,6 @@ public class DsmDeleteTest {
 
     @Before
     public void initTest() throws IOException {
-        Logger rootLogger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-        rootLogger.setLevel(Level.ALL);
-
         fileToDownload = createNewFile();
 
         client = DsmFileStationClient.login(DsmAuth.fromResource("env.properties"));

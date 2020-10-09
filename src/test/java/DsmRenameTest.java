@@ -23,8 +23,6 @@ public class DsmRenameTest {
 
     @Before
     public void initTest() throws IOException {
-        Logger rootLogger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-        rootLogger.setLevel(Level.ALL);
 
         fileToUpload = createNewFile();
 
