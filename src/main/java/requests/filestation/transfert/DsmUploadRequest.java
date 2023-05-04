@@ -13,6 +13,7 @@ import utils.DsmUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +29,8 @@ public class DsmUploadRequest  extends DsmAbstractRequest<DsmUploadResponse> {
     private Boolean createParents;
     private DsmRequestParameters.OverwriteBehaviour overwrite = DsmRequestParameters.OverwriteBehaviour.ERROR;
     private String filePath;
+    private String destinationFileName;
+    private InputStream fileContent;
     private LocalDateTime lastModifiedTime;
     private LocalDateTime createdTime;
     private LocalDateTime lastAccessedTime;
@@ -65,6 +68,16 @@ public class DsmUploadRequest  extends DsmAbstractRequest<DsmUploadResponse> {
         this.filePath = filePath;
         return this;
     }
+    
+    public DsmUploadRequest setDestinationFileName(String destinationFileName) {
+        this.destinationFileName = destinationFileName;
+        return this;
+    }
+    
+    public DsmUploadRequest setFileContent(InputStream fileContent) {
+        this.fileContent = fileContent;
+        return this;
+    }
 
 
     public DsmUploadRequest setLastModifiedTime(LocalDateTime lastModifiedTime) {
@@ -91,9 +104,18 @@ public class DsmUploadRequest  extends DsmAbstractRequest<DsmUploadResponse> {
         if(!this.overwrite.equals(DsmRequestParameters.OverwriteBehaviour.ERROR)) {
             params.put("overwrite", String.valueOf(this.overwrite.getValue()));
         }
-
-        if(!new File(Optional.ofNullable(this.filePath).orElseThrow(() -> new DsmException("you must define source file to upload"))).exists()) {
-            throw new DsmUploadException("File does not exist");
+        
+        if (Optional.ofNullable(this.fileContent).isPresent()) {
+            if (Optional.ofNullable(this.filePath).isPresent()) {
+                throw new DsmException("you can't specify both file path and file content stream to upload");
+            }
+            if (!Optional.ofNullable(this.destinationFileName).isPresent()) {
+                throw new DsmException("you musy define destination file name when using an upload stream");
+            }
+        } else {
+            if (!new File(Optional.ofNullable(this.filePath).orElseThrow(() -> new DsmException("you must define source file to upload"))).exists()) {
+                throw new DsmUploadException("File does not exist");
+            }
         }
 
         addDatesToRequest("atime", params, this.lastAccessedTime);
@@ -101,11 +123,28 @@ public class DsmUploadRequest  extends DsmAbstractRequest<DsmUploadResponse> {
         addDatesToRequest("mtime", params, this.lastModifiedTime);
 
        try {
-           String resp = DsmUtils.makePostRequest(
+           String resp;
+           if (Optional.ofNullable(this.fileContent).isPresent()) {
+               resp = DsmUtils.makePostRequest(
                     build(),
-                    this.filePath,
+                    this.fileContent,
+                    this.destinationFileName,
                     params
-            );
+               );
+           } else if (Optional.ofNullable(this.destinationFileName).isPresent()) {
+               resp = DsmUtils.makePostRequest(
+                   build(),
+                   this.filePath,
+                   this.destinationFileName,
+                   params
+              );
+           } else {
+               resp = DsmUtils.makePostRequest(
+                   build(),
+                   this.filePath,
+                   params
+              );
+           }
            return deserialize(resp);
         } catch (IOException e) {
            throw new DsmException(e);

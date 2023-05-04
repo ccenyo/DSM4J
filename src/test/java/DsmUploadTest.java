@@ -14,6 +14,8 @@ import responses.filestation.transfert.DsmUploadResponse;
 import utils.DateUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -48,6 +50,43 @@ public class DsmUploadTest extends DsmTest{
                 upload(ROOT_FOLDER, file.getAbsolutePath())
                 .createParentFolders(true)
                 .call();
+
+        Assert.assertNotNull(response);
+        Assert.assertTrue(response.isSuccess());
+        Assert.assertNotNull(response.getData());
+    }
+
+    @Test
+    public void uploadFileWithNameSuccess() throws IOException {
+        String fileSuccess = "dummy-upload-file"+System.currentTimeMillis()+".txt";
+        String content = "success";
+        File file = Utils.makeFile(folder, content, fileSuccess);
+
+
+        Response<DsmUploadResponse> response =  client.
+                upload(ROOT_FOLDER, file.getAbsolutePath(), fileSuccess + ".renamed")
+                .createParentFolders(true)
+                .call();
+
+        Assert.assertNotNull(response);
+        Assert.assertTrue(response.isSuccess());
+        Assert.assertNotNull(response.getData());
+    }
+
+    @Test
+    public void uploadFileWithStreamSuccess() throws IOException {
+        String fileSuccess = "dummy-upload-file"+System.currentTimeMillis()+".txt";
+        String content = "success";
+        File file = Utils.makeFile(folder, content, fileSuccess);
+
+        InputStream fileStream = new FileInputStream(file);
+
+        Response<DsmUploadResponse> response =  client.
+                upload(ROOT_FOLDER, fileStream, fileSuccess)
+                .createParentFolders(true)
+                .call();
+        
+        fileStream.close();
 
         Assert.assertNotNull(response);
         Assert.assertTrue(response.isSuccess());

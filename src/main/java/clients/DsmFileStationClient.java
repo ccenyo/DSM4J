@@ -29,6 +29,7 @@ import responses.filestation.DsmResponseFields;
 import responses.filestation.DsmSimpleResponse;
 import utils.DsmUtils;
 
+import java.io.InputStream;
 import java.util.Optional;
 
 /**
@@ -109,6 +110,34 @@ public class DsmFileStationClient {
         return new DsmUploadRequest(dsmAuth)
                 .setDestinationFolderPath(destinationPath)
                 .setFilePath(filePath);
+    }
+
+    /**
+     * upload a file to the server
+     * @param destinationPath the destination path
+     * @param filePath the file to upload
+     * @param filePath the destination file name
+     * @return DsmUploadRequest
+     */
+    public DsmUploadRequest upload(String destinationPath, String filePath, String destinationFileName) {
+        return new DsmUploadRequest(dsmAuth)
+                .setDestinationFolderPath(destinationPath)
+                .setFilePath(filePath)
+                .setDestinationFileName(destinationFileName);
+    }
+
+    /**
+     * upload a file to the server
+     * @param destinationPath the destination path
+     * @param fileContent the file to upload
+     * @param filePath the destination file name
+     * @return DsmUploadRequest
+     */
+    public DsmUploadRequest upload(String destinationPath, InputStream fileContent, String destinationFileName) {
+        return new DsmUploadRequest(dsmAuth)
+                .setDestinationFolderPath(destinationPath)
+                .setFileContent(fileContent)
+                .setDestinationFileName(destinationFileName);
     }
 
     /**
