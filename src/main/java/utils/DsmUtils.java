@@ -6,7 +6,9 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.ContentBody;
 import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -90,18 +92,34 @@ public class DsmUtils {
     public static String manageErrorMessage(Integer code) {
         return Optional.ofNullable(codeErrors.get(code)).orElse("Unknown error");
     }
-
+    
+    public static String makePostRequest(String url, InputStream fileContent, String fileName, Map<String, String> params) throws IOException {
+        InputStreamBody inputStreamBody = new InputStreamBody(fileContent, ContentType.DEFAULT_BINARY, fileName);
+        
+        return makePostRequest(url, inputStreamBody, params);
+    }
+    
+    public static String makePostRequest(String url, String filePath, String fileName, Map<String, String> params) throws IOException {
+        FileBody fileBody = new FileBody(new File(filePath), ContentType.DEFAULT_BINARY, fileName);
+        
+        return makePostRequest(url, fileBody, params);
+    }
+    
     public static String makePostRequest(String url, String filePath, Map<String, String> params) throws IOException {
+        FileBody fileBody = new FileBody(new File(filePath), ContentType.DEFAULT_BINARY, new File(filePath).getName());
+        
+        return makePostRequest(url, fileBody, params);
+    }
+
+    private static String makePostRequest(String url, ContentBody body, Map<String, String> params) throws IOException {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         String result = "";
         try {
             HttpPost httppost = new HttpPost(url);
 
-            FileBody fileBody = new FileBody(new File(filePath), ContentType.DEFAULT_BINARY, new File(filePath).getName());
-
             MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
                     params.forEach((key, value) -> multipartEntityBuilder.addPart(key, new StringBody(value, ContentType.TEXT_PLAIN)));
-                    multipartEntityBuilder.addPart("file", fileBody);
+                    multipartEntityBuilder.addPart("file", body);
             HttpEntity reqEntity =  multipartEntityBuilder
                                         .setLaxMode()
                                         .build();
